@@ -20,7 +20,7 @@ services:
       UNITE_MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       ASPNETCORE_ENVIRONMENT: Release
     ports: 
-      - 127.0.0.1:5000:80
+      - 127.0.0.1:5010:80
 
 networks: 
   default:

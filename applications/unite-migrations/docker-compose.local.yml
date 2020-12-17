@@ -1,0 +1,25 @@
+version: '3.5'
+services:
+  migrations.unite:
+    build: 
+      context: ./src
+      dockerfile: ./Dockerfile
+      args: 
+        USER: ${GITHUB_USER}
+        TOKEN: ${GITHUB_TOKEN}
+    image: unite.migrations
+    container_name: unite.migrations
+    environment:
+      UNITE_MYSQL_HOST: mysql.unite
+      UNITE_MYSQL_DATABASE: unite
+      UNITE_MYSQL_USER: ${MYSQL_USER}
+      UNITE_MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      ASPNETCORE_ENVIRONMENT: Development
+
+networks: 
+  default:
+    external: 
+      name: unite
+      
+    
+    

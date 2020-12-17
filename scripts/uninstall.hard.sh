@@ -9,11 +9,11 @@ docker volume prune -f
 echo ""
 
 tput setaf 6; echo "# Cleaning up MySQL data"; tput sgr0
-rm -r -f programs/mysql/data
+rm -r -f ../programs/mysql/data
 echo ""
 
 tput setaf 6; echo "# Cleaning up MongoDB data"; tput sgr0
-rm -r -f programs/mongodb/data
+rm -r -f ../programs/mongodb/data
 echo ""
 
 tput setaf 6; echo "# Cleaning up unused images and networks"; tput sgr0

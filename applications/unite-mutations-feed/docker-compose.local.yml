@@ -1,0 +1,30 @@
+version: '3.5'
+services:
+  mutations.feed.unite:
+    build: 
+      context: ./src
+      dockerfile: ./Dockerfile
+      args: 
+        USER: ${GITHUB_USER}
+        TOKEN: ${GITHUB_TOKEN}
+    image: unite.mutations.feed
+    container_name: unite.mutations.feed
+    restart: unless-stopped
+    environment: 
+      UNITE_ELASTIC_HOST: http://es.unite:9200
+      UNITE_ELASTIC_USER: ${ELASTIC_USER}
+      UNITE_ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
+      UNITE_MYSQL_HOST: mysql.unite
+      UNITE_MYSQL_DATABASE: unite
+      UNITE_MYSQL_USER: ${MYSQL_USER}
+      UNITE_MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      UNITE_INDEXING_INTERVAL: 60
+      UNITE_INDEXING_BUCKET_SIZE: 300
+      ASPNETCORE_ENVIRONMENT: Development
+    ports: 
+      - 127.0.0.1:5030:80
+
+networks: 
+  default:
+    external: 
+      name: unite

@@ -84,11 +84,11 @@ Each section represents credentials for specific part of the platform services:
    - For **Linux** environment: `sh configure.linux.sh`
    - For **other** environments: **skip this step**
 1. Generate SSL certificate
-   1. For environment **with** .net runtime installed: `sh generate-ssl.dotnet.sh`
-   1. For environment **without** .net runtime installed: `sh generate-ssl.openssl.sh`
+   - For environment **with** .net runtime installed: `sh generate-ssl.dotnet.sh`
+   - For environment **without** .net runtime installed: `sh generate-ssl.openssl.sh`
 1. Install programs and applications
-   1. Developer server: `sh install.dev.sh`
-   1. Local environment: `sh install.local.sh`
+   - Developer server: `sh install.dev.sh`
+   - Local environment: `sh install.local.sh`
 
 ### Uninstallation
 To uninstall UNITE platform, run corresponding command from unite-environment/scripts folder:

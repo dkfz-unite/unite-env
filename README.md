@@ -41,7 +41,7 @@ UNITE platform installation scripts and configuration files
 - _secrets.json_ - JSON configuration file with all required credentials
 
 ### Secrets
-All sensitive information is stored in secrets.json file. Template of this file is stored in unite-environment repository on github. File has the following structure:
+All sensitive information is stored in **secrets.json** file. Template of this file is stored in unite-environment repository on github. File has the following structure:
 ```json
 {
     "github":{

@@ -92,5 +92,5 @@ Each section represents credentials for specific part of the platform services:
 
 ### Uninstallation
 To uninstall UNITE platform, run corresponding command from unite-environment/scripts folder:
-- To remove all services with all their data: `sh uninstall.hard.sh`
-- To remove only services, but keep their data: `sh uninstall.soft.sh`
+- To **remove** all services **with all their data**: `sh uninstall.hard.sh`
+- To **remove** only services, **but keep all their data**: `sh uninstall.soft.sh`

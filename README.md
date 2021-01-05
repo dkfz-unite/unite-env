@@ -38,7 +38,7 @@ UNITE platform installation scripts and configuration files
   - _install.**local**.sh_ - **local** installation script
   - _uninstall.**hard**.sh_ - **hard** uninstallation script (**removes** data and volumes)
   - _uninstall.**soft**.sh_ - **soft** uninstallation script (**keeps** data and volumes)
-- _secrets.json_ - JSON configuration file with all required credentials
+- _secrets_templates.json_ - JSON configuration file with all required credentials
 
 ### Secrets
 All sensitive information is stored in **secrets.json** file. Template of this file is stored in unite-environment repository on github. File has the following structure:
@@ -78,7 +78,7 @@ Each section represents credentials for specific part of the platform services:
 
 ### Installation
 1. Download **unite-environment** source files from git repository
-1. **Change credentials** in secrets.json
+1. **Change credentials** in secrets_templates.json and **rename** the file to **secrets.json**
 1. Open `unite-environment/scripts` folder in terminal
 1. Configure environment
    - For **Linux** environment: `sh configure.linux.sh`

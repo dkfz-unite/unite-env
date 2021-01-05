@@ -12,6 +12,7 @@ services:
       ASPNETCORE_URLS: https://+:443;http://+:80
       ASPNETCORE_Kestrel__Certificates__Default__Password: ${SSL_PASSWORD}
       ASPNETCORE_Kestrel__Certificates__Default__Path: /https/unite.pfx
+      UNITE_COMPOSER_HOST: http://composer.unite
     volumes: 
       - "../../ssl:/https:ro"
     ports: 

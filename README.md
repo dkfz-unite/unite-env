@@ -82,7 +82,7 @@ Each section represents credentials for specific part of the platform services:
 1. Open `unite-environment/scripts` folder in terminal
 1. Configure environment
    - For **Linux** environment: `sh configure.linux.sh`
-   - For **other** environments: **skip this step**
+   - For **other** environments: `sh configure.sh`
 1. Generate SSL certificate
    - For environment **with** .net runtime installed: `sh generate-ssl.dotnet.sh`
    - For environment **without** .net runtime installed: `sh generate-ssl.openssl.sh`

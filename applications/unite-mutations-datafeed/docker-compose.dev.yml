@@ -1,0 +1,23 @@
+version: "3.5"
+services:
+  mutations.feed.unite:
+    build: 
+      context: ./src
+      dockerfile: ./Dockerfile
+    image: unite.mutations.feed
+    container_name: unite.mutations.feed
+    environment: 
+      UNITE_ELASTIC_HOST: http://es.unite:9200
+      UNITE_MYSQL_HOST: mysql.unite
+      UNITE_MYSQL_DATABASE: unite
+      UNITE_MYSQL_USER: root
+      UNITE_MYSQL_PASSWORD: 12345
+      UNITE_INDEXING_INTERVAL: 60
+      ASPNETCORE_ENVIRONMENT: Release
+    ports: 
+      - 127.0.0.1:5180:80
+      
+networks: 
+  default:
+    external:
+      name: unite

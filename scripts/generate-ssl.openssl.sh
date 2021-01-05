@@ -16,7 +16,7 @@ openssl genrsa \
         -des3 \
         -out ../ssl/unite.key \
         -passout pass:$pwd \
-        4096 &> /dev/null
+        4096
 echo "RSA private key palced to ../ssl/unite.key"
 echo ""
 

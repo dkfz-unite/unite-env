@@ -6,6 +6,7 @@ services:
       dockerfile: ./Dockerfile
     image: unite.web
     container_name: unite.web
+    restart: unless-stopped
     environment: 
       ASPNETCORE_ENVIRONMENT: Release
       ASPNETCORE_HTTPS_PORT: 443

@@ -24,11 +24,6 @@ git clone https://b240-phabricator.dkfz-heidelberg.de/source/UNITEvcfstandardiza
 cd $currentdir
 #cp -p ./src/UNITEvcfstandardization/Dockerfile . 
 
-### DELETEME ###################################################################
-cat Dockerfile
-read -p "Press enter to continue"
-### DELETEME ###################################################################
-
 echo "# Installing UNITE Web application (LOCAL)"
 HOSTPATH=$1 docker-compose -p '' -f docker-compose.local.yml up -d --build 
 

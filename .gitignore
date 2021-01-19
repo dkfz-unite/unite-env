@@ -4,3 +4,5 @@
 **/src
 ssl
 secrets.json
+**/.project
+**/.pydevproject

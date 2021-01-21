@@ -121,7 +121,7 @@ RUN pip3 install gitpython
 
 # Takes the local FUSE conf as the base. This should be properly configured
 #  with "user_allow_other" enabled
-COPY fuse.conf /etc/fuse.conf
+COPY ./src/UNITEotp/fuse.conf /etc/fuse.conf
 RUN chown root:root /etc/fuse.conf
 RUN chmod 644 /etc/fuse.conf
 
@@ -130,13 +130,15 @@ RUN mkdir /src
 RUN chmod 777 /src
 
 # Install UNITEotp
-COPY UNITEotp/ /src/UNITEotp/ 
+COPY ./src/UNITEotp/ /src/UNITEotp/ 
 WORKDIR /src/UNITEotp
+RUN ls -la
 RUN python3 setup.py install
 
 # Install UNITEmsc
-COPY UNITEmsc/ /src/UNITEmsc/ 
+COPY ./src/UNITEmsc/ /src/UNITEmsc/ 
 WORKDIR /src/UNITEmsc
+RUN ls -la
 RUN python3 setup.py install
 
 ##########################################

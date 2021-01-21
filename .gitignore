@@ -6,3 +6,4 @@ ssl
 secrets.json
 **/.project
 **/.pydevproject
+**/install.log

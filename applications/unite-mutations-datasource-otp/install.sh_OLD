@@ -30,5 +30,5 @@ cd $currentdir
 
 echo "# Installing UNITE Web application (LOCAL)"
 echo "Current dir = $(pwd)"
-ODCF_REMOTE_DIR=$1 ODCF_FILE_EXTENSION=$2 docker-compose -p '' -f docker-compose.local.yml up -d --build 
+ODCF_REMOTE_DIR=$1 ODCF_FILE_EXTENSION=$2 docker-compose -p '' -f docker-compose.yml up -d --build 
 

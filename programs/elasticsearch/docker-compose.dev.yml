@@ -33,6 +33,8 @@ networks:
   elastic:
     name: unite.elastic
     driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: 1450
 
 volumes:
   es01.data:

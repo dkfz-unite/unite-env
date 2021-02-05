@@ -4,7 +4,9 @@ USAGE="install.local.sh <path_to_host_files>"
 if [ $# -lt 1 ]
   then
     echo "No file source directory included in command line. Using '/tmp'"
-    $1 = "/tmp"
+    volume="/tmp"
+else
+	volume=$1
 fi
 
 echo "# Cleaning up source code directory"
@@ -25,5 +27,5 @@ cd $currentdir
 #cp -p ./src/UNITEvcfstandardization/Dockerfile . 
 
 echo "# Installing UNITE Web application (LOCAL)"
-HOSTPATH=$1 docker-compose -p '' -f docker-compose.local.yml up -d --build 
+HOSTPATH=$volume docker-compose -p '' -f docker-compose.local.yml up -d --build 
 

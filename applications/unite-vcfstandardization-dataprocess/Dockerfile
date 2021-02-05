@@ -37,6 +37,6 @@ COPY src/UNITEvcfstandardization/ /src/UNITEvcfstandardization/
 WORKDIR /src/UNITEvcfstandardization
 RUN python3 setup.py install
 
-#ENTRYPOINT ["UNITEmakestdvcf.py"]
-CMD tail -f /dev/null
+ENTRYPOINT ["UNITEmakestdvcf.py"]
+#CMD tail -f /dev/null
 

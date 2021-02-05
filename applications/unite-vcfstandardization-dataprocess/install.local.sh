@@ -3,8 +3,8 @@
 USAGE="install.local.sh <path_to_host_files>"
 if [ $# -lt 1 ]
   then
-    echo "$USAGE"
-    exit 1
+    echo "No file source directory included in command line. Using '/tmp'"
+    $1 = "/tmp"
 fi
 
 echo "# Cleaning up source code directory"
@@ -18,8 +18,8 @@ chmod -R 777 src
 
 cd $currentdir/src
 
-git clone https://b240-phabricator.dkfz-heidelberg.de/source/UNITE-MSC.git UNITEmsc
-git clone https://b240-phabricator.dkfz-heidelberg.de/source/UNITEvcfstandardization.git UNITEvcfstandardization
+git clone https://github.com/dkfz-unite/unite-python-core.git UNITEmsc
+git clone https://github.com/dkfz-unite/unite-vcfstandardization-service.git UNITEvcfstandardization
 
 cd $currentdir
 #cp -p ./src/UNITEvcfstandardization/Dockerfile . 

@@ -1,10 +1,5 @@
 #!/bin/bash
 
-tput setaf 6; echo "# Creating docker network 'unite'"; tput sgr0
-docker network create unite
-echo ""
-echo ""
-
 cd ../programs/mysql
 sh install.local.sh
 cd ../../scripts

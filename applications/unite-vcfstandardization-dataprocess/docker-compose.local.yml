@@ -7,9 +7,9 @@ services:
     image: unite.vcfstandardization.process
     container_name: unite.vcfstandardization.process
     volumes:
-      - ${HOSTPATH}:/mnt/hipo_057
+      - ${HOSTPATH}:/vcffiles
     ports:
-      - 127.0.0.1:5101:80
+      - 127.0.0.1:5101:5101
     cap_add:
       - SYS_ADMIN
     security_opt:

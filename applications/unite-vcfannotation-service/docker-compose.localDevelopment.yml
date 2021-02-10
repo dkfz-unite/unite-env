@@ -1,0 +1,22 @@
+version: "3"
+services:
+  service.vcfannotation.unite:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: unite.vcfannotation.service
+    container_name: unite.vcfannotation.service
+    volumes:
+      - /home/vep/.vep:/opt/vep/.vep
+      - /home/mikes/WindowsDocuments/eclipse-workspace/unite-vcfannotation-service/:/src/unite-vcfannotation-service
+      - /home/mikes/WindowsDocuments/eclipse-workspace/unite-python-core/:/src/unite-python-core
+    ports:
+      - 127.0.0.1:5201:5201
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - "apparmor:unconfined"
+networks:
+  default:
+    external:
+      name: unite

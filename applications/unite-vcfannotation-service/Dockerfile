@@ -203,6 +203,6 @@ RUN echo >> $OPT/.profile && \
 
 #COPY startup.sh /usr/local/bin/startup.sh
 #CMD /usr/local/bin/startup.sh
-#CMD ["/usr/local/bin/UNITEannotatevcf.py"]
+#ENTRYPOINT ["UNITEannotatevcf.py"]
 CMD tail -f /dev/null
     

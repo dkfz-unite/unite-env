@@ -11,6 +11,9 @@ directory (created previously in pipeline).
   -h | --help
         Print this help statement.
 
+  -b | --build
+        Use the --build flag to tell Docker compuser to build the container
+
   -d | --remote-mount-dir
         The FULL PATH of the remote directory (as it appears on the remote 
          server) to be searched for files with extension <--extension>.
@@ -33,6 +36,9 @@ directory (created previously in pipeline).
 		 the 'IdentityFile=/path/to/key' must be included.  
         (DEFAULT: "StrictHostKeyChecking=no,IdentityFile=/etc/ssl/certs/2020-03-10_ODCF,auto_cache,reconnect,transform_symlinks,follow_symlinks,allow_other)
 
+  -r | --run
+        Use the --run flag to tell Docker compuser just torun the container
+
   -s | --server
         The DNS resolvable name or IP address of the remote server from which
          the --remote-mount-dir will be mounted.  
@@ -52,12 +58,14 @@ directory (created previously in pipeline).
 
 ENDOFUSAGE
 ### END USAGE ##################################################################
-OPTS=$(getopt -o hd:D:k:o:s:t:u:v \
+OPTS=$(getopt -o hbd:D:k:o:rs:t:u:v \
 -l help \
+-l build \
 -l remote-mount-dir: \
 -l local-mount-dir: \
 -l key: \
 -l options: \
+-l run \
 -l server: \
 -l host-tool-dir: \
 -l user: \
@@ -70,6 +78,8 @@ if [ $? != 0 ]; then
 eval set -- "$OPTS"
 
 #--- SET DEFAULTS --------------------------------------------------------------
+BUILD=true
+RUN=false
 REMOTEDIR=""
 LOCALDIR="/mnt/filestobeparsed"
 HOST_TOOL_DIR="/home/vep/.vep"
@@ -82,11 +92,13 @@ VERBOSE=false
 while true ; do
     case "$1" in
         -h | --help ) echo $USAGE;shift;;
+        -b | --build ) BUILD=true; shift;;
         -v | --verbose ) VERBOSE=true; shift;;
         -d | --remote-mount-dir ) REMOTEDIR=$2;  shift 2;;
         -D | --local-mount-dir ) LOCALDIR=$2;  shift 2;;
         -k | --key ) KEY=$2;  shift 2;;
         -o | --options ) OPTIONS=$2;  shift 2;;
+        -r | --run ) RUN=true; shift;;
         -s | --server ) SERVER=$2;  shift 2;;
         -t | --host-tool-dir ) HOST_TOOL_DIR=$2;  shift 2;;
         -u | --user ) USER=$2;  shift 2;;
@@ -99,6 +111,9 @@ if [ "$#" -ne 0 ]; then
 	echo Error extra command line arguments "$@"
 	echo $USAGE
 fi
+
+[[ $RUN == true ]] && BUILD=false
+	
 if [ $VERBOSE == true ]; then
 	echo "REMOTEDIR = $REMOTEDIR"
 	echo "VERBOSE=$VERBOSE"
@@ -137,43 +152,47 @@ else
 	fi
 fi
 
-myechon "Cleaning up source code directory..."
-rm -r -f src && myecho "OK"  || { echo "FAILED!"; exit 1; }
-
-currentdir=$(pwd)
-myechon "Making src code directory..."
-result=$(mkdir src 2>&1) || false
-[[ $result != "" ]] && [[ $result != *"File exists"* ]] && { 
-	echo "FAILED! with $result"; exit 1; 
-} || myecho "OK"
-
-myechon "Changing permissions of src code directory..."
-chmod -R 777 src && myecho "OK" || { 
-	echo "FAILED! changing permissions on src directory"; exit 1; 
-}
-
-myechon "Changing into src code directory..."
-cd $currentdir/src && myecho "OK" || { 
-	echo "FAILED! to change into src directory."; exit 1; 
-}
-
-myechon "Cloning VCF annotation service code to src code directory..."
-git clone https://github.com/dkfz-unite/unite-vcfannotation-service.git UNITEvcfannotation && myecho "OK"  || { 
-	echo "FAILED! git cloning UNITEotp"; exit 1; 
-}
-
-myechon "Cloning UNITE python core code to src code directory..."
-git clone https://github.com/dkfz-unite/unite-python-core.git UNITEmsc && myecho "OK"  || { 
-	echo "FAILED! git cloning UNITEmsc"; exit 1; 
-}
-
-myechon "Returning to root directory..."
-cd $currentdir && myecho "OK" || { 
-	echo "FAILED!"; exit 1; 
-}
+if [ $BUILD == true ]; then 
+	myechon "Cleaning up source code directory..."
+	rm -r -f src && myecho "OK"  || { echo "FAILED!"; exit 1; }
+	
+	currentdir=$(pwd)
+	myechon "Making src code directory..."
+	result=$(mkdir src 2>&1) || false
+	[[ $result != "" ]] && [[ $result != *"File exists"* ]] && { 
+		echo "FAILED! with $result"; exit 1; 
+	} || myecho "OK"
+	
+	myechon "Changing permissions of src code directory..."
+	chmod -R 777 src && myecho "OK" || { 
+		echo "FAILED! changing permissions on src directory"; exit 1; 
+	}
+	
+	myechon "Changing into src code directory..."
+	cd $currentdir/src && myecho "OK" || { 
+		echo "FAILED! to change into src directory."; exit 1; 
+	}
+	
+	myechon "Cloning VCF annotation service code to src code directory..."
+	git clone https://github.com/dkfz-unite/unite-vcfannotation-service.git UNITEvcfannotation && myecho "OK"  || { 
+		echo "FAILED! git cloning UNITEotp"; exit 1; 
+	}
+	
+	myechon "Cloning UNITE python core code to src code directory..."
+	git clone https://github.com/dkfz-unite/unite-python-core.git UNITEmsc && myecho "OK"  || { 
+		echo "FAILED! git cloning UNITEmsc"; exit 1; 
+	}
+	
+	myechon "Returning to root directory..."
+	cd $currentdir && myecho "OK" || { 
+		echo "FAILED!"; exit 1; 
+	}
+fi
 
 echo -n "Installing application..."
-HOST_FILE_DIR=$LOCALDIR HOST_ANNOTATIONS_TOOL_DIR=$HOST_TOOL_DIR docker-compose -p '' -f docker-compose.yml up -d --build 
+# Only one should run
+[[ $RUN == true ]] && HOST_FILE_DIR=$LOCALDIR HOST_ANNOTATIONS_TOOL_DIR=$HOST_TOOL_DIR docker-compose -p '' -f docker-compose.yml up -d
+[[ $BUILD == true ]] && HOST_FILE_DIR=$LOCALDIR HOST_ANNOTATIONS_TOOL_DIR=$HOST_TOOL_DIR docker-compose -p '' -f docker-compose.yml up -d --build 
 
 
 

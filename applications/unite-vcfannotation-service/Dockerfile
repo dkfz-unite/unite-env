@@ -203,6 +203,16 @@ RUN echo >> $OPT/.profile && \
 
 #COPY startup.sh /usr/local/bin/startup.sh
 #CMD /usr/local/bin/startup.sh
+#333 TODO ######################################################################
+# Starting it via ENTRYPOINT starts the application as expected, however the 
+#  restdoes not respond properly. Running the container with tail and then 
+#  starting the python code manually works. The command must be started with 
+#  nohup I.e. ...
+# nohup UNITEannotatevcf.py &
+# This may be the reason ENTRYPOINT is not working. It may be possible to start
+#  it via the Docker container making sure terminal emulation isused, and the 
+#  terminal output is redirected. 
+#  https://unix.stackexchange.com/questions/268284/nohup-doesnt-work-as-expected-in-docker-script get This will need to be figured out.  
 #ENTRYPOINT ["UNITEannotatevcf.py"]
 CMD tail -f /dev/null
     

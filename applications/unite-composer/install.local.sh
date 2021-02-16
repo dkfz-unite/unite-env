@@ -18,6 +18,14 @@ tput setaf 4; echo "# Cloning fresh code to source code directory"; tput sgr0
 git clone https://$ghb_tkn@github.com/dkfz-unite/unite-composer.git src
 echo ""
 
+tput setaf 4; echo "# Setting up local access list"; tput sgr0
+if [ ! -f "./data/access-list.txt" ] 
+    then
+        mkdir data
+        echo "test@dkfz.de" >> ./data/access-list.txt
+fi
+echo ""
+
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
 GITHUB_USER=$ghb_usr \
 GITHUB_TOKEN=$ghb_tkn \

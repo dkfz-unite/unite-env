@@ -7,3 +7,4 @@ secrets.json
 **/.project
 **/.pydevproject
 **/install.log
+install.local_.sh

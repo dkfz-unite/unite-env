@@ -7,7 +7,7 @@ services:
     image: unite.vcfstandardization.process
     container_name: unite.vcfstandardization.process
     volumes:
-      - ${HOSTPATH}:/vcffiles
+      - ${HOSTPATH}:${HOSTPATH}
     ports:
       - 127.0.0.1:5101:5101
     cap_add:

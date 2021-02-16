@@ -21,6 +21,8 @@ services:
       ASPNETCORE_ENVIRONMENT: Release
     ports: 
       - 127.0.0.1:5010:80
+    volumes: 
+      - "./data:/app/data:rw"
 
 networks: 
   default:

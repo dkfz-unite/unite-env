@@ -1,7 +1,6 @@
 #!/bin/bash
 
 ghb_tkn=$(jq -r .github.token ../../secrets.json)
-ssl_pwd=$(jq -r .ssl.password ../../secrets.json)
 
 tput setaf 6; echo "# Installing UNITE Web application (DEV)"; tput sgr0
 echo ""
@@ -15,5 +14,4 @@ git clone https://$ghb_tkn@github.com/dkfz-unite/unite.git src
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
-SSL_PASSWORD=$ssl_pwd \
 docker-compose -p '' -f docker-compose.dev.yml up -d --build

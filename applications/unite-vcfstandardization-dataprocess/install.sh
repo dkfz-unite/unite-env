@@ -198,7 +198,7 @@ fi
 
 echo -n "Installing application..."
 if [ $BUILD == true ]; then 
-	HOSTPATH=$LOCALDIR docker-compose -p '' -f docker-compose.local.yml up -d --build 
+	HOSTPATH=$LOCALDIR docker-compose -p '' -f docker-compose.yml up -d --build 
 else
-	HOSTPATH=$LOCALDIR docker-compose -p '' -f docker-compose.local.yml up -d  
+	HOSTPATH=$LOCALDIR docker-compose -p '' -f docker-compose.yml up -d  
 fi

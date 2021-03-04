@@ -1,5 +1,23 @@
 #!/bin/bash
 
+### FUNCTIONS ##################################################################
+function myecho() {
+	[[ $VERBOSE == true ]] && echo $1
+}
+
+function myechon() {
+	
+	[[ $VERBOSE == true ]] && echo -n $1
+}
+
+function valueerror() {
+	echo ""  >&2
+	echo "Parameter $1 is mandatory. No value (or invalid value) passed in."  >&2
+	echo ""  >&2
+	echo "$USAGE"  >&2
+	exit 1
+}
+
 ### USAGE ######################################################################
 read -r -d '' USAGE << ENDOFUSAGE
 
@@ -17,17 +35,16 @@ directory (created previously in pipeline).
   -D | --local-dir
         The FULL PATH of the local directory to which the --remote-dir will be
          mounted. 
-        (DEFAULT:/mnt/filestobeparsed)
-
-  -e | --extension
-        The file extension (without preceding period) that will be searched for.
-        Case insensitive.
-        (DEFAULT: "vcf")
+        (Mandatory)
 
   -k | --key
         The FULL PATH to the ssh provate key to be used when making the SSHFS 
          mount.
         (DEFAULT: "/etc/ssl/certs/2020-03-10_ODCF")
+
+  -l | --loglevel
+        The logging level for the Python environment. Set at levels 10 - 50
+        (DEFAULT: 30)
 
   -o | --options
         A string of SSHFS options, exactly as they would appear after the '-o' 
@@ -36,10 +53,14 @@ directory (created previously in pipeline).
 		 the 'IdentityFile=/path/to/key' must be included.  
         (DEFAULT: "StrictHostKeyChecking=no,IdentityFile=/etc/ssl/certs/2020-03-10_ODCF,auto_cache,reconnect,transform_symlinks,follow_symlinks,allow_other)
 
-  -s | --server
+  -s | --remote-server
         The DNS resolvable name or IP address of the remote server from which
          the --remote-dir will be mounted.  
         (DEFAULT: "10.131.208.16")
+
+  -t | --vcf-file-type
+        The type fo OTP VCF file to be searched out and parsed (I.e. SNV or INDEL).  
+        (Mandatory)
 
   -u | --user
         The name of the user with which to SSHFS mount the remote directory.
@@ -52,24 +73,34 @@ ENDOFUSAGE
 ### USAGE ######################################################################
 
 #--- SET GETOPTS --------------------------------------------------------------
-OPTS=`getopt -o hd:D:e:k:o:s:u:v --longoptions help,remote-dir,local-dir,extension,key,options,server,user,verbose: -n 'parse-options' -- "$@"`
-if [ $? != 0 ] ; then
-    echo "Failed parsing options." >&2
-    echo "$USAGE" >&2
-    exit 1
-fi
-# echo "$OPTS"
-eval set -- "$OPTS"
+OPTS=$(getopt -o hd:D:k:l:o:s:t:u:v \
+-l help \
+-l remote-dir: \
+-l local-dir: \
+-l key: \
+-l loglevel: \
+-l options: \
+-l remote-server: \
+-l vcf-file-type: \
+-l user: \
+-l verbose -- "$@")
+
+if [ $? != 0 ]
+    then
+        echo ERROR parsing arguments >&2        exit 1
+    fi
+    eval set -- "$OPTS"
 
 #--- SET DEFAULTS --------------------------------------------------------------
 REMOTEDIR=""
-LOCALDIR="/mnt/filestobeparsed"
-EXT="vcf"
+LOCALDIR=""
+VCFFILETYPE=""
 KEY="/etc/ssl/certs/2020-03-10_ODCF"
 OPTIONS=""
 SERVER="10.131.208.16"
 USER="m309e"
-VERBOSE=false
+VERBOSE=true
+LOGLEVEL="30"
 
 #--- PARSE GETOPTS --------------------------------------------------------------
 while true; do
@@ -77,10 +108,11 @@ while true; do
     -h | --help ) echo "$USAGE" >&2; exit 1; shift ;;
     -d | --remote-dir ) REMOTEDIR="$2"; shift; shift ;;
     -D | --local-dir ) LOCALDIR="$2"; shift; shift ;;
-    -e | --extension ) EXT="$2"; shift; shift ;;
     -k | --key ) KEY="$2"; shift; shift ;;
+    -l | --loglevel ) LOGLEVEL="$2"; shift; shift ;;
     -o | --options ) OPTIONS="$2"; shift; shift ;;
-    -s | --server ) SERVER="$2"; shift; shift ;;
+    -s | --remote-server ) SERVER="$2"; shift; shift ;;
+    -t | --vcf-file-type ) VCFFILETYPE="$2"; shift; shift ;;
     -u | --user ) USER="$2"; shift; shift ;;
     -v | --verbose ) VERBOSE=true; shift ;;
 
@@ -89,23 +121,21 @@ while true; do
   esac
 done
 
-function myecho() {
-	[[ $VERBOSE == true ]] && echo $1
-}
+# Make string lowercase
+VCFFILETYPE=$(echo "$VCFFILETYPE" | tr '[:upper:]' '[:lower:]')
 
-function myechon() {
-	
-	[[ $VERBOSE == true ]] && echo -n $1
-}
+[[ $REMOTEDIR == "" ]] && valueerror "remote-dir"
+[[ $LOCALDIR == "" ]] && valueerror "remote-dir"
+[[ ! $VCFFILETYPE == "snv" ]] && [[ ! $VCFFILETYPE == "indel" ]] && valueerror "vcf-file-type"
 
-[[ $REMOTEDIR == "" ]] && {
-	echo "Parameter -d (--remote-dir) is mandatory. No value passed in."
-	echo ""
-	echo "$USAGE"
+if   [ $VCFFILETYPE == "snv" ]; then 
+	FILESOURCE="crawlOTPSNVCallingWorkflowfiles"
+elif [ $VCFFILETYPE == "snv" ]; 
+	then FILESOURCE="crawlOTPINDELCallingWorkflowfiles"
+else 
+	echo "Can't determine \$FILESOURCE from \$VCFFILETYPE (VCFFILETYPE=$VCFFILETYPE)"
 	exit 1
-}
-
-#[[ $VERBOSE == true ]] && set -x  || set +x
+fi
 
 [[ $OPTIONS == "" ]] && OPTIONS="StrictHostKeyChecking=no,IdentityFile=$KEY,auto_cache,reconnect,transform_symlinks,follow_symlinks,allow_other"
 
@@ -163,5 +193,5 @@ cp -p ./UNITEotp/fuse.conf ../ && echo "OK" || {
 cd $currentdir && echo "OK" || { echo "FAILED!"; exit 1; }
 
 echo -n "Installing UNITE Web application (LOCAL)..."
-HOST_FILE_DIR=$LOCALDIR ODCF_FILE_EXTENSION=$EXT docker-compose -p '' -f docker-compose.yml up -d --build 
+LOGLEVEL=$LOGLEVEL MOUNTPOINT=$LOCALDIR ORIGINAL_DIR=$REMOTEDIR VCFFILETYPE="indel" FILESOURCE=$FILESOURCE docker-compose -p '' -f docker-compose.yml up -d --build 
 

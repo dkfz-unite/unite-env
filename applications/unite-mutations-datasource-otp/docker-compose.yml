@@ -7,23 +7,21 @@ services:
     image: unite.mutations.source.otp
     container_name: unite.mutations.source.otp
     environment:
-      UNITE_ELASTIC_HOST: “http://es.unite:9200”
-      OTP_FEEDER_URL: http://mutations.feed.unite/api/mutations
-      OTP_MONGOHOST: mongo
-      OTP_WALKDIRS: '["exon_sequencing/view-by-pid", "rna_sequencing/view-by-pid", "whole_genome_sequencing/view-by-pid"]'
-      ODCF_FILE_EXTENSION: ${ODCF_FILE_EXTENSION}      
+      UNITE_COMPOSER_URL: http://mutations.feed.unite/api/mutations
+      UNITE_VCF_STANDARDIZATION_URL: http://vcf.standardization:5101/otp/${VCFFILETYPE}
+      FILECRAWL_MONGOHOST: mongo
+      OTP_ORIGINAL_DIR: ${ORIGINAL_DIR}
+      OTP_MOUNTPOINT: ${MOUNTPOINT}
+      OTP_LOGLEVEL: ${LOGLEVEL}
+      OTP_FILESOURCE: ${FILESOURCE}
     volumes:
-      - /etc/ssl/certs/:/etc/ssl/certs/
-      - /home/otp:/opt/vep/.vep
-      - ${HOST_FILE_DIR}:/mnt/filestobeparsed      
+      - ${MOUNTPOINT}:${MOUNTPOINT}
     ports:
       - 127.0.0.1:5901:5000
-    cap_add:
-      - SYS_ADMIN
-    devices:
-      - "/dev/fuse:/dev/fuse"
-    security_opt:
-      - "apparmor:unconfined"
+#    cap_add:
+#      - SYS_ADMIN
+#    security_opt:
+#      - "apparmor:unconfined"
 networks:
   default:
     external:

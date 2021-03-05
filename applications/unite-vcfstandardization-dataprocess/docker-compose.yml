@@ -1,11 +1,11 @@
 version: "3"
 services:
-  process.vcfstandardization.unite:
+  vcf.standardisation.unite:
     build:
       context: .
       dockerfile: ./Dockerfile
-    image: unite.vcfstandardization.process
-    container_name: unite.vcfstandardization.process
+    image: unite.vcf.standardisation
+    container_name: unite.vcf.standardisation
     volumes:
       - ${HOSTPATH}:${HOSTPATH}
     ports:

@@ -2,6 +2,10 @@
 
 #set -x
 
+# The "--run" option is only used to force the user to select build or run. 
+#  functionally the variable is only used to switch --build on or off. 
+#  --build is the default
+
 ### USAGE ######################################################################
 read -r -d '' USAGE << ENDOFUSAGE
 
@@ -115,6 +119,8 @@ fi
 [[ $RUN == true ]] && BUILD=false
 	
 if [ $VERBOSE == true ]; then
+	echo "BUILD = $BUILD"
+	echo "RUN = $RUN"
 	echo "REMOTEDIR = $REMOTEDIR"
 	echo "VERBOSE=$VERBOSE"
 	echo "REMOTEDIR=$REMOTEDIR"
@@ -191,9 +197,11 @@ fi
 
 echo -n "Installing application..."
 # Only one should run
-[[ $RUN == true ]] && HOST_FILE_DIR=$LOCALDIR HOST_ANNOTATIONS_TOOL_DIR=$HOST_TOOL_DIR docker-compose -p '' -f docker-compose.yml up -d
-[[ $BUILD == true ]] && HOST_FILE_DIR=$LOCALDIR HOST_ANNOTATIONS_TOOL_DIR=$HOST_TOOL_DIR docker-compose -p '' -f docker-compose.yml up -d --build 
-
+if [ $BUILD == true ]; then
+	HOST_FILE_DIR=$LOCALDIR HOST_ANNOTATIONS_TOOL_DIR=$HOST_TOOL_DIR docker-compose -p '' -f docker-compose.yml up -d --build 
+else
+	HOST_FILE_DIR=$LOCALDIR HOST_ANNOTATIONS_TOOL_DIR=$HOST_TOOL_DIR docker-compose -p '' -f docker-compose.yml up -d
+fi
 
 
 

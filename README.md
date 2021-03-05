@@ -23,7 +23,7 @@ UNITE platform installation scripts and configuration files
   - `unite-mutations-feed` - mutations data feed web API service
   - `unite-migrations` - database migrations service
 - `programs`
-  - `mysql` - UNITE data storage
+  - `postgresql` - UNITE data storage
     - _docker-compose.**dev**.yml_ - **developer** server installation configuration
     - _docker-compose.**local**.yml_- **local** installation configuration
     - _install.**dev**.sh_ - **developer** server installation script
@@ -48,7 +48,7 @@ All sensitive information is stored in **secrets.json** file. Template of this f
         "user": "root",
         "token": "Long-t0ken"
     },
-    "mysql": {
+    "sql": {
         "user": "root",
         "password": "Long-p@55w0rd"
     },
@@ -67,7 +67,7 @@ All sensitive information is stored in **secrets.json** file. Template of this f
 ```
 Each section represents credentials for specific part of the platform services:
 - _github_ - **user** name and **token** for accessing source code from private **github** repositories (follow github instructions to generate it)
-- _mysql_ - **user** name and **password** for **MySQL** server
+- _postgresql_ - **user** name and **password** for **SQL** server
 - _mongodb_ - **user** name and **password** for **MongoDb** server
 - _elasticsearch_ - **user** name and **password** for **Elasticsearch** server
 - _ssl_ - **password** for encrypted self signed **SSL** certificate
@@ -81,14 +81,12 @@ Each section represents credentials for specific part of the platform services:
 1. **Change credentials** in secrets_template.json and **rename** the file to **secrets.json**
 1. Open `unite-environment/scripts` folder in terminal
 1. Configure environment
-   - For **Linux** environment: `sh configure.linux.sh`
-   - For **other** environments: `sh configure.sh`
+   - For **Linux** environment: `sh configure.linux.dev.sh`
+   - For **other** environments: `sh configure.dev.sh`
 1. Generate SSL certificate
-   - For environment **with** .net runtime installed: `sh generate-ssl.dotnet.sh`
-   - For environment **without** .net runtime installed: `sh generate-ssl.openssl.sh`
+   - `sh generate-ssl.dev.sh`
 1. Install programs and applications
-   - Developer server: `sh install.dev.sh`
-   - Local environment: `sh install.local.sh`
+   - `sh install.dev.sh`
 
 ### Uninstallation
 To uninstall UNITE platform, run corresponding command from unite-environment/scripts folder:

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ../programs/mysql
+cd ../programs/postgresql
 sh install.dev.sh
 cd ../../scripts
 echo ""
@@ -18,7 +18,7 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-migrations
+cd ../applications/unite-data-migrations
 sh install.dev.sh
 cd ../../scripts
 echo ""

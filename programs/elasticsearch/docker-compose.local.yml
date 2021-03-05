@@ -1,42 +1,37 @@
 version: '3.5'
 services:
-  es01.unite:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
-    container_name: es01
+  es.unite:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+    container_name: es
     restart: unless-stopped
     environment:
       - discovery.type=single-node
       - ELASTIC_PASSWORD=${PASSWORD}
       - xpack.security.enabled=true
     volumes:
-      - es01.data:/usr/share/elasticsearch/data:rw
+      - es.data:/usr/share/elasticsearch/data:rw
     ports:
       - 127.0.0.1:9200:9200
-    networks:
-      - elastic
 
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.10.1
-    container_name: kibana
+  es.mgmt.unite:
+    image: docker.elastic.co/kibana/kibana:7.10.2
+    container_name: es.mgmt
     depends_on: 
-      - es01.unite
+      - es.unite
     restart: unless-stopped
     environment:
-      SERVER_NAME: kibana
-      ELASTICSEARCH_HOSTS: http://es01.unite:9200
+      ELASTICSEARCH_HOSTS: http://es.unite:9200
       ELASTICSEARCH_USERNAME: ${USER}
       ELASTICSEARCH_PASSWORD: ${PASSWORD}
     ports:
       - 127.0.0.1:8083:5601
-    networks:
-      - elastic
 
-networks:
-  elastic:
-    name: unite.elastic
-    driver: bridge
+networks: 
+  default:
+    external: 
+      name: unite
 
 volumes:
-  es01.data:
-    name: es01.data
+  es.data:
+    name: es.data
     driver: local

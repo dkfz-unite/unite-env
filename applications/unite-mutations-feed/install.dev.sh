@@ -2,8 +2,8 @@
 
 ghb_usr=$(jq -r .github.user ../../secrets.json)
 ghb_tkn=$(jq -r .github.token ../../secrets.json)
-sql_usr=$(jq -r .mysql.user ../../secrets.json)
-sql_pwd=$(jq -r .mysql.password ../../secrets.json)
+sql_usr=$(jq -r .sql.user ../../secrets.json)
+sql_pwd=$(jq -r .sql.password ../../secrets.json)
 els_usr=$(jq -r .elasticsearch.user ../../secrets.json)
 els_pwd=$(jq -r .elasticsearch.password ../../secrets.json)
 
@@ -23,6 +23,6 @@ GITHUB_USER=$ghb_usr \
 GITHUB_TOKEN=$ghb_tkn \
 ELASTIC_USER=$els_usr \
 ELASTIC_PASSWORD=$els_pwd \
-MYSQL_USER=$sql_usr \
-MYSQL_PASSWORD=$sql_pwd \
+SQL_USER=$sql_usr \
+SQL_PASSWORD=$sql_pwd \
 docker-compose -p '' -f docker-compose.dev.yml up -d --build

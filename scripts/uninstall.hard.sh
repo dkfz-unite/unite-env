@@ -12,10 +12,16 @@ tput setaf 6; echo "# Cleaning up MySQL data"; tput sgr0
 rm -r -f ../programs/mysql/data
 echo ""
 
+tput setaf 6; echo "# Cleaning up PostgreSQL data"; tput sgr0
+rm -r -f ../programs/postgresql/data
+echo ""
+
 tput setaf 6; echo "# Cleaning up MongoDB data"; tput sgr0
 rm -r -f ../programs/mongodb/data
 echo ""
 
-tput setaf 6; echo "# Cleaning up unused images and networks"; tput sgr0
-docker system prune -f
+tput setaf 6; echo "# Cleaning up unused images"; tput sgr0
+docker image prune -f
+
+docker network rm unite.elastic
  

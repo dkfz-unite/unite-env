@@ -8,3 +8,4 @@ secrets.json
 **/.pydevproject
 **/install.log
 install.local_.sh
+docker-compose.local_.yml

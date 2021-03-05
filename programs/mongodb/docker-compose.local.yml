@@ -4,9 +4,9 @@ services:
     image: mongo:latest
     container_name: mongo
     restart: unless-stopped
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${USER}
-      MONGO_INITDB_ROOT_PASSWORD: ${PASSWORD}
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: ${USER}
+    #   MONGO_INITDB_ROOT_PASSWORD: ${PASSWORD}
     volumes:
       - "./data:/data/db"
     ports:
@@ -22,8 +22,8 @@ services:
     restart: unless-stopped
     environment: 
       ME_CONFIG_MONGODB_SERVER: mongo.unite
-      ME_CONFIG_MONGODB_ADMINUSERNAME: ${USER}
-      ME_CONFIG_MONGODB_ADMINPASSWORD: ${PASSWORD}
+      # ME_CONFIG_MONGODB_ADMINUSERNAME: ${USER}
+      # ME_CONFIG_MONGODB_ADMINPASSWORD: ${PASSWORD}
     ports: 
       - 127.0.0.1:8081:8081
 

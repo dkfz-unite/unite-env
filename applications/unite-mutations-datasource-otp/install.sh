@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# ./install.sh --loglevel 10 --mountpoint "/mnt/vcftestfiles/" --remote-dir "/icgc/dkfzlsdf/project/hipo/hipo_057"  --vcf-file-type snv  --filelistpurge True --nomount 
+
 ### FUNCTIONS ##################################################################
 function myecho() {
 	[[ $VERBOSE == true ]] && echo $1
@@ -32,13 +34,13 @@ directory (created previously in pipeline).
          server) to be searched for files with extension <--extension>.
         (Mandatory)
 
-  -D | --local-dir
+  -D | --mountpoint
         The FULL PATH of the local directory to which the --remote-dir will be
          mounted. 
         (Mandatory)
 
   -k | --key
-        The FULL PATH to the ssh provate key to be used when making the SSHFS 
+        The FULL PATH to the ssh private key to be used when making the SSHFS 
          mount.
         (DEFAULT: "/etc/ssl/certs/2020-03-10_ODCF")
 
@@ -46,12 +48,22 @@ directory (created previously in pipeline).
         The logging level for the Python environment. Set at levels 10 - 50
         (DEFAULT: 30)
 
+  -n | --nomount
+        Skip the attempt to mount the remote directory (I.e. if the directory is 
+        or is a local copy of the remote directory. )
+        DEFAULT: False
+
   -o | --options
         A string of SSHFS options, exactly as they would appear after the '-o' 
          switch in a BASH sshfs mount command.
         If options are passed, it will override anything passed in for --key so 
 		 the 'IdentityFile=/path/to/key' must be included.  
         (DEFAULT: "StrictHostKeyChecking=no,IdentityFile=/etc/ssl/certs/2020-03-10_ODCF,auto_cache,reconnect,transform_symlinks,follow_symlinks,allow_other)
+
+  -p | --filelist-purge
+        Purge the mongo database of all previously parsed files (I.e. force all 
+        found files to be processed and sent to composer again.)
+        DEFAULT: False 
 
   -s | --remote-server
         The DNS resolvable name or IP address of the remote server from which
@@ -73,13 +85,15 @@ ENDOFUSAGE
 ### USAGE ######################################################################
 
 #--- SET GETOPTS --------------------------------------------------------------
-OPTS=$(getopt -o hd:D:k:l:o:s:t:u:v \
+OPTS=$(getopt -o hd:D:k:l:no:ps:t:u:v \
 -l help \
 -l remote-dir: \
--l local-dir: \
+-l mountpoint: \
 -l key: \
 -l loglevel: \
+-l nomount \
 -l options: \
+-l filelist-purge \
 -l remote-server: \
 -l vcf-file-type: \
 -l user: \
@@ -93,10 +107,12 @@ if [ $? != 0 ]
 
 #--- SET DEFAULTS --------------------------------------------------------------
 REMOTEDIR=""
-LOCALDIR=""
+MOUNTPOINT=""
+NOMOUNT=false
 VCFFILETYPE=""
 KEY="/etc/ssl/certs/2020-03-10_ODCF"
 OPTIONS=""
+FILELISTPURGE=false
 SERVER="10.131.208.16"
 USER="m309e"
 VERBOSE=true
@@ -107,10 +123,12 @@ while true; do
   case "$1" in
     -h | --help ) echo "$USAGE" >&2; exit 1; shift ;;
     -d | --remote-dir ) REMOTEDIR="$2"; shift; shift ;;
-    -D | --local-dir ) LOCALDIR="$2"; shift; shift ;;
+    -D | --mountpoint ) MOUNTPOINT="$2"; shift; shift ;;
     -k | --key ) KEY="$2"; shift; shift ;;
     -l | --loglevel ) LOGLEVEL="$2"; shift; shift ;;
+    -n | --nomount ) NOMOUNT=true; shift ;;
     -o | --options ) OPTIONS="$2"; shift; shift ;;
+    -p | --filelist-purge ) FILELISTPURGE=true; shift ;;
     -s | --remote-server ) SERVER="$2"; shift; shift ;;
     -t | --vcf-file-type ) VCFFILETYPE="$2"; shift; shift ;;
     -u | --user ) USER="$2"; shift; shift ;;
@@ -125,12 +143,12 @@ done
 VCFFILETYPE=$(echo "$VCFFILETYPE" | tr '[:upper:]' '[:lower:]')
 
 [[ $REMOTEDIR == "" ]] && valueerror "remote-dir"
-[[ $LOCALDIR == "" ]] && valueerror "remote-dir"
+[[ $MOUNTPOINT == "" ]] && valueerror "remote-dir"
 [[ ! $VCFFILETYPE == "snv" ]] && [[ ! $VCFFILETYPE == "indel" ]] && valueerror "vcf-file-type"
 
 if   [ $VCFFILETYPE == "snv" ]; then 
 	FILESOURCE="crawlOTPSNVCallingWorkflowfiles"
-elif [ $VCFFILETYPE == "snv" ]; 
+elif [ $VCFFILETYPE == "indel" ]; 
 	then FILESOURCE="crawlOTPINDELCallingWorkflowfiles"
 else 
 	echo "Can't determine \$FILESOURCE from \$VCFFILETYPE (VCFFILETYPE=$VCFFILETYPE)"
@@ -140,15 +158,17 @@ fi
 [[ $OPTIONS == "" ]] && OPTIONS="StrictHostKeyChecking=no,IdentityFile=$KEY,auto_cache,reconnect,transform_symlinks,follow_symlinks,allow_other"
 
 # sshfs m309e@10.131.208.16:/icgc/dkfzlsdf/project/hipo/hipo_057/ /mnt/filestobeparsed -o StrictHostKeyChecking=no,IdentityFile=/etc/ssl/certs/2020-03-10_ODCF,auto_cache,reconnect,transform_symlinks,follow_symlinks,allow_other"
-if [ $(mount | grep $REMOTEDIR | grep -v grep | wc -l) -eq 0 ]; then 
-	myechon "Creating local mountpoint ..."
-	result=$(mkdir $LOCALDIR 2>&1) || false
-	[[ $result != "" ]] && [[ $result != *"File exists"* ]] && { echo "FAILED! with $result"; exit 1; } || myecho "OK"
-	
-	myechon "Mounting remote directory..."
-	command="sshfs $USER@$SERVER:$REMOTEDIR $LOCALDIR -o $OPTIONS"
-	result=$($command 2>&1) || false
-	[[ $result != "" ]] && [[ $result != *"mountpoint is not empty"* ]] && { echo "FAILED! with $result"; exit 1; } || myecho "OK"
+if [ $NOMOUNT==false ]; then
+	if [ $(mount | grep $REMOTEDIR | grep -v grep | wc -l) -eq 0 ]; then 
+		myechon "Creating local mountpoint ..."
+		result=$(mkdir $MOUNTPOINT 2>&1) || false
+		[[ $result != "" ]] && [[ $result != *"File exists"* ]] && { echo "FAILED! with $result"; exit 1; } || myecho "OK"
+		
+		myechon "Mounting remote directory..."
+		command="sshfs $USER@$SERVER:$REMOTEDIR $MOUNTPOINT -o $OPTIONS"
+		result=$($command 2>&1) || false
+		[[ $result != "" ]] && [[ $result != *"mountpoint is not empty"* ]] && { echo "FAILED! with $result"; exit 1; } || myecho "OK"
+	fi
 fi
 
 myechon "Cleaning up source code directory..."
@@ -181,17 +201,24 @@ git clone https://github.com/dkfz-unite/unite-python-core.git UNITEmsc && myecho
 	echo "FAILED! git cloning UNITEmsc"; exit 1; 
 }
 
-myechon "Cloning PyVCF code to src code directory..."
-	git clone https://b240-phabricator.dkfz-heidelberg.de/source/BODA-PyVCF.git PyVCF && echo "OK" || { 
-	echo "FAILED! git cloning PyVCF"; exit 1; 
-}
+#myechon "Cloning PyVCF code to src code directory..."
+#	git clone https://b240-phabricator.dkfz-heidelberg.de/source/BODA-PyVCF.git PyVCF && echo "OK" || { 
+#	echo "FAILED! git cloning PyVCF"; exit 1; 
+#}
 
 myechon "Copying fuse.conf..."
 cp -p ./UNITEotp/fuse.conf ../ && echo "OK" || { 
 	echo "FAILED! copying fuse.conf"; exit 1; } || myecho "OK"
 
+myechon "Returning to ${currentdir}..."
 cd $currentdir && echo "OK" || { echo "FAILED!"; exit 1; }
 
+myechon "Creating '.docker-compose.tmp.yml' ..."
+dirname=$(basename $REMOTEDIR)
+./create_docker-compose.sh ${dirname} ${VCFFILETYPE} && echo "OK" || { 
+	echo "FAILED!"; exit 1; } || myecho "OK"
+
+
 echo -n "Installing UNITE Web application (LOCAL)..."
-LOGLEVEL=$LOGLEVEL MOUNTPOINT=$LOCALDIR ORIGINAL_DIR=$REMOTEDIR VCFFILETYPE="indel" FILESOURCE=$FILESOURCE docker-compose -p '' -f docker-compose.yml up -d --build 
+LOGLEVEL=$LOGLEVEL MOUNTPOINT=$MOUNTPOINT ORIGINAL_DIR=$REMOTEDIR VCFFILETYPE=$VCFFILETYPE FILESOURCE=$FILESOURCE FILELISTPURGE=$FILELISTPURGE docker-compose -p '' -f .docker-compose.tmp.yml up -d --build 
 

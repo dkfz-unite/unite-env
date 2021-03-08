@@ -56,6 +56,6 @@ WORKDIR /src/UNITEmsc
 RUN ls -la
 RUN python3 setup.py install
 
-#ENTRYPOINT ["CrawlOTPVCFFile.py"]
-CMD tail -f /dev/null
+ENTRYPOINT ["crawlVCFFiles.py"]
+#CMD tail -f /dev/null
 

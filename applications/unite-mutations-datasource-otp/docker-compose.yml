@@ -7,13 +7,14 @@ services:
     image: unite.mutations.source.otp
     container_name: unite.mutations.source.otp
     environment:
-      UNITE_COMPOSER_URL: http://mutations.feed.unite/api/mutations
-      UNITE_VCF_STANDARDIZATION_URL: http://vcf.standardization:5101/otp/${VCFFILETYPE}
+      UNITE_COMPOSER_URL: http://unite.mutations.feed/api/mutations
+      UNITE_VCF_STANDARDIZATION_URL: http://unite.vcf.standardization:5101/otp/${VCFFILETYPE}
       FILECRAWL_MONGOHOST: mongo
       OTP_ORIGINAL_DIR: ${ORIGINAL_DIR}
       OTP_MOUNTPOINT: ${MOUNTPOINT}
-      OTP_LOGLEVEL: ${LOGLEVEL}
+      UNITE_LOGLEVEL: ${LOGLEVEL}
       OTP_FILESOURCE: ${FILESOURCE}
+      FILECRAWL_PURGE: ${FILELISTPURGE}
     volumes:
       - ${MOUNTPOINT}:${MOUNTPOINT}
     ports:

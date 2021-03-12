@@ -1,11 +1,11 @@
 version: "3"
 services:
-  unite.variant.annotations:
+  variant.annotations.unite:
     build:
       context: .
       dockerfile: ./Dockerfile
-    image: variant.annotations.unite
-    container_name: variant.annotations.unite
+    image: unite.variant.annotations
+    container_name: unite.variant.annotations
     environment:
       PYTHONPATH: "/usr/local/lib/python3.6/dist-packages/:/usr/local/lib/python3.6/dist-packages/UNITEmsc-0.0.1-py3.6.egg/UNITEmsc:/usr/local/lib/python3.6/dist-packages/UNITEannotatevcf-0.0.9-py3.6.egg/UNITEvcfannotation"
     volumes:

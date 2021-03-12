@@ -214,5 +214,6 @@ RUN echo >> $OPT/.profile && \
 #  terminal output is redirected. 
 #  https://unix.stackexchange.com/questions/268284/nohup-doesnt-work-as-expected-in-docker-script get This will need to be figured out.  
 #ENTRYPOINT ["UNITEannotatevcf.py"]
+#CMD "/usr/local/bin/UNITEannotatevcf.py --loglevel 10 > /opt/vep/.vep/UNITEannotatevcf.log 2>&1"
 CMD tail -f /dev/null
     

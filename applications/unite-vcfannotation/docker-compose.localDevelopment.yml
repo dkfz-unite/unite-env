@@ -1,11 +1,11 @@
 version: "3"
 services:
-  variants.annotations.vep.dev:
+  variant.annotations.dev:
     build:
       context: .
       dockerfile: ./Dockerfile.localDevelopment
-    image: variants.annotations.vep.dev
-    container_name: variants.annotations.vep.dev
+    image: variant.annotations.dev
+    container_name: variant.annotations.dev
     volumes:
       - ${VEP_ANNOTATIONS_TOOL_DIR}:/opt/vep/.vep
       - ${VCFANNDEVDIR}:/usr/local/lib/python3.6/dist-packages/UNITEvcfannotation

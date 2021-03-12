@@ -54,7 +54,7 @@ eval set -- "$OPTS"
 BUILD=true
 RUN=false
 VEP_TOOL_DIR="/home/vep/.vep"
-VERBOSE=false
+VERBOSE=true
 
 while true ; do
     case "$1" in

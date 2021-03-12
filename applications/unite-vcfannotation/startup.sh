@@ -1,2 +1,0 @@
-#!/bin/bash
-su -c "export PYTHONPATH='/usr/local/lib/python3.6/dist-packages/:/usr/local/lib/python3.6/dist-packages/UNITEmsc-0.0.1-py3.6.egg/UNITEmsc:/usr/local/lib/python3.6/dist-packages/UNITEannotatevcf-0.0.9-py3.6.egg/UNITEvcfannotation'; /usr/local/bin/UNITEannotatevcf.py"

@@ -82,6 +82,9 @@ if [ $VERBOSE == true ]; then
 	echo "VEP_TOOL_DIR=$VEP_TOOL_DIR"
 fi
 
+myechon "Removing default tmpdir..."
+rm -r -f "${VEP_TOOL_DIR}/tmpforvcffiles" && myecho "OK"  || { echo "FAILED! But continuing. If responses are failing, check the log for permissions errors to the temporary directory."; }
+
 if [ $BUILD == true ]; then 
 	myechon "Cleaning up source code directory..."
 	rm -r -f src && myecho "OK"  || { echo "FAILED!"; exit 1; }

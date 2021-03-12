@@ -1,17 +1,19 @@
 version: "3"
 services:
-  variant.annotations.dev:
+  unite.variant.annotations.dev:
     build:
       context: .
       dockerfile: ./Dockerfile.localDevelopment
-    image: variant.annotations.dev
-    container_name: variant.annotations.dev
+    image: variant.annotations.dev.unite
+    container_name: variant.annotations.dev.unite
     volumes:
       - ${VEP_ANNOTATIONS_TOOL_DIR}:/opt/vep/.vep
       - ${VCFANNDEVDIR}:/usr/local/lib/python3.6/dist-packages/UNITEvcfannotation
       - ${MSCDEVDIR}:/usr/local/lib/python3.6/dist-packages/UNITEmsc
     ports:
       - 127.0.0.1:5201:5201
+#    entrypoint: /usr/bin/python3
+#    command: "/usr/local/lib/python3.6/dist-packages/UNITEvcfannotation/UNITEannotatevcf.py --loglevel 10 --logfile /opt/vep/.vep/UNITEannotatevcf.log"
 networks:
   default:
     external:

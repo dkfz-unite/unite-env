@@ -10,3 +10,4 @@ secrets.json
 install.local_.sh
 docker-compose.local_.yml
 **/.docker-compose.tmp.yml
+applications/unite-annotations-vep/databases

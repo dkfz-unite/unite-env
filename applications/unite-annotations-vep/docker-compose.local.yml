@@ -1,0 +1,20 @@
+version: '3.5'
+services:
+  annotations.vep.unite:
+    build: 
+      context: ./src
+      dockerfile: ./Dockerfile
+    image: unite.annotations.vep
+    container_name: unite.annotations.vep
+    restart: unless-stopped
+    environment: 
+      ASPNETCORE_ENVIRONMENT: Development
+    ports: 
+      - 127.0.0.1:5110:80
+    volumes: 
+      - "./data:/opt/vep/.vep"
+
+networks: 
+  default:
+    external: 
+      name: unite

@@ -47,3 +47,9 @@ sh install.local.sh
 cd ../../scripts
 echo ""
 echo ""
+
+cd ../applications/unite-annotations-vep
+sh install.local.sh
+cd ../../scripts
+echo ""
+echo ""

@@ -22,6 +22,3 @@ echo ""
 
 tput setaf 6; echo "# Cleaning up unused images"; tput sgr0
 docker image prune -f
-
-docker network rm unite.elastic
- 

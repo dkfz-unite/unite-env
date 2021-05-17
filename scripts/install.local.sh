@@ -53,3 +53,9 @@ sh install.local.sh
 cd ../../scripts
 echo ""
 echo ""
+
+cd ../applications/unite-radiology-feed
+sh install.local.sh
+cd ../../scripts
+echo ""
+echo ""

@@ -1,0 +1,30 @@
+version: '3.5'
+services:
+  radiology.feed.unite:
+    build: 
+      context: ./src
+      dockerfile: ./Dockerfile
+      args: 
+        USER: ${GITHUB_USER}
+        TOKEN: ${GITHUB_TOKEN}
+    image: unite.radiology.feed
+    container_name: unite.doradiologynors.feed
+    restart: unless-stopped
+    environment: 
+      UNITE_ELASTIC_HOST: http://es.unite:9200
+      UNITE_ELASTIC_USER: ${ELASTIC_USER}
+      UNITE_ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
+      UNITE_SQL_HOST: sql.unite
+      UNITE_SQL_DATABASE: unite
+      UNITE_SQL_USER: ${SQL_USER}
+      UNITE_SQL_PASSWORD: ${SQL_PASSWORD}
+      UNITE_INDEXING_INTERVAL: 10
+      UNITE_INDEXING_BUCKET_SIZE: 10
+      ASPNETCORE_ENVIRONMENT: Development
+    ports: 
+      - 127.0.0.1:5050:80
+
+networks: 
+  default:
+    external: 
+      name: unite

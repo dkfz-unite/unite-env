@@ -1,14 +1,14 @@
 version: '3.5'
 services:
-  radiology.feed.unite:
+  specimens.feed.unite:
     build: 
       context: ./src
       dockerfile: ./Dockerfile
       args: 
         USER: ${GITHUB_USER}
         TOKEN: ${GITHUB_TOKEN}
-    image: unite.radiology.feed
-    container_name: unite.radiology.feed
+    image: unite.specimens.feed
+    container_name: unite.specimens.feed
     restart: unless-stopped
     environment: 
       UNITE_ELASTIC_HOST: http://es.unite:9200
@@ -22,7 +22,7 @@ services:
       UNITE_INDEXING_BUCKET_SIZE: 10
       ASPNETCORE_ENVIRONMENT: Development
     ports: 
-      - 127.0.0.1:5050:80
+      - 127.0.0.1:5040:80
 
 networks: 
   default:

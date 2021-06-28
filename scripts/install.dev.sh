@@ -42,6 +42,18 @@ cd ../../scripts
 echo ""
 echo ""
 
+cd ../applications/unite-specimens-feed
+sh install.dev.sh
+cd ../../scripts
+echo ""
+echo ""
+
+cd ../applications/unite-radiology-feed
+sh install.local.sh
+cd ../../scripts
+echo ""
+echo ""
+
 cd ../applications/unite-mutations-feed
 sh install.dev.sh
 cd ../../scripts
@@ -49,12 +61,6 @@ echo ""
 echo ""
 
 cd ../applications/unite-annotations-vep
-sh install.local.sh
-cd ../../scripts
-echo ""
-echo ""
-
-cd ../applications/unite-radiology-feed
 sh install.local.sh
 cd ../../scripts
 echo ""

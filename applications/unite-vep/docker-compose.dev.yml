@@ -1,11 +1,11 @@
 version: '3.5'
 services:
-  annotations.vep.unite:
+  vep.unite:
     build: 
       context: ./src
       dockerfile: ./Dockerfile
-    image: unite.annotations.vep
-    container_name: unite.annotations.vep
+    image: unite.vep
+    container_name: unite.vep
     restart: unless-stopped
     environment: 
       ASPNETCORE_ENVIRONMENT: Release

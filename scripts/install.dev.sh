@@ -24,6 +24,12 @@ cd ../../scripts
 echo ""
 echo ""
 
+cd ../applications/unite-identity-migrations
+sh install.dev.sh
+cd ../../scripts
+echo ""
+echo ""
+
 cd ../applications/unite
 sh install.dev.sh
 cd ../../scripts
@@ -48,8 +54,8 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-radiology-feed
-sh install.local.sh
+cd ../applications/unite-genes-feed
+sh install.dev.sh
 cd ../../scripts
 echo ""
 echo ""
@@ -60,7 +66,13 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-annotations-vep
+cd ../applications/unite-radiology-feed
+sh install.local.sh
+cd ../../scripts
+echo ""
+echo ""
+
+cd ../applications/unite-vep
 sh install.local.sh
 cd ../../scripts
 echo ""

@@ -15,12 +15,12 @@ services:
       UNITE_ELASTIC_USER: ${ELASTIC_USER}
       UNITE_ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
       UNITE_SQL_HOST: sql.unite
-      UNITE_SQL_DATABASE: unite
+      UNITE_SQL_PORT: 5432
       UNITE_SQL_USER: ${SQL_USER}
       UNITE_SQL_PASSWORD: ${SQL_PASSWORD}
       ASPNETCORE_ENVIRONMENT: Release
     ports: 
-      - 127.0.0.1:5010:80
+      - 127.0.0.1:5000:80
     volumes: 
       - "./data:/app/data:rw"
 

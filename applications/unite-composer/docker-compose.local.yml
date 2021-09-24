@@ -10,7 +10,7 @@ services:
     image: unite.composer
     container_name: unite.composer
     restart: unless-stopped
-    environment: 
+    environment:
       UNITE_ELASTIC_HOST: http://es.unite:9200
       UNITE_ELASTIC_USER: ${ELASTIC_USER}
       UNITE_ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
@@ -18,6 +18,9 @@ services:
       UNITE_SQL_PORT: 5432
       UNITE_SQL_USER: ${SQL_USER}
       UNITE_SQL_PASSWORD: ${SQL_PASSWORD}
+      UNITE_ENSEMBL_HOST: https://grch37.rest.ensembl.org
+      UNITE_UNIPROT_HOST: https://www.ebi.ac.uk
+      UNITE_PFAM_HOST: https://pfam.xfam.org
       ASPNETCORE_ENVIRONMENT: Development
     ports: 
       - 127.0.0.1:5002:80

@@ -7,7 +7,7 @@ sql_pwd=$(jq -r .sql.password ../../secrets.json)
 els_usr=$(jq -r .elasticsearch.user ../../secrets.json)
 els_pwd=$(jq -r .elasticsearch.password ../../secrets.json)
 
-tput setaf 6; echo "# Installing UNITE Mutations Datafeed service (DEV)"; tput sgr0
+tput setaf 6; echo "# Installing UNITE Genome Datafeed service (DEV)"; tput sgr0
 echo ""
 
 tput setaf 4; echo "# Cleaning up source code directory"; tput sgr0
@@ -15,7 +15,7 @@ rm -r -f src
 echo ""
 
 tput setaf 4; echo "# Cloning fresh code to source code directory"; tput sgr0
-git clone https://$ghb_tkn@github.com/dkfz-unite/unite-mutations-feed.git src
+git clone https://$ghb_tkn@github.com/dkfz-unite/unite-genome-feed.git src
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0

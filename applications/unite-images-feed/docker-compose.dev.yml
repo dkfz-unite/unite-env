@@ -1,14 +1,14 @@
 version: '3.5'
 services:
-  radiology.feed.unite:
+  images.feed.unite:
     build: 
       context: ./src
       dockerfile: ./Dockerfile
       args: 
         USER: ${GITHUB_USER}
         TOKEN: ${GITHUB_TOKEN}
-    image: unite.radiology.feed
-    container_name: unite.radiology.feed
+    image: unite.images.feed
+    container_name: unite.images.feed
     restart: unless-stopped
     environment: 
       UNITE_ELASTIC_HOST: http://es.unite:9200

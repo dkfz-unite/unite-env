@@ -16,6 +16,7 @@ UNITE platform installation scripts and configuration files
   - `unite` - web portal
     - _docker-compose.yml_ - installation configuration
     - _install.sh_ - installation script
+    - _install.local.sh_ - local installation script (from local repository source code)
   - `unite-composer` - composer web API
   - `unite-donors-feed` - donors data feed web API
   - `unite-images-feed` - imaging data feed web API
@@ -29,7 +30,7 @@ UNITE platform installation scripts and configuration files
     - _docker-compose.yml_ - installation configuration
     - _docker-compose.**mgmt**.yml_ - management tools installation configuration
     - _install.sh_ - installation script
-    - _install.**mgmt**.sh_ -management tools installation script
+    - _install.**mgmt**.sh_ - management tools installation script
   - `elasticsearch` - search engine and indices storage
   - `mongodb` - cache and technical data storage
 - `scripts`
@@ -52,15 +53,15 @@ All sensitive information is stored in **secrets.json** file. Template of this f
     },
     "sql": {
         "user": "root",
-        "password": "Long-p@55w0rd"
+        "password": "Long-pa55w0rd"
     },
     "mongodb": {
         "user": "root",
-        "password": "Long-p@55w0rd"
+        "password": "Long-pa55w0rd"
     },
     "elasticsearch": {
         "user": "elastic",
-        "password": "Long-p@55w0rd"
+        "password": "Long-pa55w0rd"
     }
 }
 ```
@@ -90,3 +91,4 @@ Each section represents credentials for specific part of the platform services:
 To uninstall UNITE platform, run corresponding command from unite-environment/scripts folder:
 - To **remove** all services **with all their data**: `sh uninstall.hard.sh`
 - To **remove** only services, **but keep all their data**: `sh uninstall.soft.sh`
+!Note that uninstallation scripts will remove all containers/images from host machine. If you have other applications runing in docker, clear unite containers and images manually.

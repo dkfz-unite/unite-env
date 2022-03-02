@@ -86,6 +86,10 @@ Each section represents credentials for specific part of the platform services:
    - `sh generate-ssl.sh`
 1. Install programs and applications
    - `sh install.sh`
+1. Install management tools (in needed)
+  - `sh install.mgmt.sh`
+
+For custom installation run installation scripts for dedicated programs or applications.
 
 ### Uninstallation
 To uninstall UNITE platform, run corresponding command from unite-environment/scripts folder:

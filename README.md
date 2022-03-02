@@ -91,4 +91,5 @@ Each section represents credentials for specific part of the platform services:
 To uninstall UNITE platform, run corresponding command from unite-environment/scripts folder:
 - To **remove** all services **with all their data**: `sh uninstall.hard.sh`
 - To **remove** only services, **but keep all their data**: `sh uninstall.soft.sh`
+
 !Note that uninstallation scripts will remove all containers/images from host machine. If you have other applications runing in docker, clear unite containers and images manually.

@@ -1,0 +1,36 @@
+version: '3.5'
+services:
+  feed.genome.unite.net:
+    build: 
+      context: ./src
+      dockerfile: ./Dockerfile
+      args: 
+        USER: ${GITHUB_USER}
+        TOKEN: ${GITHUB_TOKEN}
+    image: unite.genome.feed
+    container_name: unite.genome.feed
+    restart: unless-stopped
+    environment: 
+      UNITE_ELASTIC_HOST: http://es.unite.net:9200
+      UNITE_ELASTIC_USER: ${ELASTIC_USER}
+      UNITE_ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
+      UNITE_SQL_HOST: sql.unite.net
+      UNITE_SQL_PORT: 5432
+      UNITE_SQL_USER: ${SQL_USER}
+      UNITE_SQL_PASSWORD: ${SQL_PASSWORD}
+      UNITE_VEP_HOST: http://ensembl.unite.net
+      UNITE_ENSEMBL_HOST: https://grch37.rest.ensembl.org
+      UNITE_MUTATIONS_ANNOTATION_INTERVAL: 10
+      UNITE_MUTATIONS_ANNOTATION_BUCKET_SIZE: 100
+      UNITE_MUTATIONS_INDEXING_INTERVAL: 10
+      UNITE_MUTATIONS_INDEXING_BUCKET_SIZE: 300
+      UNITE_GENES_INDEXING_INTERVAL: 10
+      UNITE_GENES_INDEXING_BUCKET_SIZE: 300
+      ASPNETCORE_ENVIRONMENT: Release
+    ports: 
+      - 127.0.0.1:5106:80
+
+networks: 
+  default:
+    external: 
+      name: unite

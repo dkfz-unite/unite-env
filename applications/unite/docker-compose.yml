@@ -1,0 +1,29 @@
+version: '3.5'
+services:
+  portal.unite.net:
+    build: 
+      context: ./src
+      dockerfile: ./Dockerfile
+    image: unite.portal
+    container_name: unite.portal
+    restart: unless-stopped
+    environment: 
+      ASPNETCORE_ENVIRONMENT: Release
+      ASPNETCORE_HTTPS_PORT: 443
+      ASPNETCORE_URLS: https://+:443;http://+:80
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/unite-cert.pem
+      ASPNETCORE_Kestrel__Certificates__Default__KeyPath: /https/unite-key.pem
+      UNITE_COMPOSER_HOST: http://composer.unite.net
+    volumes: 
+      - "../../ssl:/https:ro"
+    ports: 
+      # - "80:80"
+      - "443:443"
+    
+networks: 
+  default:
+    external:
+      name: unite
+      
+    
+    

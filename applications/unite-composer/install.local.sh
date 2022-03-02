@@ -7,7 +7,7 @@ sql_pwd=$(jq -r .sql.password ../../secrets.json)
 els_usr=$(jq -r .elasticsearch.user ../../secrets.json)
 els_pwd=$(jq -r .elasticsearch.password ../../secrets.json)
 
-tput setaf 6; echo "# Installing UNITE Composer service (LOCAL)"; tput sgr0
+tput setaf 6; echo "# Installing UNITE Composer service"; tput sgr0
 echo ""
 
 tput setaf 4; echo "# Cleaning up source code directory"; tput sgr0
@@ -15,7 +15,8 @@ rm -r -f src
 echo ""
 
 tput setaf 4; echo "# Cloning fresh code to source code directory"; tput sgr0
-git clone https://$ghb_tkn@github.com/dkfz-unite/unite-composer.git src
+mkdir src
+cp -r ../../../unite-composer/. src/
 echo ""
 
 tput setaf 4; echo "# Setting up local access list"; tput sgr0
@@ -33,4 +34,4 @@ ELASTIC_USER=$els_usr \
 ELASTIC_PASSWORD=$els_pwd \
 SQL_USER=$sql_usr \
 SQL_PASSWORD=$sql_pwd \
-docker-compose -p '' -f docker-compose.local.yml up -d --build
+docker-compose -p '' -f docker-compose.yml up -d --build

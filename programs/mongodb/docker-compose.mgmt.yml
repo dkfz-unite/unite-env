@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+  mgmt.mongo.unite.net:
+    image: mongo-express:latest
+    container_name: mongo.mgmt
+    restart: unless-stopped
+    environment: 
+      ME_CONFIG_MONGODB_SERVER: mongo.unite.net
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${PASSWORD}
+    ports: 
+      - 8082:8081
+
+networks: 
+  default:
+    external: 
+      name: unite

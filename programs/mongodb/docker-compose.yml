@@ -1,0 +1,26 @@
+version: '3.5'
+services:
+  mongo.unite.net:
+    image: mongo:latest
+    container_name: mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${PASSWORD}
+    volumes:
+      # - ./data:/data/db:rw
+      - mongo.data:/data/db:rw
+    ports:
+      - 127.0.0.1:27017:27017
+      # - 127.0.0.1:27018:27018
+      # - 127.0.0.1:27019:27019
+
+networks: 
+  default:
+    external: 
+      name: unite
+
+volumes:
+  mongo.data:
+    name: mongo.data
+    driver: local

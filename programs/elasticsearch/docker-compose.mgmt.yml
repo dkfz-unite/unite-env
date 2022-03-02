@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+  mgmt.es.unite.net:
+    image: docker.elastic.co/kibana/kibana:7.10.2
+    container_name: es.mgmt
+    restart: unless-stopped
+    environment:
+      ELASTICSEARCH_HOSTS: http://es.unite.net:9200
+      ELASTICSEARCH_USERNAME: ${USER}
+      ELASTICSEARCH_PASSWORD: ${PASSWORD}
+    ports:
+      - 8083:5601
+
+networks: 
+  default:
+    external: 
+      name: unite

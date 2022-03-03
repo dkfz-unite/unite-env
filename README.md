@@ -89,7 +89,9 @@ Each section represents credentials for specific part of the platform services:
 1. Install management tools (optional)
    - `sh install.mgmt.sh`
 1. Download Ensembl VEP cache
-   - Follow Ensembl VEP cache installation steps (https://github.com/dkfz-unite/unite-environment/tree/main/applications/unite-vep)
+   - Open `unite-environment/applications/unite-vep` folder in terminal
+   - Download cache `sh download-cache.sh` (This may take several hours, if download process breaks, run the script again to continue)
+   - Extract cache `sh extract-cache.sh`
 
 For custom installation run installation scripts for dedicated programs or applications.
 

@@ -86,8 +86,10 @@ Each section represents credentials for specific part of the platform services:
    - `sh generate-ssl.sh`
 1. Install programs and applications
    - `sh install.sh`
-1. Install management tools (in needed)
+1. Install management tools (optional)
   - `sh install.mgmt.sh`
+1. Download Ensembl VEP cache
+  - Follow Ensembl VEP cache documentation steps (https://github.com/dkfz-unite/unite-environment/tree/main/applications/unite-vep)
 
 For custom installation run installation scripts for dedicated programs or applications.
 

@@ -33,7 +33,7 @@ Open this sfolder in terminal and run required command:
 
 |Service|Container|Alias|Container Port|Host Port|
 |:------|:--------|:----|:---|:---------|
-|**Elasticsearch**|es|es.unite.net|9200|9200|
-|**Kibana**|es.mgmt|mgmt.es.unite.net|5601|8083|
+|Elasticsearch|es|es.unite.net|9200|9200|
+|Kibana|es.mgmt|mgmt.es.unite.net|5601|8083|
 
 All components are running in docker network '**unite**'.

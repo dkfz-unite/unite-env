@@ -29,6 +29,11 @@ Open this sfolder in terminal and run required command:
   ```bash
   sh install.mgmt.sh
   ```
+## After Installation
+
+To ensure, that database containes all required tables, the following migration services have to be installed:
+- [Data migrations service](https://github.com/dkfz-unite/unite-environment/tree/main/applications/unite-data-migrations)
+- [Identity migrations service](https://github.com/dkfz-unite/unite-environment/tree/main/applications/unite-identity-migrations)
 
 ## Services
 

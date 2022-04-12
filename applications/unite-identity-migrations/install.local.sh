@@ -4,6 +4,7 @@ ghb_usr=$(jq -r .github.user ../../secrets.json)
 ghb_tkn=$(jq -r .github.token ../../secrets.json)
 sql_usr=$(jq -r .sql.user ../../secrets.json)
 sql_pwd=$(jq -r .sql.password ../../secrets.json)
+src_pth=$(jq -r .SourceCodeDirectoryPath ../../config.json)
 
 tput setaf 6; echo "# Installing UNITE Identity Migrations service"; tput sgr0
 echo ""
@@ -14,7 +15,7 @@ echo ""
 
 tput setaf 4; echo "# Cloning fresh code to source code directory"; tput sgr0
 mkdir src
-cp -r ../../../unite-identity-migrations/. src/
+cp -r $src_pth/unite-identity-migrations/. src/
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0

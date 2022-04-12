@@ -6,6 +6,7 @@ sql_usr=$(jq -r .sql.user ../../secrets.json)
 sql_pwd=$(jq -r .sql.password ../../secrets.json)
 els_usr=$(jq -r .elasticsearch.user ../../secrets.json)
 els_pwd=$(jq -r .elasticsearch.password ../../secrets.json)
+src_pth=$(jq -r .SourceCodeDirectoryPath ../../config.json)
 
 tput setaf 6; echo "# Installing UNITE Composer service"; tput sgr0
 echo ""
@@ -16,7 +17,7 @@ echo ""
 
 tput setaf 4; echo "# Cloning fresh code to source code directory"; tput sgr0
 mkdir src
-cp -r ../../../unite-composer/. src/
+cp -r $src_pth/unite-composer/. src/
 echo ""
 
 tput setaf 4; echo "# Setting up local access list"; tput sgr0

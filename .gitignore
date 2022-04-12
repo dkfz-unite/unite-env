@@ -2,12 +2,12 @@
 #programs/mysql/data
 **/data
 **/src
+**/mnt
 ssl
 secrets.json
+config.json
 **/.project
 **/.pydevproject
 **/install.log
-install.local_.sh
-docker-compose.local_.yml
 **/.docker-compose.tmp.yml
 applications/unite-vep/databases

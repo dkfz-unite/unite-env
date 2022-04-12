@@ -6,6 +6,7 @@ sql_usr=$(jq -r .sql.user ../../secrets.json)
 sql_pwd=$(jq -r .sql.password ../../secrets.json)
 els_usr=$(jq -r .elasticsearch.user ../../secrets.json)
 els_pwd=$(jq -r .elasticsearch.password ../../secrets.json)
+src_pth=$(jq -r .SourceCodeDirectoryPath ../../config.json)
 
 tput setaf 6; echo "# Installing UNITE Donors Datafeed service"; tput sgr0
 echo ""
@@ -16,7 +17,7 @@ echo ""
 
 tput setaf 4; echo "# Cloning fresh code to source code directory"; tput sgr0
 mkdir src
-cp -r ../../../unite-donors-feed/. src/
+cp -r $src_pth/unite-donors-feed/. src/
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0

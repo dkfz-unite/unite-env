@@ -16,4 +16,7 @@ else
   mkcert -key-file unite-key.pem -cert-file unite-cert.pem $1 localhost 127.0.0.1 ::1
 fi
 
+chmod 600 unite-key.pem
+chmod 600 unite-cert.pem 
+
 cd ../scripts

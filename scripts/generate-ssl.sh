@@ -1,6 +1,11 @@
 #!/bin/bash
 
- cd ../ssl
+if [ ! -d "../ssl" ] 
+then
+  mkdir ../ssl
+fi
+
+cd ../ssl
 
 if [ -z "$1" ]
 then

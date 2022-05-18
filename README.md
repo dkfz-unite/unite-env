@@ -71,6 +71,9 @@ Each section represents credentials for specific part of the platform services:
 - _mongodb_ - **user** name and **password** for **MongoDb** server
 - _elasticsearch_ - **user** name and **password** for **Elasticsearch** server
 
+To generate passords one of command line tools can be used:
+- `openssl rand -base64 22` - to generate 32 byte Base64 string
+
 **!IMPORTAN: ALWAYS CHANGE ALL CREDENTIALS!**
 
 **!IMPORTANT: NEVER COMMIT THIS FILE TO THE REPOSITORY!**

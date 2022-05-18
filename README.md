@@ -83,7 +83,8 @@ Each section represents credentials for specific part of the platform services:
    - For **Linux** environment: `sh configure.linux.sh`
    - For **MacOS** environments: `sh configure.macos.sh`
 1. Generate SSL certificate
-   - `sh generate-ssl.sh`
+   - For **localhost**: `sh generate-ssl.sh`
+   - For **network**: `sh generate-ssl.sh <IP address or domain name>`
 1. Install programs and applications
    - `sh install.sh`
 1. Install management tools (optional)

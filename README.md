@@ -10,6 +10,7 @@ UNITE platform installation scripts and configuration files
   - git
   - jq (https://stedolan.github.io/jq)
   - mkcert (https://github.com/FiloSottile/mkcert)
+  - wget
   
 ### Folder Structure
 - `applications`
@@ -47,6 +48,13 @@ UNITE platform installation scripts and configuration files
 All sensitive information is stored in **secrets.json** file. Template of this file is stored in unite-environment repository on github. File has the following structure:
 ```json
 {
+    "api": {
+        "key": "Defautl32BitApiKeyHasToBeChanged"
+    },
+    "root": {
+        "user": "admin@unite.net",
+        "password": "Long-pa55w0rd"
+    },
     "github":{
         "user": "root",
         "token": "Long-t0ken"
@@ -67,6 +75,8 @@ All sensitive information is stored in **secrets.json** file. Template of this f
 ```
 Each section represents credentials for specific part of the platform services:
 - _github_ - **user** name and personal access **token** with full repository permissions for accessing source code from private **Github** repositories (follow github [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to generate it)
+- _api_ - **API** key, used for user and service authentication
+- _root_ - root **user** and **password** for portal administration
 - _sql_ - **user** name and **password** for **SQL** server
 - _mongodb_ - **user** name and **password** for **MongoDb** server
 - _elasticsearch_ - **user** name and **password** for **Elasticsearch** server

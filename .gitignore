@@ -11,3 +11,4 @@ config.json
 **/install.log
 **/.docker-compose.tmp.yml
 applications/unite-vep/databases
+**/.DS_Store

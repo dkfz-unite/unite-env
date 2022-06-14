@@ -6,6 +6,9 @@ sql_usr=$(jq -r .sql.user ../../secrets.json)
 sql_pwd=$(jq -r .sql.password ../../secrets.json)
 els_usr=$(jq -r .elasticsearch.user ../../secrets.json)
 els_pwd=$(jq -r .elasticsearch.password ../../secrets.json)
+api_key=$(jq -r .api.key ../../secrets.json)
+roo_usr=$(jq -r .root.user ../../secrets.json)
+roo_pwd=$(jq -r .root.password ../../secrets.json)
 src_pth=$(jq -r .SourceCodeDirectoryPath ../../config.json)
 
 tput setaf 6; echo "# Installing UNITE Composer service"; tput sgr0
@@ -20,13 +23,13 @@ mkdir src
 cp -r $src_pth/unite-composer/. src/
 echo ""
 
-tput setaf 4; echo "# Setting up local access list"; tput sgr0
-if [ ! -f "./data/access-list.txt" ] 
-    then
-        mkdir data
-        echo "test@dkfz.de" >> ./data/access-list.txt
-fi
-echo ""
+# tput setaf 4; echo "# Setting up local access list"; tput sgr0
+# if [ ! -f "./data/access-list.txt" ] 
+#     then
+#         mkdir data
+#         echo "test@dkfz.de" >> ./data/access-list.txt
+# fi
+# echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
 GITHUB_USER=$ghb_usr \
@@ -35,4 +38,7 @@ ELASTIC_USER=$els_usr \
 ELASTIC_PASSWORD=$els_pwd \
 SQL_USER=$sql_usr \
 SQL_PASSWORD=$sql_pwd \
+API_KEY=$api_key \
+ROOT_USER=$roo_usr \
+ROOT_PASSWORD=$roo_pwd \
 docker-compose -p '' -f docker-compose.yml up -d --build

@@ -1,7 +1,8 @@
 version: '3.5'
 services:
   mgmt.es.unite.net:
-    image: docker.elastic.co/kibana/kibana:7.10.2
+    # image: docker.elastic.co/kibana/kibana:7.10.2
+    image: kibana:7.17.4
     container_name: es.mgmt
     restart: unless-stopped
     environment:

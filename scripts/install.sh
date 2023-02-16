@@ -6,6 +6,12 @@ cd ../../scripts
 echo ""
 echo ""
 
+cd ../programs/mysql
+sh install.sh
+cd ../../scripts
+echo ""
+echo ""
+
 cd ../programs/mongodb
 sh install.sh
 cd ../../scripts

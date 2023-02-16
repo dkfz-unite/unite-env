@@ -34,6 +34,7 @@ UNITE platform installation scripts and configuration files
     - _install.**mgmt**.sh_ - management tools installation script
   - `elasticsearch` - search engine and indices storage
   - `mongodb` - cache and technical data storage
+  - `mysql` - Ensembl data storage
 - `scripts`
   - _configure.sh_ - general environment configuration sub-script (used by dedicated environemnt scripts)
   - _configure.**linux**.sh_ - **Linux** environment configuration script
@@ -106,6 +107,11 @@ To generate passords one of command line tools can be used:
    - Open `unite-environment/applications/unite-vep` folder in terminal
    - Download cache `sh download-cache.sh` (This may take several hours, if download process breaks, run the script again to continue)
    - Extract cache `sh extract-cache.sh`
+1. Download Ensembl data
+   - Open `unite-environment/programs/mysql` folder in terminal
+   - Download cache `sh download-ensembl-cache.sh` (This may take some time, if download process breaks, run the script again to continue)
+   - Extract cache `sh extract-ensembl-cache.sh`
+   - Restore database from cache `sh install-ensembl-cache.sh` (This may take several minutes)
 
 For custom installation run installation scripts for dedicated programs or applications.
 

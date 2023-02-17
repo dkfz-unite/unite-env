@@ -15,7 +15,7 @@ services:
       UNITE_ELASTIC_HOST: http://es.unite.net:9200
       UNITE_ELASTIC_USER: ${ELASTIC_USER}
       UNITE_ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
-      UNITE_SQL_HOST: sql.unite.net
+      UNITE_SQL_HOST: pgsql.unite.net
       UNITE_SQL_PORT: 5432
       UNITE_SQL_USER: ${SQL_USER}
       UNITE_SQL_PASSWORD: ${SQL_PASSWORD}

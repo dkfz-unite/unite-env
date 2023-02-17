@@ -1,15 +1,15 @@
 version: '3.5'
 services:
-  sql.unite.net:
+  pgsql.unite.net:
     image: postgres
-    container_name: sql
+    container_name: pgsql
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${USER}
       POSTGRES_PASSWORD: ${PASSWORD}
     volumes:
       # - ./data:/var/lib/postgresql/data
-      - sql.data:/var/lib/postgresql/data:rw
+      - pgsql.data:/var/lib/postgresql/data:rw
     ports:
       - 127.0.0.1:5432:5432
 
@@ -19,6 +19,6 @@ networks:
       name: unite
 
 volumes:
-  sql.data:
+  pgsql.data:
     name: sql.data
     driver: local

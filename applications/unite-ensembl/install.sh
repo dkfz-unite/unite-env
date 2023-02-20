@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ghb_usr=$(jq -r .github.user ../../secrets.json)
+ghb_tkn=$(jq -r .github.token ../../secrets.json)
 sql_usr=$(jq -r .sql.user ../../secrets.json)
 sql_pwd=$(jq -r .sql.password ../../secrets.json)
 

@@ -1,0 +1,23 @@
+version: '3.5'
+services:
+  ensembl.unite.net:
+    build: 
+      context: ./src
+      dockerfile: ./Dockerfile
+    image: unite.ensembl
+    container_name: unite.ensembl
+    restart: unless-stopped
+    environment: 
+      ENSEMBL_SQL_HOST: mysql.unite.net
+      ENSEMBL_SQL_PORT: 3306
+      ENSEMBL_SQL_USER: root
+      ENSEMBL_SQL_PASSWORD: ${SQL_PASSWORD}
+      ENSEMBL_RELEASE: 108_37
+      ASPNETCORE_ENVIRONMENT: Release
+    ports: 
+      - 127.0.0.1:5202:80
+
+networks: 
+  default:
+    external: 
+      name: unite

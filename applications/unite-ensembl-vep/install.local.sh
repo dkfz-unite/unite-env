@@ -12,7 +12,7 @@ echo ""
 
 tput setaf 4; echo "# Cloning fresh code to source code directory"; tput sgr0
 mkdir src
-cp -r $src_pth/unite-vep/. src/
+cp -r $src_pth/unite-ensembl-vep/. src/
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0

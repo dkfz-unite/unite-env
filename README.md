@@ -24,7 +24,7 @@ UNITE platform installation scripts and configuration files
   - `unite-specimens-feed` - specimens data feed web API
   - `unite-genome-feed` - genome data feed web API
   - `unite-data-migrations` - domain data migrations service
-  - `unite-identity-migrations` - identity data migration service
+  - `unite-identity-data-migrations` - identity data migration service
   - `unite-vep` - ensembl Varian Effect Predictor (VEP) web API
 - `programs`
   - `postgresql` - data storage

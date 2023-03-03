@@ -9,7 +9,7 @@ services:
         TOKEN: ${GITHUB_TOKEN}
     image: unite.genome.feed
     container_name: unite.genome.feed
-    restart: unless-stopped
+    restart: always
     environment: 
       UNITE_ELASTIC_HOST: http://es.unite.net:9200
       UNITE_ELASTIC_USER: ${ELASTIC_USER}

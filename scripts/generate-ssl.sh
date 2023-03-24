@@ -10,11 +10,10 @@ cd ../ssl
 if [ -z "$1" ]
 then
   echo "Generating ssl certificate for localhost"
-  # 127.0.0.1,::1,
-  openssl req -x509 -newkey rsa:4096 -keyout unite-key.pem -out unite-cert.pem -sha256 -days 365 -nodes -subj "/CN=localhost"
+  openssl req -x509 -newkey rsa:4096 -keyout unite-key.pem -out unite-cert.pem -sha256 -days 365 -nodes -subj "/CN=localhost, 127.0.0.1, ::1"
 else
   echo "Generating ssl certificate for '$1'"
-  openssl req -x509 -newkey rsa:4096 -keyout unite-key.pem -out unite-cert.pem -sha256 -days 365 -nodes -subj "/CN=localhost, $1"
+  openssl req -x509 -newkey rsa:4096 -keyout unite-key.pem -out unite-cert.pem -sha256 -days 365 -nodes -subj "/CN=$1, localhost, 127.0.0.1, ::1"
 fi
 
 chmod 600 unite-key.pem

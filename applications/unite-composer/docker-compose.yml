@@ -21,7 +21,7 @@ services:
       UNITE_SQL_PORT: 5432
       UNITE_SQL_USER: ${SQL_USER}
       UNITE_SQL_PASSWORD: ${SQL_PASSWORD}
-      UNITE_ENSEMBL_HOST: ensembl.unite.net
+      UNITE_ENSEMBL_HOST: data.ensembl.unite.net
       ASPNETCORE_ENVIRONMENT: Release
     ports: 
       - 127.0.0.1:5002:80

@@ -1,4 +1,4 @@
-version: '3.5'
+version: "3.5"
 services:
   mongo.unite.net:
     image: mongo:latest
@@ -17,8 +17,8 @@ services:
 
 networks: 
   default:
-    external: 
-      name: unite
+    name: unite
+    external: true
 
 volumes:
   mongo.data:

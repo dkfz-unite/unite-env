@@ -1,4 +1,4 @@
-version: '3.5'
+version: "3.5"
 services:
   mgmt.pgsql.unite.net:
     image: adminer
@@ -9,5 +9,5 @@ services:
 
 networks: 
   default:
-    external: 
-      name: unite
+    name: unite
+    external: true

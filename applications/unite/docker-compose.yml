@@ -1,4 +1,4 @@
-version: '3.5'
+version: "3.5"
 services:
   portal.unite.net:
     build: 
@@ -17,13 +17,10 @@ services:
     volumes: 
       - "../../ssl:/https:ro"
     ports: 
-      # - "80:80"
+      - "80:80"
       - "443:443"
     
 networks: 
   default:
-    external:
-      name: unite
-      
-    
-    
+    name: unite
+    external: true

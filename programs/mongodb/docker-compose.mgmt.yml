@@ -1,4 +1,4 @@
-version: '3.5'
+version: "3.5"
 services:
   mgmt.mongo.unite.net:
     image: mongo-express:latest
@@ -13,5 +13,5 @@ services:
 
 networks: 
   default:
-    external: 
-      name: unite
+    name: unite
+    external: true

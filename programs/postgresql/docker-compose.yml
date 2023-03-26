@@ -1,4 +1,4 @@
-version: '3.5'
+version: "3.5"
 services:
   pgsql.unite.net:
     image: postgres
@@ -15,10 +15,10 @@ services:
 
 networks: 
   default:
-    external: 
-      name: unite
+    name: unite
+    external: true
 
 volumes:
   pgsql.data:
-    name: sql.data
+    name: pgsql.data
     driver: local

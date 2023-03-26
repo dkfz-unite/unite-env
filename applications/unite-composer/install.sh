@@ -22,6 +22,8 @@ git clone https://$ghb_tkn@github.com/dkfz-unite/unite-composer.git src
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
+docker-compose build -q
+
 GITHUB_USER=$ghb_usr \
 GITHUB_TOKEN=$ghb_tkn \
 ELASTIC_USER=$els_usr \
@@ -31,4 +33,4 @@ SQL_PASSWORD=$sql_pwd \
 API_KEY=$api_key \
 ROOT_USER=$roo_usr \
 ROOT_PASSWORD=$roo_pwd \
-docker-compose -p '' -f docker-compose.yml up -d --build
+docker-compose -p '' -f docker-compose.yml up -d #--build

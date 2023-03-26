@@ -4,7 +4,6 @@ services:
     build: 
       context: ./src
       dockerfile: ./Dockerfile
-      quiet: true
     image: unite.ensembl.data
     container_name: unite.ensembl.data
     restart: unless-stopped

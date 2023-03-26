@@ -4,7 +4,6 @@ services:
     build: 
       context: ./src
       dockerfile: ./Dockerfile
-      quiet: true
     image: unite.ensembl.vep
     container_name: unite.ensembl.vep
     restart: unless-stopped

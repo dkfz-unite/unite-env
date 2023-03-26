@@ -1,6 +1,7 @@
 #programs/mongodb/data
 #programs/mysql/data
 **/data
+**/cache
 **/src
 **/mnt
 ssl

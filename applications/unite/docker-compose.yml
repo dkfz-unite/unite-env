@@ -4,6 +4,7 @@ services:
     build: 
       context: ./src
       dockerfile: ./Dockerfile
+      quiet: true
     image: unite.portal
     container_name: unite.portal
     restart: unless-stopped

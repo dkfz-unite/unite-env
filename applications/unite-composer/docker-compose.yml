@@ -4,6 +4,7 @@ services:
     build: 
       context: ./src
       dockerfile: ./Dockerfile
+      quiet: true
       args: 
         USER: ${GITHUB_USER}
         TOKEN: ${GITHUB_TOKEN}

@@ -4,7 +4,6 @@ services:
     build: 
       context: ./src
       dockerfile: ./Dockerfile
-      progress: quiet
     image: unite.portal
     container_name: unite.portal
     restart: unless-stopped
@@ -25,4 +24,3 @@ networks:
   default:
     name: unite
     external: true
-    

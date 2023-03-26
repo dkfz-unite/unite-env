@@ -1,6 +1,8 @@
 #!/bin/bash
-cor_url=https://ftp.ensembl.org/pub/grch37/current/mysql/homo_sapiens_core_108_37
-# fun_url=https://ftp.ensembl.org/pub/grch37/current/mysql/homo_sapiens_funcgen_108_37
+dbn=109
+dbr="$dbn"_"37"
+cor_url=https://ftp.ensembl.org/pub/grch37/release-$dbn/mysql/homo_sapiens_core_$dbr
+# fun_url=https://ftp.ensembl.org/pub/grch37/release-$dbn/mysql/homo_sapiens_funcgen_$dbr
 
 if [ ! -d "./cache/core" ] 
 then
@@ -43,8 +45,8 @@ wget -c $cor_url/gene.txt.gz
 wget -c $cor_url/gene_archive.txt.gz
 wget -c $cor_url/gene_attrib.txt.gz
 # wget -c $cor_url/genome_statistics.txt.gz
-# wget -c $cor_url/homo_sapiens_core_108_37.sql
-wget -c $cor_url/homo_sapiens_core_108_37.sql.gz
+# wget -c $cor_url/homo_sapiens_core_109_37.sql
+wget -c $cor_url/homo_sapiens_core_$dbr.sql.gz
 # wget -c $cor_url/identity_xref.txt.gz
 wget -c $cor_url/interpro.txt.gz
 # wget -c $cor_url/intron_supporting_evidence.txt.gz
@@ -99,7 +101,7 @@ cd ../../
 # cd ./cache/func
 # tput setaf 4; echo "# Downloading Ensembl functional genome database cache"; tput sgr0
 # wget -c $fun_url/feature_type.txt.gz
-# wget -c $fun_url/homo_sapiens_funcgen_108_37.sql.gz
+# wget -c $fun_url/homo_sapiens_funcgen_$dbr.sql.gz
 # wget -c $fun_url/epigenome.txt.gz
 # wget -c $fun_url/regulatory_activity.txt.gz
 # wget -c $fun_url/regulatory_feature.txt.gz

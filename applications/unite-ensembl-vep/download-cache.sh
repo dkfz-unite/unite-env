@@ -1,5 +1,5 @@
 #!/bin/bash
-dbn=108
+dbn=109
 dbr="$dbn"_"GRCh37"
 
 if [ ! -d "./data" ] 

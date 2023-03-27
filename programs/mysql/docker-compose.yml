@@ -7,6 +7,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${PASSWORD}
     volumes:
+     - mysql.data:/var/lib/mysql:rw
      - ./cache:/home/mysql/cache:rw
     ports:
       - 127.0.0.1:3306:3306
@@ -15,3 +16,8 @@ networks:
   default:
     name: unite
     external: true
+
+volumes:
+  mysql.data:
+    name: mysql.data
+    driver: local

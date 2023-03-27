@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker exec -it sql psql
+docker exec -it pgsql psql

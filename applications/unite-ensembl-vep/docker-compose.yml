@@ -12,7 +12,9 @@ services:
     ports: 
       - 127.0.0.1:5200:80
     volumes: 
-      - "./data:/opt/vep/.vep:rw"
+      # - "./data:/opt/vep/.vep:rw"
+      - "./cache:/opt/vep/.vep:rw"
+      - "./data:/app/data:rw"
 
 networks: 
   default:

@@ -71,3 +71,15 @@ sh install.sh
 cd ../../scripts
 echo ""
 echo ""
+
+cd ../applications/unite-ensembl-data
+sh install.sh
+cd ../../scripts
+echo ""
+echo ""
+
+cd ../applications/unite-ensembl-vep
+sh install.sh
+cd ../../scripts
+echo ""
+echo ""

@@ -2,7 +2,7 @@
 
 usr=root
 pwd=$(jq -r .sql.password ../../secrets.json)
-dbr=108_37
+dbr=109_37
 cor_dbn=homo_sapiens_core_$dbr
 cor_dir=/home/mysql/cache/core
 # fun_dbn=homo_sapiens_funcgen_$dbr

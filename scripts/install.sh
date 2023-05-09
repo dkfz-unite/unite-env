@@ -48,12 +48,6 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-vep
-sh install.sh
-cd ../../scripts
-echo ""
-echo ""
-
 cd ../applications/unite-donors-feed
 sh install.sh
 cd ../../scripts
@@ -73,6 +67,18 @@ echo ""
 echo ""
 
 cd ../applications/unite-genome-feed
+sh install.sh
+cd ../../scripts
+echo ""
+echo ""
+
+cd ../applications/unite-ensembl-data
+sh install.sh
+cd ../../scripts
+echo ""
+echo ""
+
+cd ../applications/unite-ensembl-vep
 sh install.sh
 cd ../../scripts
 echo ""

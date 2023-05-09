@@ -9,7 +9,7 @@ UNITE platform installation scripts and configuration files
 - Command line tools
   - git
   - jq (https://stedolan.github.io/jq)
-  - mkcert (https://github.com/FiloSottile/mkcert)
+  - openssl
   - wget
   
 ### Folder Structure
@@ -25,7 +25,8 @@ UNITE platform installation scripts and configuration files
   - `unite-genome-feed` - genome data feed web API
   - `unite-data-migrations` - domain data migrations service
   - `unite-identity-data-migrations` - identity data migration service
-  - `unite-vep` - ensembl Varian Effect Predictor (VEP) web API
+  - `unite-ensembl-data` - ensembl data Web API
+  - `unite-ensembl-vep` - ensembl Varian Effect Predictor (VEP) web API
 - `programs`
   - `postgresql` - data storage
     - _docker-compose.yml_ - installation configuration
@@ -96,22 +97,30 @@ To generate passords one of command line tools can be used:
 1. Configure environment
    - For **Linux** environment: `sh configure.linux.sh`
    - For **MacOS** environments: `sh configure.macos.sh`
-1. Generate SSL certificate
-   - For **localhost**: `sh generate-ssl.sh`
-   - For **network**: `sh generate-ssl.sh <IP address or domain name>`
-1. Install programs and applications
+1. Install SSL certificate
+   - If valid certificate is available
+     - Copy certificate and it's key to `unite-environment/ssl` directory (create directory if missing)
+     - Name certificate and it's key `unite-cert.pem` and `unite-key.pem` 
+     - Change certificate and it's key permissions to `600` using `chmod` command
+   - If valid certificate is not available, generate self signed development certificate
+     - For **localhost**: `sh generate-ssl.sh`
+     - For **network**: `sh generate-ssl.sh <IP address or domain name>`
+2. Install programs and applications
    - `sh install.sh`
-1. Install management tools (optional)
+3. Install management tools (optional)
    - `sh install.mgmt.sh`
-1. Download Ensembl VEP cache
-   - Open `unite-environment/applications/unite-vep` folder in terminal
-   - Download cache `sh download-cache.sh` (This may take several hours, if download process breaks, run the script again to continue)
-   - Extract cache `sh extract-cache.sh`
-1. Download Ensembl data
+4. Install Ensembl data service
    - Open `unite-environment/programs/mysql` folder in terminal
    - Download cache `sh download-ensembl-cache.sh` (This may take some time, if download process breaks, run the script again to continue)
    - Extract cache `sh extract-ensembl-cache.sh`
    - Restore database from cache `sh install-ensembl-cache.sh` (This may take several minutes)
+   - Open `unite-environment/applications/unite-ensembl-data` folder in terminal
+   - Run installation script `sh install.sh`
+5. Install Ensembl VEP service
+   - Open `unite-environment/applications/unite-ensembl-vep` folder in terminal
+   - Download cache `sh download-cache.sh` (This may take several hours, if download process breaks, run the script again to continue)
+   - Extract cache `sh extract-cache.sh`
+   - Run installation script `sh install.sh`
 
 For custom installation run installation scripts for dedicated programs or applications.
 

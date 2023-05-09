@@ -1,14 +1,14 @@
-#programs/mongodb/data
-#programs/mysql/data
 **/data
+**/cache
 **/src
 **/mnt
 ssl
+plugins
 secrets.json
 config.json
-**/.project
-**/.pydevproject
-**/install.log
-**/.docker-compose.tmp.yml
-applications/unite-vep/databases
+# **/.project
+# **/.pydevproject
+# **/install.log
+# **/.docker-compose.tmp.yml
+# applications/unite-vep/databases
 **/.DS_Store

@@ -1,4 +1,4 @@
-version: '3.5'
+version: "3.5"
 services:
   mgmt.es.unite.net:
     image: kibana:7.17.7
@@ -13,5 +13,5 @@ services:
 
 networks: 
   default:
-    external: 
-      name: unite
+    name: unite
+    external: true

@@ -1,4 +1,4 @@
-version: '3.5'
+version: "3.5"
 services:
   vep.ensembl.unite.net:
     build: 
@@ -12,9 +12,11 @@ services:
     ports: 
       - 127.0.0.1:5200:80
     volumes: 
-      - "./data:/opt/vep/.vep"
+      # - "./data:/opt/vep/.vep"
+      - "./data:/cache:rw"
+      # - "./data:/root/.vep:rw"
 
 networks: 
   default:
-    external: 
-      name: unite
+    name: unite
+    external: true

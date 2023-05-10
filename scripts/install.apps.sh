@@ -24,6 +24,12 @@ cd ../../scripts
 echo ""
 echo ""
 
+cd ../applications/unite-identity
+sh install.sh
+cd ../../scripts
+echo ""
+echo ""
+
 cd ../applications/unite-donors-feed
 sh install.sh
 cd ../../scripts

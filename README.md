@@ -19,6 +19,7 @@ UNITE platform installation scripts and configuration files
     - _install.sh_ - installation script
     - _install.local.sh_ - local installation script (from local repository source code)
   - `unite-composer` - composer web API
+  - `unite-identity` - identity web API
   - `unite-donors-feed` - donors data feed web API
   - `unite-images-feed` - imaging data feed web API
   - `unite-specimens-feed` - specimens data feed web API

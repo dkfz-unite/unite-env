@@ -30,7 +30,7 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-identity-migrations
+cd ../applications/unite-identity-data-migrations
 sh install.sh
 cd ../../scripts
 echo ""
@@ -43,6 +43,12 @@ echo ""
 echo ""
 
 cd ../applications/unite-composer
+sh install.sh
+cd ../../scripts
+echo ""
+echo ""
+
+cd ../applications/unite-identity
 sh install.sh
 cd ../../scripts
 echo ""

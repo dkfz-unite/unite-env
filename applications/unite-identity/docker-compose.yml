@@ -1,0 +1,30 @@
+version: "3.5"
+services:
+  identity.unite.net:
+    build: 
+      context: ./src
+      dockerfile: ./Dockerfile
+      args: 
+        USER: ${GITHUB_USER}
+        TOKEN: ${GITHUB_TOKEN}
+    image: unite.identity
+    container_name: unite.identity
+    restart: unless-stopped
+    environment:
+      UNITE_API_KEY: ${API_KEY}
+      UNITE_ROOT_USER: ${ROOT_USER}
+      UNITE_ROOT_PASSWORD: ${ROOT_PASSWORD}
+      UNITE_SQL_HOST: pgsql.unite.net
+      UNITE_SQL_PORT: 5432
+      UNITE_SQL_USER: ${SQL_USER}
+      UNITE_SQL_PASSWORD: ${SQL_PASSWORD}
+      ASPNETCORE_ENVIRONMENT: Release
+    ports: 
+      - 127.0.0.1:5004:80
+    volumes: 
+      - "./data:/app/data:rw"
+
+networks: 
+  default:
+    name: unite
+    external: true

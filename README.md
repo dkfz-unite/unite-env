@@ -19,12 +19,13 @@ UNITE platform installation scripts and configuration files
     - _install.sh_ - installation script
     - _install.local.sh_ - local installation script (from local repository source code)
   - `unite-composer` - composer web API
+  - `unite-identity` - identity web API
   - `unite-donors-feed` - donors data feed web API
   - `unite-images-feed` - imaging data feed web API
   - `unite-specimens-feed` - specimens data feed web API
   - `unite-genome-feed` - genome data feed web API
   - `unite-data-migrations` - domain data migrations service
-  - `unite-identity-migrations` - identity data migration service
+  - `unite-identity-data-migrations` - identity data migration service
   - `unite-ensembl-data` - ensembl data Web API
   - `unite-ensembl-vep` - ensembl Varian Effect Predictor (VEP) web API
 - `programs`

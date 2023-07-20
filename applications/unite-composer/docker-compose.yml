@@ -12,8 +12,6 @@ services:
     restart: unless-stopped
     environment:
       UNITE_API_KEY: ${API_KEY}
-      UNITE_ROOT_USER: ${ROOT_USER}
-      UNITE_ROOT_PASSWORD: ${ROOT_PASSWORD}
       UNITE_ELASTIC_HOST: http://es.unite.net:9200
       UNITE_ELASTIC_USER: ${ELASTIC_USER}
       UNITE_ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}

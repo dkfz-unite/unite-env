@@ -7,8 +7,6 @@ sql_pwd=$(jq -r .sql.password ../../secrets.json)
 els_usr=$(jq -r .elasticsearch.user ../../secrets.json)
 els_pwd=$(jq -r .elasticsearch.password ../../secrets.json)
 api_key=$(jq -r .api.key ../../secrets.json)
-roo_usr=$(jq -r .root.user ../../secrets.json)
-roo_pwd=$(jq -r .root.password ../../secrets.json)
 
 tput setaf 6; echo "# Installing UNITE Composer service"; tput sgr0
 echo ""
@@ -29,6 +27,4 @@ ELASTIC_PASSWORD=$els_pwd \
 SQL_USER=$sql_usr \
 SQL_PASSWORD=$sql_pwd \
 API_KEY=$api_key \
-ROOT_USER=$roo_usr \
-ROOT_PASSWORD=$roo_pwd \
 docker-compose -p '' -f docker-compose.yml up -d --build

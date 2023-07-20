@@ -5,8 +5,8 @@ ghb_tkn=$(jq -r .github.token ../../secrets.json)
 sql_usr=$(jq -r .sql.user ../../secrets.json)
 sql_pwd=$(jq -r .sql.password ../../secrets.json)
 api_key=$(jq -r .api.key ../../secrets.json)
-roo_usr=$(jq -r .root.user ../../secrets.json)
-roo_pwd=$(jq -r .root.password ../../secrets.json)
+adm_usr=$(jq -r .admin.user ../../secrets.json)
+adm_pwd=$(jq -r .admin.password ../../secrets.json)
 
 tput setaf 6; echo "# Installing UNITE Identity service"; tput sgr0
 echo ""
@@ -25,6 +25,6 @@ GITHUB_TOKEN=$ghb_tkn \
 SQL_USER=$sql_usr \
 SQL_PASSWORD=$sql_pwd \
 API_KEY=$api_key \
-ROOT_USER=$roo_usr \
-ROOT_PASSWORD=$roo_pwd \
+ADMIN_USER=$adm_usr \
+ADMIN_PASSWORD=$adm_pwd \
 docker-compose -p '' -f docker-compose.yml up -d --build

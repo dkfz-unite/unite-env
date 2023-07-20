@@ -11,18 +11,18 @@ services:
     container_name: unite.identity
     restart: unless-stopped
     environment:
-      UNITE_API_KEY: ${API_KEY}
-      UNITE_ROOT_USER: ${ROOT_USER}
-      UNITE_ROOT_PASSWORD: ${ROOT_PASSWORD}
+      ASPNETCORE_ENVIRONMENT: Release
       UNITE_SQL_HOST: pgsql.unite.net
       UNITE_SQL_PORT: 5432
       UNITE_SQL_USER: ${SQL_USER}
       UNITE_SQL_PASSWORD: ${SQL_PASSWORD}
-      ASPNETCORE_ENVIRONMENT: Release
+      UNITE_API_KEY: ${API_KEY}
+      UNITE_ADMIN_USER: ${ADMIN_USER}
+      UNITE_ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      UNITE_DEFAULT_LABEL: "UNITE"
+      UNITE_DEFAULT_PRIORITY: 1
     ports: 
       - 127.0.0.1:5004:80
-    volumes: 
-      - "./data:/app/data:rw"
 
 networks: 
   default:

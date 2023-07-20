@@ -54,7 +54,7 @@ All sensitive information is stored in **secrets.json** file. Template of this f
     "api": {
         "key": "Defautl32BitApiKeyHasToBeChanged"
     },
-    "root": {
+    "admin": {
         "user": "admin@unite.net",
         "password": "Long-pa55w0rd"
     },

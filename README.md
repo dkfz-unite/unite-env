@@ -79,7 +79,7 @@ All sensitive information is stored in **secrets.json** file. Template of this f
 Each section represents credentials for specific part of the platform services:
 - _api_ - **API** key, used for user and service authentication
 - _admin_ - root **user** and **password** for portal administration
-- _github_ - **user** name and personal access **token** with full repository permissions for accessing source code from private **Github** repositories (follow github [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to generate it)
+- _github_ - **user** name and personal access **token** with full repository permissions for accessing source code from **Github** repositories (follow github [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to generate it)
 - _sql_ - **user** name and **password** for **SQL** server
 - _mongodb_ - **user** name and **password** for **MongoDb** server
 - _elasticsearch_ - **user** name and **password** for **Elasticsearch** server
@@ -92,7 +92,7 @@ To generate passords one of command line tools can be used:
 **!IMPORTANT: NEVER COMMIT THIS FILE TO THE REPOSITORY!**
 
 ### Installation
-1. Download **unite-environment** source files from git repository
+1. Download **unite-environment** source files from git this repository
 1. **Change credentials** in secrets_template.json and **rename** the file to **secrets.json**
 1. Open `unite-environment/scripts` folder in terminal
 1. Configure environment
@@ -110,7 +110,7 @@ To generate passords one of command line tools can be used:
    - `sh install.sh`
 3. Install management tools (optional)
    - `sh install.mgmt.sh`
-4. Install Ensembl data service
+4. Install Ensembl Data service
    - Open `unite-environment/programs/mysql` folder in terminal
    - Download cache `sh download-ensembl-cache.sh` (This may take some time, if download process breaks, run the script again to continue)
    - Extract cache `sh extract-ensembl-cache.sh`

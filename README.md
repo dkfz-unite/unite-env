@@ -26,8 +26,8 @@ UNITE platform installation scripts and configuration files
   - `unite-genome-feed` - genome data feed web API
   - `unite-data-migrations` - domain data migrations service
   - `unite-identity-data-migrations` - identity data migration service
-  - `unite-ensembl-data` - ensembl data Web API
   - `unite-ensembl-vep` - ensembl Varian Effect Predictor (VEP) web API
+  - `unite-ensembl-data` - ensembl data Web API
 - `programs`
   - `postgresql` - data storage
     - _docker-compose.yml_ - installation configuration
@@ -131,3 +131,23 @@ To uninstall UNITE platform, run corresponding command from unite-environment/sc
 - To **remove** only services, **but keep all their data**: `sh uninstall.soft.sh`
 
 !Note that uninstallation scripts will remove all containers/images from host machine. If you have other applications runing in docker, clear unite containers and images manually.
+
+### Services
+Application is running in docker and has the following components:
+
+|Service|Container|Alias|Container Port|Host Port|
+|:------|:--------|:----|:---|:---------|
+|Elasticsearch|es|es.unite.net|9200|9200|
+|Mongodb|mongo|mongo.unite.net|2701|2701|
+|Postgresql|pgsq|pgsql.unite.net|5432|5432|
+|Mysql|mysql|mysql.unite.net|3306|3306|
+|Web Portal|unite.portal|portal.unite.net|80;443|80;443|
+|Composer Service|unite.composer|composer.unite.net|80|5002|
+|Identity Service|unite.identity|identity.unite.net|80|5004|
+|Donors Feed Service|unite.donors.feed|feed.donors.unite.net|80|5100|
+|Images Feed Service|unite.images.feed|feed.images.unite.net|80|5102|
+|Specimens Feed Service|unite.specimens.feed|feed.specimens.unite.net|80|5104|
+|Genome Feed Service|unite.genome.feed|feed.genome.unite.net|80|5106|
+|Ensembl VEP Service|unite.ensembl.vep|vep.ensembl.unite.net|80|5200|
+|Ensembl Data Service|unite.ensembl.data|data.ensembl.unite.net|80|5202|
+

@@ -10,7 +10,8 @@ services:
     image: unite.genome.feed
     container_name: unite.genome.feed
     restart: always
-    environment: 
+    environment:
+      UNITE_API_KEY: ${API_KEY}
       UNITE_ELASTIC_HOST: http://es.unite.net:9200
       UNITE_ELASTIC_USER: ${ELASTIC_USER}
       UNITE_ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}

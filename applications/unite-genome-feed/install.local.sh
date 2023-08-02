@@ -8,6 +8,7 @@ els_usr=$(jq -r .elasticsearch.user ../../secrets.json)
 els_pwd=$(jq -r .elasticsearch.password ../../secrets.json)
 mon_usr=$(jq -r .mongodb.user ../../secrets.json)
 mon_pwd=$(jq -r .mongodb.password ../../secrets.json)
+api_key=$(jq -r .api.key ../../secrets.json)
 src_pth=$(jq -r .SourceCodeDirectoryPath ../../config.json)
 
 tput setaf 6; echo "# Installing UNITE Genome Datafeed service"; tput sgr0
@@ -31,4 +32,5 @@ SQL_USER=$sql_usr \
 SQL_PASSWORD=$sql_pwd \
 MONGO_USER=$mon_usr \
 MONGO_PASSWORD=$mon_pwd \
+API_KEY=$api_key \
 docker-compose -p '' -f docker-compose.yml up -d --build

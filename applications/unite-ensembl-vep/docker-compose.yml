@@ -10,7 +10,7 @@ services:
     environment: 
       ASPNETCORE_ENVIRONMENT: Release
     ports: 
-      - 127.0.0.1:5200:80
+      - 127.0.0.1:5202:80
     volumes: 
       # - "./data:/opt/vep/.vep"
       - "./data:/cache:rw"

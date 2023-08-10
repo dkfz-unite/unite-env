@@ -89,6 +89,7 @@ To generate passords one of command line tools can be used:
 
 > [!WARNING]
 > ALWAYS CHANGE ALL CREDENTIALS!
+
 > [!WARNING]
 > NEVER COMMIT THIS FILE TO THE REPOSITORY!
 

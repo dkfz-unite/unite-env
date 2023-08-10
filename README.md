@@ -154,4 +154,4 @@ Application is running in docker and has the following components:
 |Ensembl VEP Service|unite.ensembl.vep|vep.ensembl.unite.net|80|5202|
 
 > [!NOTE]
-> Only Web portal ports are publicly exposed (0.0.0.0). Ports of othe rcomponents are exposed to host machine local network only (127.0.0.1).
+> Only Web portal ports are publicly exposed (*0.0.0.0*). Ports of other components are exposed to host machine local network only (*127.0.0.1*).

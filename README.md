@@ -87,9 +87,9 @@ Each section represents credentials for specific part of the platform services:
 To generate passords one of command line tools can be used:
 - `openssl rand -base64 22` - to generate 32 byte Base64 string
 
-**!IMPORTANT: ALWAYS CHANGE ALL CREDENTIALS!**
-
-**!IMPORTANT: NEVER COMMIT THIS FILE TO THE REPOSITORY!**
+> [!WARNING]
+> ALWAYS CHANGE ALL CREDENTIALS!
+> NEVER COMMIT THIS FILE TO THE REPOSITORY!
 
 ### Installation
 1. Download **unite-environment** source files from git this repository

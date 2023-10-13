@@ -25,14 +25,9 @@ services:
     ports: 
       - 127.0.0.1:5002:80
     volumes:
-      - unite.analysis.data:/mnt/data:rw
+      - ./data:/mnt/analysis:rw
 
 networks: 
   default:
     name: unite
     external: true
-
-volumes:
-  unite.analysis.data:
-    name: unite.analysis.data
-    driver: local

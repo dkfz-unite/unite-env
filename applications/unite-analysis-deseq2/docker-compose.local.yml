@@ -12,7 +12,7 @@ services:
     ports:
       - 127.0.0.1:5300:80
     volumes:
-      - ./data:/mnt/analysis:rw
+      - ~/mnt/analysis:/mnt/data:rw
 
 networks:
   default:

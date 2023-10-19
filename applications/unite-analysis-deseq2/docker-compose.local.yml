@@ -12,9 +12,15 @@ services:
     ports:
       - 127.0.0.1:5300:80
     volumes:
-      - ~/mnt/analysis:/mnt/data:rw
+      # - ~/mnt/analysis:/mnt/data:rw
+      - unite.analysis.data:/mnt/data:rw
 
 networks:
   default:
     name: unite
     external: true
+
+volumes:
+  unite.analysis.data:
+    name: unite.analysis.data
+    driver: local

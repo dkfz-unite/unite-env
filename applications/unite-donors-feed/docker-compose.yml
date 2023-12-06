@@ -22,7 +22,7 @@ services:
       UNITE_INDEXING_BUCKET_SIZE: 10
       ASPNETCORE_ENVIRONMENT: Release
     ports: 
-      - 127.0.0.1:5100:8080
+      - 127.0.0.1:5100:80
 
 networks: 
   default:

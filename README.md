@@ -79,7 +79,7 @@ All sensitive information is stored in **secrets.json** file. Template of this f
 Each section represents credentials for specific part of the platform services:
 - _api_ - **API** key, used for user and service authentication
 - _admin_ - root **user** and **password** for portal administration
-- _github_ - **user** name and personal access **token** with full repository permissions for accessing source code from **Github** repositories (follow github [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to generate it)
+- _github_ - **user** name and personal access **token** with full **repository** and **packages** permissions for accessing source code and packages from **Github** (follow github [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to generate it)
 - _sql_ - **user** name and **password** for **SQL** server
 - _mongodb_ - **user** name and **password** for **MongoDb** server
 - _elasticsearch_ - **user** name and **password** for **Elasticsearch** server

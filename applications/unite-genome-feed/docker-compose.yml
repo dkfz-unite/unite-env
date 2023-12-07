@@ -24,7 +24,8 @@ services:
       UNITE_MONGO_USER: ${MONGO_USER}
       UNITE_MONGO_PASSWORD: ${MONGO_PASSWORD}
       UNITE_VEP_HOST: http://vep.ensembl.unite.net
-      UNITE_ENSEMBL_HOST: http://data.ensembl.unite.net
+      UNITE_ENSEMBL_DATA_HOST: http://data.ensembl.unite.net
+      UNITE_ENSEMBL_VEP_HOST: http://vep.ensembl.unite.net
       UNITE_GENES_INDEXING_BUCKET_SIZE: 100
       UNITE_SSM_ANNOTATION_BUCKET_SIZE: 100
       UNITE_SSM_INDEXING_BUCKET_SIZE: 300

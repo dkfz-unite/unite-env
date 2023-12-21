@@ -29,7 +29,7 @@ services:
     volumes:
       - ~/mnt/analysis:/mnt/data:rw
 
-# networks: 
-#   default:
-#     name: unite
-#     external: true
+networks: 
+  default:
+    name: unite
+    external: true

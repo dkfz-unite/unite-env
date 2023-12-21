@@ -1,7 +1,7 @@
 version: "3.5"
 services:
   data.ensembl.unite.net:
-    image: ghcr.io/dkfz-unite/unite-ensembl-data:main
+    image: ghcr.io/dkfz-unite/unite-ensembl-data:latest
     container_name: unite.ensembl.data
     restart: unless-stopped
     environment: 

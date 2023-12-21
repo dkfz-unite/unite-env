@@ -1,7 +1,7 @@
 version: "3.5"
 services:
   feed.specimens.unite.net:
-    image: ghcr.io/dkfz-unite/unite-specimens-feed:main
+    image: ghcr.io/dkfz-unite/unite-specimens-feed:latest
     container_name: unite.specimens.feed
     restart: unless-stopped
     environment:

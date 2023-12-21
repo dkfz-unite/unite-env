@@ -1,7 +1,7 @@
 version: "3.5"
 services:
   migrations.data.unite.net:
-    image: ghcr.io/dkfz-unite/unite-data-migrations:main
+    image: ghcr.io/dkfz-unite/unite-data-migrations:latest
     container_name: unite.data.migrations
     environment:
       UNITE_SQL_HOST: pgsql.unite.net

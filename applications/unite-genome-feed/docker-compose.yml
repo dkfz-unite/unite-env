@@ -1,7 +1,7 @@
 version: "3.5"
 services:
   feed.genome.unite.net:
-    image: ghcr.io/dkfz-unite/unite-genome-feed:main
+    image: ghcr.io/dkfz-unite/unite-genome-feed:latest
     container_name: unite.genome.feed
     restart: always
     environment:

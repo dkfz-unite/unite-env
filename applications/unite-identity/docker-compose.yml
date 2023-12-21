@@ -1,7 +1,7 @@
 version: "3.5"
 services:
   identity.unite.net:
-    image: ghcr.io/dkfz-unite/unite-identity:main
+    image: ghcr.io/dkfz-unite/unite-identity:latest
     container_name: unite.identity
     restart: unless-stopped
     environment:

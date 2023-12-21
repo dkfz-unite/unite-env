@@ -1,7 +1,7 @@
 version: "3.5"
 services:
   feed.donors.unite.net:
-    image: ghcr.io/dkfz-unite/unite-donors-feed:main
+    image: ghcr.io/dkfz-unite/unite-donors-feed:latest
     container_name: unite.donors.feed
     restart: unless-stopped
     environment:

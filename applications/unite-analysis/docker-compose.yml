@@ -13,7 +13,7 @@ services:
       UNITE_SQL_PORT: 5432
       UNITE_SQL_USER: ${SQL_USER}
       UNITE_SQL_PASSWORD: ${SQL_PASSWORD}
-      UNITE_ANALYSIS_DATA_PATH: /mnt/analysis
+      UNITE_ANALYSIS_DATA_PATH: /mnt/data
       UNITE_ANALYSIS_DESEQ2_URL: http://localhost:5300
       ASPNETCORE_ENVIRONMENT: Release
     ports: 

@@ -1,10 +1,10 @@
 #!/bin/bash
 
+src_pth=$(jq -r .SourceCodeDirectoryPath ../../config.json)
 ghb_usr=$(jq -r .github.user ../../secrets.json)
 ghb_tkn=$(jq -r .github.token ../../secrets.json)
 sql_usr=$(jq -r .sql.user ../../secrets.json)
 sql_pwd=$(jq -r .sql.password ../../secrets.json)
-src_pth=$(jq -r .SourceCodeDirectoryPath ../../config.json)
 
 tput setaf 6; echo "# Installing UNITE Data Migrations service"; tput sgr0
 echo ""
@@ -23,4 +23,4 @@ GITHUB_USER=$ghb_usr \
 GITHUB_TOKEN=$ghb_tkn \
 SQL_USER=$sql_usr \
 SQL_PASSWORD=$sql_pwd \
-docker-compose -p '' -f docker-compose.yml up -d --build
+docker-compose -p '' -f docker-compose.local.yml up -d --build

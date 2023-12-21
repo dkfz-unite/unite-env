@@ -1,10 +1,7 @@
 version: "3.5"
 services:
   data.ensembl.unite.net:
-    build: 
-      context: ./src
-      dockerfile: ./Dockerfile
-    image: unite.ensembl.data
+    image: ghcr.io/dkfz-unite/unite-ensembl-data:main
     container_name: unite.ensembl.data
     restart: unless-stopped
     environment: 

@@ -1,13 +1,7 @@
 version: "3.5"
 services:
   feed.genome.unite.net:
-    build: 
-      context: ./src
-      dockerfile: ./Dockerfile
-      args: 
-        USER: ${GITHUB_USER}
-        TOKEN: ${GITHUB_TOKEN}
-    image: unite.genome.feed
+    image: ghcr.io/dkfz-unite/unite-genome-feed:main
     container_name: unite.genome.feed
     restart: always
     environment:

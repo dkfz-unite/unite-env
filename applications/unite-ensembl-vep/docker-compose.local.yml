@@ -1,16 +1,13 @@
 version: "3.5"
 services:
-  composer.unite.net:
+  vep.ensembl.unite.net:
     extends:
       file: docker-compose.yml
-      service: composer.unite.net
+      service: vep.ensembl.unite.net
     build: 
       context: ./src
       dockerfile: ./Dockerfile
-      args: 
-        USER: ${GITHUB_USER}
-        TOKEN: ${GITHUB_TOKEN}
-    image: unite.composer
+    image: unite.ensembl.vep
 
 networks: 
   default:

@@ -1,13 +1,7 @@
 version: "3.5"
 services:
   analysis.unite.net:
-    build: 
-      context: ./src
-      dockerfile: ./Dockerfile
-      args: 
-        USER: ${GITHUB_USER}
-        TOKEN: ${GITHUB_TOKEN}
-    image: unite.analysis
+    image: ghcr.io/dkfz-unite/unite-analysis:main
     container_name: unite.analysis
     restart: unless-stopped
     environment:
@@ -24,8 +18,15 @@ services:
       ASPNETCORE_ENVIRONMENT: Release
     ports: 
       - 127.0.0.1:5004:80
+    volumes:
+      - unite.analysis.data:/mnt/data:rw
 
 networks: 
   default:
     name: unite
     external: true
+
+volumes:
+  unite.analysis.data:
+    name: unite.analysis.data
+    driver: local

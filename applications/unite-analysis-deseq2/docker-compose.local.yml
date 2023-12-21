@@ -1,16 +1,10 @@
 version: "3.5"
 services:
   deseq2.analysis.unite.net:
-    build:
-      context: ./src
-      dockerfile: ./Dockerfile
+    extends:
+      file: docker-compose.yml
+      service: deseq2.analysis.unite.net
     image: unite.analysis.deseq2
-    container_name: unite.analysis.deseq2
-    restart: unless-stopped
-    environment:
-      ASPNETCORE_ENVIRONMENT: Release
-    ports:
-      - 127.0.0.1:5300:80
     volumes:
       - ~/mnt/analysis:/mnt/data:rw
 

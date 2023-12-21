@@ -1,13 +1,7 @@
 version: "3.5"
 services:
   identity.unite.net:
-    build: 
-      context: ./src
-      dockerfile: ./Dockerfile
-      args: 
-        USER: ${GITHUB_USER}
-        TOKEN: ${GITHUB_TOKEN}
-    image: unite.identity
+    image: ghcr.io/dkfz-unite/unite-identity:main
     container_name: unite.identity
     restart: unless-stopped
     environment:

@@ -1,17 +1,17 @@
 version: "3.5"
 services:
-  composer.unite.net:
+  migrations.identity.unite.net:
     extends:
       file: docker-compose.yml
-      service: composer.unite.net
+      service: migrations.identity.unite.net
     build: 
       context: ./src
       dockerfile: ./Dockerfile
       args: 
         USER: ${GITHUB_USER}
         TOKEN: ${GITHUB_TOKEN}
-    image: unite.composer
-
+    image: unite.identity.migrations
+    
 networks: 
   default:
     name: unite

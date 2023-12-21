@@ -1,10 +1,7 @@
 version: "3.5"
 services:
   portal.unite.net:
-    build: 
-      context: ./src
-      dockerfile: ./Dockerfile
-    image: unite.portal
+    image: ghcr.io/dkfz-unite/unite:main
     container_name: unite.portal
     restart: unless-stopped
     environment: 

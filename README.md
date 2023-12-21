@@ -16,10 +16,13 @@ UNITE platform installation scripts and configuration files
 - `applications`
   - `unite` - web portal
     - _docker-compose.yml_ - installation configuration
+    - _docker-compose.local.yml_ - local installation configuration (from local repository source code)
     - _install.sh_ - installation script
     - _install.local.sh_ - local installation script (from local repository source code)
-  - `unite-composer` - composer web API
   - `unite-identity` - identity web API
+  - `unite-composer` - composer web API
+  - `unite-analysis` - analysis web API
+  - `unite-analysis-deseq2` - analysis DESeq2 web API
   - `unite-donors-feed` - donors data feed web API
   - `unite-images-feed` - imaging data feed web API
   - `unite-specimens-feed` - specimens data feed web API
@@ -146,6 +149,7 @@ Application is running in docker and has the following components:
 |Web Portal|unite.portal|portal.unite.net|80;443|80;443|
 |Identity Service|unite.identity|identity.unite.net|80|5000|
 |Composer Service|unite.composer|composer.unite.net|80|5002|
+|Analysis Service|unite.analysis|analysis.unite.net|80|5004|
 |Donors Feed Service|unite.donors.feed|feed.donors.unite.net|80|5100|
 |Images Feed Service|unite.images.feed|feed.images.unite.net|80|5102|
 |Specimens Feed Service|unite.specimens.feed|feed.specimens.unite.net|80|5104|

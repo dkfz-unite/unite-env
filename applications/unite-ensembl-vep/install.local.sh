@@ -1,6 +1,5 @@
 #!/bin/bash
 
-ghb_tkn=$(jq -r .github.token ../../secrets.json)
 src_pth=$(jq -r .SourceCodeDirectoryPath ../../config.json)
 
 tput setaf 6; echo "# Installing UNITE VEP Annotations service"; tput sgr0
@@ -16,4 +15,4 @@ cp -r $src_pth/unite-ensembl-vep/. src/
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
-docker-compose -p '' -f docker-compose.yml up -d --build
+docker-compose -p '' -f docker-compose.local.yml up -d --build

@@ -1,10 +1,7 @@
 version: "3.5"
 services:
   deseq2.analysis.unite.net:
-    build:
-      context: ./src
-      dockerfile: ./Dockerfile
-    image: unite.analysis.deseq2
+    image: ghcr.io/dkfz-unite/unite-analysis-deseq2:main
     container_name: unite.analysis.deseq2
     restart: unless-stopped
     environment:

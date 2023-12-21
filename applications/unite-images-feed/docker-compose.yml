@@ -1,13 +1,7 @@
 version: "3.5"
 services:
   feed.images.unite.net:
-    build: 
-      context: ./src
-      dockerfile: ./Dockerfile
-      args: 
-        USER: ${GITHUB_USER}
-        TOKEN: ${GITHUB_TOKEN}
-    image: unite.images.feed
+    image: ghcr.io/dkfz-unite/unite-images-feed:main
     container_name: unite.images.feed
     restart: unless-stopped
     environment:

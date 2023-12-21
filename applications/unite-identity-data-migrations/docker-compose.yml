@@ -1,13 +1,7 @@
 version: "3.5"
 services:
   migrations.identity.unite.net:
-    build: 
-      context: ./src
-      dockerfile: ./Dockerfile
-      args: 
-        USER: ${GITHUB_USER}
-        TOKEN: ${GITHUB_TOKEN}
-    image: unite.identity.migrations
+    image: ghcr.io/dkfz-unite/unite-identity-data-migrations:main
     container_name: unite.identity.migrations
     environment:
       UNITE_SQL_HOST: pgsql.unite.net

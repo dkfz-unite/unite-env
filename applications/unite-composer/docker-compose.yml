@@ -1,13 +1,6 @@
 version: "3.5"
 services:
   composer.unite.net:
-    # build: 
-    #   context: ./src
-    #   dockerfile: ./Dockerfile
-    #   args: 
-    #     USER: ${GITHUB_USER}
-    #     TOKEN: ${GITHUB_TOKEN}
-    # image: unite.composer
     image: ghcr.io/dkfz-unite/unite-composer:main
     container_name: unite.composer
     restart: unless-stopped
@@ -24,15 +17,8 @@ services:
       ASPNETCORE_ENVIRONMENT: Release
     ports: 
       - 127.0.0.1:5002:80
-    volumes:
-      - unite.analysis.data:/mnt/data:rw
 
 networks: 
   default:
     name: unite
     external: true
-
-volumes:
-  unite.analysis.data:
-    name: unite.analysis.data
-    driver: local

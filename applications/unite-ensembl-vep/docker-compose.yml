@@ -1,10 +1,7 @@
 version: "3.5"
 services:
   vep.ensembl.unite.net:
-    build: 
-      context: ./src
-      dockerfile: ./Dockerfile
-    image: unite.ensembl.vep
+    image: ghcr.io/dkfz-unite/unite-ensembl-vep:main
     container_name: unite.ensembl.vep
     restart: unless-stopped
     environment: 
@@ -12,9 +9,7 @@ services:
     ports: 
       - 127.0.0.1:5202:80
     volumes: 
-      # - "./data:/opt/vep/.vep"
       - "./data:/cache:rw"
-      # - "./data:/root/.vep:rw"
 
 networks: 
   default:

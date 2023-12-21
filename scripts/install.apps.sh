@@ -18,13 +18,19 @@ cd ../../scripts
 echo ""
 echo ""
 
+cd ../applications/unite-identity
+sh install.sh
+cd ../../scripts
+echo ""
+echo ""
+
 cd ../applications/unite-composer
 sh install.sh
 cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-identity
+cd ../applicationsunite-analysis
 sh install.sh
 cd ../../scripts
 echo ""

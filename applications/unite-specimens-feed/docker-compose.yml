@@ -1,13 +1,7 @@
 version: "3.5"
 services:
   feed.specimens.unite.net:
-    build: 
-      context: ./src
-      dockerfile: ./Dockerfile
-      args: 
-        USER: ${GITHUB_USER}
-        TOKEN: ${GITHUB_TOKEN}
-    image: unite.specimens.feed
+    image: ghcr.io/dkfz-unite/unite-specimens-feed:main
     container_name: unite.specimens.feed
     restart: unless-stopped
     environment:

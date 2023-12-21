@@ -1,16 +1,18 @@
 version: "3.5"
 services:
-  composer.unite.net:
+  analysis.unite.net:
     extends:
       file: docker-compose.yml
-      service: composer.unite.net
+      service: analysis.unite.net
     build: 
       context: ./src
       dockerfile: ./Dockerfile
       args: 
         USER: ${GITHUB_USER}
         TOKEN: ${GITHUB_TOKEN}
-    image: unite.composer
+    image: unite.analysis
+    volumes:
+      - ~/mnt/analysis:/mnt/data:rw
 
 networks: 
   default:

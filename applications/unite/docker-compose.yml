@@ -1,7 +1,7 @@
 version: "3.5"
 services:
   portal.unite.net:
-    image: ghcr.io/dkfz-unite/unite:main:latest
+    image: ghcr.io/dkfz-unite/unite
     container_name: unite.portal
     restart: unless-stopped
     environment: 

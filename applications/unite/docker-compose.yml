@@ -13,8 +13,9 @@ services:
       ASPNETCORE_URLS: https://+:443;http://+:80
       ASPNETCORE_Kestrel__Certificates__Default__Path: /https/unite-cert.pem
       ASPNETCORE_Kestrel__Certificates__Default__KeyPath: /https/unite-key.pem
-      UNITE_COMPOSER_HOST: http://composer.unite.net
       UNITE_IDENTITY_HOST: http://identity.unite.net
+      UNITE_COMPOSER_HOST: http://composer.unite.net
+      UNITE_ANALYSIS_HOST: http://analysis.unite.net
       UNITE_DONORS_FEED_HOST: http://feed.donors.unite.net
       UNITE_IMAGES_FEED_HOST: http://feed.images.unite.net
       UNITE_SPECIMENS_FEED_HOST: http://feed.specimens.unite.net

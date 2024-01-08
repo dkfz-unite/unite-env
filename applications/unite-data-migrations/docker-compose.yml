@@ -1,6 +1,7 @@
 version: "3.5"
 services:
   migrations.data.unite.net:
+    platform: linux/amd64
     image: ghcr.io/dkfz-unite/unite-data-migrations:latest
     container_name: unite.data.migrations
     environment:

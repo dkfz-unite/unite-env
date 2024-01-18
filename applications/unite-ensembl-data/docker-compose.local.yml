@@ -3,7 +3,7 @@ services:
   data.ensembl.unite.net:
     extends: 
       file: docker-compose.yml
-      service: unite.ensembl.data
+      service: data.unite.ensembl.net
     build: 
       context: ./src
       dockerfile: ./Dockerfile

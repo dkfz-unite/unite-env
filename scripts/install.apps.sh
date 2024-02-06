@@ -30,7 +30,7 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applicationsunite-analysis
+cd ../applications/unite-analysis
 sh install.sh
 cd ../../scripts
 echo ""

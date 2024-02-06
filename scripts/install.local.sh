@@ -1,5 +1,29 @@
 #!/bin/bash
 
+cd ../programs/postgresql
+sh install.sh
+cd ../../scripts
+echo ""
+echo ""
+
+cd ../programs/mysql
+sh install.sh
+cd ../../scripts
+echo ""
+echo ""
+
+cd ../programs/mongodb
+sh install.sh
+cd ../../scripts
+echo ""
+echo ""
+
+cd ../programs/elasticsearch
+sh install.sh
+cd ../../scripts
+echo ""
+echo ""
+
 cd ../applications/unite-data-migrations
 sh install.local.sh
 cd ../../scripts

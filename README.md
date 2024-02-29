@@ -16,9 +16,10 @@ UNITE platform installation scripts and configuration files
 - `applications`
   - `unite` - web portal
     - _docker-compose.yml_ - installation configuration
-    - _docker-compose.local.yml_ - local installation configuration (from local repository source code)
+    - _docker-compose.build.yml_ - build and installation configuration (from repository source code)
     - _install.sh_ - installation script
-    - _install.local.sh_ - local installation script (from local repository source code)
+    - _install.local.sh_ - local installation script (from repository source code - configurable local source)
+    - _install.remote.sh_ - remote installation script (from repository source code - remote source)
   - `unite-identity` - identity web API
   - `unite-composer` - composer web API
   - `unite-analysis` - analysis web API

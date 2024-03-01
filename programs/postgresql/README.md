@@ -9,7 +9,7 @@ Postgresql service serves the follwing purposes:
 Folder contains the following files:
 - `docker-compose.yml` - Postgresql server configuration file
 - `docker-compose.mgmt.yml` - Postgresql management tools (Adminer) configuration file
-- `install.sh` - Postgresql server installation script
+- `deploy.sh` - Postgresql server installation script
 - `install.mgmt.sh` - Postgresql management tools (Adminer) installation script
 - `connect.sh` - Postgresql CLI connection script
 
@@ -23,7 +23,7 @@ Folder contains the following files:
 Open this sfolder in terminal and run required command:
 - To install Postgresql server
   ```bash
-  sh install.sh
+  sh deploy.sh
   ```
 - To install Postgresql management tools (optional)
   ```bash

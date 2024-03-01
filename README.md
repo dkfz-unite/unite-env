@@ -17,7 +17,7 @@ UNITE platform installation scripts and configuration files
   - `unite` - web portal
     - _docker-compose.yml_ - installation configuration
     - _docker-compose.build.yml_ - build and installation configuration (from repository source code)
-    - _install.sh_ - installation script
+    - _deploy.sh_ - installation script
     - _install.local.sh_ - local installation script (from repository source code - configurable local source)
     - _install.remote.sh_ - remote installation script (from repository source code - remote source)
   - `unite-identity` - identity web API
@@ -36,7 +36,7 @@ UNITE platform installation scripts and configuration files
   - `postgresql` - data storage
     - _docker-compose.yml_ - installation configuration
     - _docker-compose.**mgmt**.yml_ - management tools installation configuration
-    - _install.sh_ - installation script
+    - _deploy.sh_ - installation script
     - _install.**mgmt**.sh_ - management tools installation script
   - `elasticsearch` - search engine and indices storage
   - `mongodb` - cache and technical data storage
@@ -46,7 +46,7 @@ UNITE platform installation scripts and configuration files
   - _configure.**linux**.sh_ - **Linux** environment configuration script
   - _configure.**macos**.sh_ - **MacOS** environment configuration script
   - _generate-ssl.sh_ - SSL certificate generation script
-  - _install.sh_ - installation script
+  - _deploy.sh_ - installation script
   - _uninstall.**hard**.sh_ - **hard** uninstallation script (**removes** data and volumes)
   - _uninstall.**soft**.sh_ - **soft** uninstallation script (**keeps** data and volumes)
 - _secrets_template.json_ - JSON configuration template file with all required credentials
@@ -113,7 +113,7 @@ To generate passwords one of command line tools can be used:
      - For **localhost**: `sh generate-ssl.sh`
      - For **network**: `sh generate-ssl.sh <IP address or domain name>`
 2. Install programs and applications
-   - `sh install.sh`
+   - `sh deploy.sh`
 3. Install management tools (optional)
    - `sh install.mgmt.sh`
 4. Install Ensembl Data service
@@ -122,12 +122,12 @@ To generate passwords one of command line tools can be used:
    - Extract cache `sh extract-ensembl-cache.sh`
    - Restore database from cache `sh install-ensembl-cache.sh` (This may take several minutes)
    - Open `unite-environment/applications/unite-ensembl-data` folder in terminal
-   - Run installation script `sh install.sh`
+   - Run installation script `sh deploy.sh`
 5. Install Ensembl VEP service
    - Open `unite-environment/applications/unite-ensembl-vep` folder in terminal
    - Download cache `sh download-cache.sh` (This may take several hours, if download process breaks, run the script again to continue)
    - Extract cache `sh extract-cache.sh`
-   - Run installation script `sh install.sh`
+   - Run installation script `sh deploy.sh`
 
 For custom installation run installation scripts for dedicated programs or applications.
 

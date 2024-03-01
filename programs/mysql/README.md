@@ -7,7 +7,7 @@ Mysql service serves the follwing purposes:
 
 Folder contains the following files:
 - `docker-compose.yml` - Mysql server configuration file
-- `install.sh` - Mysql server installation script
+- `deploy.sh` - Mysql server installation script
 - `download-ensembl-cache.sh` - Ensembl database schema and data downloading script
 - `extract-ensembl-cache.sh` - Ensembl database schema and data extraction script
 - `install-ensembl-cache.sh` - Ensembl database schema and data installation script
@@ -22,7 +22,7 @@ Folder contains the following files:
 Open this sfolder in terminal and run required command:
 - To install Mysql server
   ```bash
-  sh install.sh
+  sh deploy.sh
   ```
 - Download Ensembl database schema and cache files
   ```bash

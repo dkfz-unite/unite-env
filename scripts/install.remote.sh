@@ -1,25 +1,25 @@
 #!/bin/bash
 
 cd ../programs/postgresql
-sh install.sh
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
 cd ../programs/mysql
-sh install.sh
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
 cd ../programs/mongodb
-sh install.sh
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
 cd ../programs/elasticsearch
-sh install.sh
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""

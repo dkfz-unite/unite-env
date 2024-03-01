@@ -18,7 +18,7 @@ UNITE platform installation scripts and configuration files
     - _docker-compose.yml_ - installation configuration
     - _docker-compose.build.yml_ - build and installation configuration (from repository source code)
     - _deploy.sh_ - installation script
-    - _install.local.sh_ - local installation script (from repository source code - configurable local source)
+    - _build.local.sh_ - local installation script (from repository source code - configurable local source)
     - _build.remote.sh_ - remote installation script (from repository source code - remote source)
   - `unite-identity` - identity web API
   - `unite-composer` - composer web API

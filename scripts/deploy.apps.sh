@@ -59,9 +59,3 @@ sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
-
-cd ../applications/unite-analysis-deseq2
-sh deploy.sh
-cd ../../scripts
-echo ""
-echo ""

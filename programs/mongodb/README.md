@@ -9,7 +9,7 @@ Folder contains the following files:
 - `docker-compose.yml` - Mongodb server configuration file
 - `docker-compose.mgmt.yml` - Mongodb management tools (Mongo Express) configuration file
 - `deploy.sh` - Mongodb server installation script
-- `install.mgmt.sh` - Mongodb management tools (Mongo Express) installation script
+- `deploy.mgmt.sh` - Mongodb management tools (Mongo Express) installation script
 
 ## Before Installation
 
@@ -25,7 +25,7 @@ Open this sfolder in terminal and run required command:
   ```
 - To install Mongodb management tools (optional)
   ```bash
-  sh install.mgmt.sh
+  sh deploy.mgmt.sh
   ```
 
 ## Services

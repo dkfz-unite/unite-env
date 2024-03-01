@@ -115,7 +115,7 @@ To generate passwords one of command line tools can be used:
 2. Install programs and applications
    - `sh deploy.sh`
 3. Install management tools (optional)
-   - `sh install.mgmt.sh`
+   - `sh deploy.mgmt.sh`
 4. Install Ensembl Data service
    - Open `unite-environment/programs/mysql` folder in terminal
    - Download cache `sh download-ensembl-cache.sh` (This may take some time, if download process breaks, run the script again to continue)

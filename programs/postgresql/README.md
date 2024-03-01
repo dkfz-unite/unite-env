@@ -10,7 +10,7 @@ Folder contains the following files:
 - `docker-compose.yml` - Postgresql server configuration file
 - `docker-compose.mgmt.yml` - Postgresql management tools (Adminer) configuration file
 - `deploy.sh` - Postgresql server installation script
-- `install.mgmt.sh` - Postgresql management tools (Adminer) installation script
+- `deploy.mgmt.sh` - Postgresql management tools (Adminer) installation script
 - `connect.sh` - Postgresql CLI connection script
 
 ## Before Installation
@@ -27,7 +27,7 @@ Open this sfolder in terminal and run required command:
   ```
 - To install Postgresql management tools (optional)
   ```bash
-  sh install.mgmt.sh
+  sh deploy.mgmt.sh
   ```
 ## After Installation
 

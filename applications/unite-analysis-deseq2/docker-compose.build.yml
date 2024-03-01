@@ -4,6 +4,12 @@ services:
     extends:
       file: docker-compose.yml
       service: deseq2.analysis.unite.net
+    build:
+      context: ./src
+      dockerfile: ./Dockerfile
+      args:
+        USER: ${GITHUB_USER}
+        TOKEN: ${GITHUB_TOKEN}
     image: unite.analysis.deseq2
     volumes:
       - ~/mnt/analysis:/mnt/data:rw

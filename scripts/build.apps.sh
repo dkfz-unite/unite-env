@@ -59,3 +59,10 @@ sh build.remote.sh
 cd ../../scripts
 echo ""
 echo ""
+echo ""
+
+cd ../applications/unite-analysis-deseq2
+sh build.remote.sh
+cd ../../scripts
+echo ""
+echo ""

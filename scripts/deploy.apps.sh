@@ -1,61 +1,61 @@
 #!/bin/bash
 
 cd ../applications/unite-data-migrations
-sh install.sh
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
 cd ../applications/unite-identity-data-migrations
-sh install.sh
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
 cd ../applications/unite
-sh install.sh
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
 cd ../applications/unite-identity
-sh install.sh
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
 cd ../applications/unite-composer
-sh install.sh
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
-cd ../applicationsunite-analysis
-sh install.sh
+cd ../applications/unite-analysis
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
 cd ../applications/unite-donors-feed
-sh install.sh
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
 cd ../applications/unite-images-feed
-sh install.sh
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
 cd ../applications/unite-specimens-feed
-sh install.sh
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
 cd ../applications/unite-genome-feed
-sh install.sh
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""

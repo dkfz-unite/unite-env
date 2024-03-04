@@ -16,9 +16,10 @@ UNITE platform installation scripts and configuration files
 - `applications`
   - `unite` - web portal
     - _docker-compose.yml_ - installation configuration
-    - _docker-compose.local.yml_ - local installation configuration (from local repository source code)
-    - _install.sh_ - installation script
-    - _install.local.sh_ - local installation script (from local repository source code)
+    - _docker-compose.build.yml_ - build and installation configuration (from repository source code)
+    - _deploy.sh_ - installation script
+    - _build.local.sh_ - local installation script (from repository source code - configurable local source)
+    - _build.remote.sh_ - remote installation script (from repository source code - remote source)
   - `unite-identity` - identity web API
   - `unite-composer` - composer web API
   - `unite-analysis` - analysis web API
@@ -35,8 +36,8 @@ UNITE platform installation scripts and configuration files
   - `postgresql` - data storage
     - _docker-compose.yml_ - installation configuration
     - _docker-compose.**mgmt**.yml_ - management tools installation configuration
-    - _install.sh_ - installation script
-    - _install.**mgmt**.sh_ - management tools installation script
+    - _deploy.sh_ - installation script
+    - _deploy.**mgmt**.sh_ - management tools installation script
   - `elasticsearch` - search engine and indices storage
   - `mongodb` - cache and technical data storage
   - `mysql` - Ensembl data storage
@@ -45,9 +46,13 @@ UNITE platform installation scripts and configuration files
   - _configure.**linux**.sh_ - **Linux** environment configuration script
   - _configure.**macos**.sh_ - **MacOS** environment configuration script
   - _generate-ssl.sh_ - SSL certificate generation script
-  - _install.sh_ - installation script
+  - _deploy.sh_ - installation script
+  - _build.sh_ - build and install script
   - _uninstall.**hard**.sh_ - **hard** uninstallation script (**removes** data and volumes)
   - _uninstall.**soft**.sh_ - **soft** uninstallation script (**keeps** data and volumes)
+  - _deploy.mgmt.sh_ - install management tools
+  - _deploy.apps.sh_ - install applications script (for easy updates)
+  - _build.apps.sh_ - build and install applications script (for easy updates)
 - _secrets_template.json_ - JSON configuration template file with all required credentials
 
 ### Secrets
@@ -91,10 +96,13 @@ To generate passwords one of command line tools can be used:
 - `openssl rand -base64 22` - to generate 32 bit Base64 string
 
 > [!WARNING]
-> ALWAYS CHANGE ALL CREDENTIALS!
+> ALWAYS CHANGE ALL CREDENTIALS FOR PRODUCTION USE!
 
 > [!WARNING]
 > NEVER COMMIT THIS FILE TO THE REPOSITORY!
+
+> [!NOTE]
+> For development it is best to keep most of the default credentials.
 
 ### Installation
 1. Download **unite-environment** source files from git this repository
@@ -112,21 +120,21 @@ To generate passwords one of command line tools can be used:
      - For **localhost**: `sh generate-ssl.sh`
      - For **network**: `sh generate-ssl.sh <IP address or domain name>`
 2. Install programs and applications
-   - `sh install.sh`
+   - `sh deploy.sh`
 3. Install management tools (optional)
-   - `sh install.mgmt.sh`
+   - `sh deploy.mgmt.sh`
 4. Install Ensembl Data service
    - Open `unite-environment/programs/mysql` folder in terminal
    - Download cache `sh download-ensembl-cache.sh` (This may take some time, if download process breaks, run the script again to continue)
    - Extract cache `sh extract-ensembl-cache.sh`
    - Restore database from cache `sh install-ensembl-cache.sh` (This may take several minutes)
    - Open `unite-environment/applications/unite-ensembl-data` folder in terminal
-   - Run installation script `sh install.sh`
+   - Run installation script `sh deploy.sh`
 5. Install Ensembl VEP service
    - Open `unite-environment/applications/unite-ensembl-vep` folder in terminal
    - Download cache `sh download-cache.sh` (This may take several hours, if download process breaks, run the script again to continue)
    - Extract cache `sh extract-cache.sh`
-   - Run installation script `sh install.sh`
+   - Run installation script `sh deploy.sh`
 
 For custom installation run installation scripts for dedicated programs or applications.
 
@@ -150,6 +158,7 @@ Application is running in docker and has the following components:
 |Identity Service|unite.identity|identity.unite.net|80|5000|
 |Composer Service|unite.composer|composer.unite.net|80|5002|
 |Analysis Service|unite.analysis|analysis.unite.net|80|5004|
+|Analysis DESeq2|unite.analysis.deseq2|deseq2.analysis.unite.net|80|5300|
 |Donors Feed Service|unite.donors.feed|feed.donors.unite.net|80|5100|
 |Images Feed Service|unite.images.feed|feed.images.unite.net|80|5102|
 |Specimens Feed Service|unite.specimens.feed|feed.specimens.unite.net|80|5104|

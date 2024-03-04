@@ -9,7 +9,7 @@ els_usr=$(jq -r .elasticsearch.user ../../secrets.json)
 els_pwd=$(jq -r .elasticsearch.password ../../secrets.json)
 api_key=$(jq -r .api.key ../../secrets.json)
 
-tput setaf 6; echo "# Installing UNITE Donors Datafeed service"; tput sgr0
+tput setaf 6; echo "# Installing UNITE Images Datafeed service"; tput sgr0
 echo ""
 
 tput setaf 4; echo "# Cleaning up source code directory"; tput sgr0
@@ -18,7 +18,7 @@ echo ""
 
 tput setaf 4; echo "# Cloning fresh code to source code directory"; tput sgr0
 mkdir src
-cp -r $src_pth/unite-donors-feed/. src/
+cp -r $src_pth/unite-images-feed/. src/
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
@@ -29,4 +29,4 @@ ELASTIC_PASSWORD=$els_pwd \
 SQL_USER=$sql_usr \
 SQL_PASSWORD=$sql_pwd \
 API_KEY=$api_key \
-docker-compose -p '' -f docker-compose.local.yml up -d --build
+docker-compose -p '' -f docker-compose.build.yml up -d --build

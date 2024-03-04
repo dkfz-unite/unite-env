@@ -9,8 +9,8 @@ Elasticsearch service serves the follwing purposes:
 Folder contains the following files:
 - `docker-compose.yml` - Elasticsearch server configuration file
 - `docker-compose.mgmt.yml` - Elasticsearch management tools (Kibana) configuration file
-- `install.sh` - Elasticsearch server installation script
-- `install.mgmt.sh` - Elasticsearch management tools (Kibana) installation script
+- `deploy.sh` - Elasticsearch server installation script
+- `deploy.mgmt.sh` - Elasticsearch management tools (Kibana) installation script
 
 ## Before Installation
 
@@ -22,11 +22,11 @@ Folder contains the following files:
 Open this sfolder in terminal and run required command:
 - To install Elasticsearch server
   ```bash
-  sh install.sh
+  sh deploy.sh
   ```
 - To install Elasticsearch management tools (optional)
   ```bash
-  sh install.mgmt.sh
+  sh deploy.mgmt.sh
   ```
 
 ## Services

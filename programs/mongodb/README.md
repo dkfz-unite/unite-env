@@ -8,8 +8,8 @@ Mongodb service serves the follwing purposes:
 Folder contains the following files:
 - `docker-compose.yml` - Mongodb server configuration file
 - `docker-compose.mgmt.yml` - Mongodb management tools (Mongo Express) configuration file
-- `install.sh` - Mongodb server installation script
-- `install.mgmt.sh` - Mongodb management tools (Mongo Express) installation script
+- `deploy.sh` - Mongodb server installation script
+- `deploy.mgmt.sh` - Mongodb management tools (Mongo Express) installation script
 
 ## Before Installation
 
@@ -21,11 +21,11 @@ Folder contains the following files:
 Open this sfolder in terminal and run required command:
 - To install Mongodb server
   ```bash
-  sh install.sh
+  sh deploy.sh
   ```
 - To install Mongodb management tools (optional)
   ```bash
-  sh install.mgmt.sh
+  sh deploy.mgmt.sh
   ```
 
 ## Services

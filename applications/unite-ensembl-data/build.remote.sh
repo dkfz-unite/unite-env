@@ -1,6 +1,6 @@
 #!/bin/bash
 
-src_pth=$(jq -r .SourceCodeDirectoryPath ../../config.json)
+ghb_tkn=$(jq -r .github.token ../../secrets.json)
 sql_usr=$(jq -r .sql.user ../../secrets.json)
 sql_pwd=$(jq -r .sql.password ../../secrets.json)
 
@@ -12,11 +12,10 @@ rm -r -f src
 echo ""
 
 tput setaf 4; echo "# Cloning fresh code to source code directory"; tput sgr0
-mkdir src
-cp -r $src_pth/unite-ensembl-data/. src
+git clone https://$ghb_tkn@github.com/dkfz-unite/unite-ensembl-data.git src
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
 SQL_USER=$sql_usr \
 SQL_PASSWORD=$sql_pwd \
-docker-compose -p '' -f docker-compose.local.yml up -d --build
+docker-compose -p '' -f docker-compose.build.yml up -d --build

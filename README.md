@@ -128,15 +128,16 @@ To generate passwords one of command line tools can be used:
    - Download cache `sh download-ensembl-cache.sh` (This may take some time, if download process breaks, run the script again to continue)
    - Extract cache `sh extract-ensembl-cache.sh`
    - Restore database from cache `sh install-ensembl-cache.sh` (This may take several minutes)
-   - Open `unite-environment/applications/unite-ensembl-data` folder in terminal
-   - Run installation script `sh deploy.sh`
+   <!-- - Open `unite-environment/applications/unite-ensembl-data` folder in terminal -->
+   <!-- - Run installation script `sh deploy.sh` -->
 5. Install Ensembl VEP service
    - Open `unite-environment/applications/unite-ensembl-vep` folder in terminal
    - Download cache `sh download-cache.sh` (This may take several hours, if download process breaks, run the script again to continue)
    - Extract cache `sh extract-cache.sh`
-   - Run installation script `sh deploy.sh`
+   <!-- - Run installation script `sh deploy.sh` -->
 
-For custom installation run installation scripts for dedicated programs or applications.
+For custom installation run installation scripts for dedicated programs or applications.  
+Cache downloaded and extracted for **Ensembl Data** and **Ensembl VEP** services **will persist** on the disk unless you remove it manually, so no need to run download and extraction scripts again for recurrent installation of the platform.
 
 ### Uninstallation
 To uninstall UNITE platform, run corresponding command from unite-environment/scripts folder:

@@ -16,3 +16,7 @@ echo ""
 tput setaf 6; echo "# Removing all images"; tput sgr0
 docker image rm -f $(docker image ls -aq)
 echo ""
+
+tput setaf 6; echo "# Removing 'unite' network"; tput sgr0
+docker network rm unite
+echo ""

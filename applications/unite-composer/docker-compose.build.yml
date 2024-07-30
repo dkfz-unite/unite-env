@@ -1,4 +1,3 @@
-version: "3.5"
 services:
   composer.unite.net:
     extends:

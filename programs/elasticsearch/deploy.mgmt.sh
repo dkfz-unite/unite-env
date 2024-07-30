@@ -6,4 +6,4 @@ pwd=$(jq -r .elasticsearch.password ../../secrets.json)
 tput setaf 6; echo "# Installing Elasticsearch management tools"; tput sgr0
 USER=$usr \
 PASSWORD=$pwd \
-docker-compose -p '' -f docker-compose.mgmt.yml up -d
+docker compose -p '' -f docker-compose.mgmt.yml up -d

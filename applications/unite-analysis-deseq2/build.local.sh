@@ -15,4 +15,4 @@ cp -r $src_pth/unite-analysis-deseq2/. src/
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
-docker-compose -p '' -f docker-compose.build.yml up -d --build
+docker compose -p '' -f docker-compose.build.yml up -d --build

@@ -1,4 +1,3 @@
-version: "3.5"
 services:
   mgmt.pgsql.unite.net:
     image: adminer

@@ -1,7 +1,7 @@
-version: "3.5"
 services:
   feed.images.unite.net:
     image: ghcr.io/dkfz-unite/unite-images-feed:latest
+    pull_policy: always
     container_name: unite.images.feed
     restart: unless-stopped
     environment:

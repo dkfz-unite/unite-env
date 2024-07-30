@@ -1,7 +1,7 @@
-version: "3.5"
 services:
   portal.unite.net:
     image: ghcr.io/dkfz-unite/unite:latest
+    pull_policy: always
     container_name: unite.portal
     restart: unless-stopped
     environment: 

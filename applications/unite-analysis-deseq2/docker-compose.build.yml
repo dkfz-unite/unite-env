@@ -1,4 +1,3 @@
-version: "3.5"
 services:
   deseq2.analysis.unite.net:
     extends:

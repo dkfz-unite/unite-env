@@ -1,4 +1,3 @@
-version: "3.5"
 services:
   pgsql.unite.net:
     image: postgres

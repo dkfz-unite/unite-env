@@ -1,7 +1,7 @@
-version: "3.5"
 services:
   deseq2.analysis.unite.net:
     image: ghcr.io/dkfz-unite/unite-analysis-deseq2:latest
+    pull_policy: always
     container_name: unite.analysis.deseq2
     restart: unless-stopped
     environment:

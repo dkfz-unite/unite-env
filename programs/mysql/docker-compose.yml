@@ -1,4 +1,3 @@
-version: "3.5"
 services:
   mysql.unite.net:
     image: mysql:5.6

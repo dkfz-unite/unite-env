@@ -1,7 +1,7 @@
-version: "3.5"
 services:
   vep.ensembl.unite.net:
     image: ghcr.io/dkfz-unite/unite-ensembl-vep:latest
+    pull_policy: always
     container_name: unite.ensembl.vep
     restart: unless-stopped
     environment: 

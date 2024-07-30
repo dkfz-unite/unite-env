@@ -18,4 +18,4 @@ echo ""
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
 SQL_USER=$sql_usr \
 SQL_PASSWORD=$sql_pwd \
-docker-compose -p '' -f docker-compose.build.yml up -d --build
+docker compose -p '' -f docker-compose.build.yml up -d --build

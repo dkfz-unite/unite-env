@@ -1,7 +1,7 @@
-version: "3.5"
 services:
   migrations.identity.unite.net:
     image: ghcr.io/dkfz-unite/unite-identity-data-migrations:latest
+    pull_policy: always
     container_name: unite.identity.migrations
     environment:
       UNITE_SQL_HOST: pgsql.unite.net

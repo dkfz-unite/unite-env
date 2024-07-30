@@ -1,4 +1,3 @@
-version: "3.5"
 services:
   feed.donors.unite.net:
     image: ghcr.io/dkfz-unite/unite-donors-feed:latest

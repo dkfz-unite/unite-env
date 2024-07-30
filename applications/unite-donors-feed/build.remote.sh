@@ -27,4 +27,4 @@ ELASTIC_PASSWORD=$els_pwd \
 SQL_USER=$sql_usr \
 SQL_PASSWORD=$sql_pwd \
 API_KEY=$api_key \
-docker-compose -p '' -f docker-compose.build.yml up -d --build
+docker compose -p '' -f docker-compose.build.yml up -d --build

@@ -101,3 +101,9 @@ sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
+
+cd ../applications/unite-analysis-sc
+sh deploy.sh
+cd ../../scripts
+echo ""
+echo ""

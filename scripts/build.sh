@@ -101,3 +101,9 @@ sh build.remote.sh
 cd ../../scripts
 echo ""
 echo ""
+
+cd ../applications/unite-analysis-sc
+sh build.remote.sh
+cd ../../scripts
+echo ""
+echo ""

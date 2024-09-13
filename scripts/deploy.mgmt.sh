@@ -17,4 +17,3 @@ sh deploy.mgmt.sh
 cd ../../scripts
 echo ""
 echo ""
-

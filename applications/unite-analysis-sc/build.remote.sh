@@ -17,4 +17,4 @@ echo ""
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
 GITHUB_USER=$ghb_usr \
 GITHUB_TOKEN=$ghb_tkn \
-docker compose -p '' -f docker-compose.build.yml up -d --build
+docker compose -p '' -f docker-compose.build.remote.yml up -d --build

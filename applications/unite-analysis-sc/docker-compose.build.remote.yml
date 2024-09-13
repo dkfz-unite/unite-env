@@ -9,8 +9,15 @@ services:
     image: unite.analysis.sc
     # volumes:
     #   - ~/mnt/analysis:/mnt/data:rw
+    volumes:
+      - unite.analysis.data:/mnt/data:rw
 
 networks:
   default:
     name: unite
     external: true
+
+volumes:
+  unite.analysis.data:
+    name: unite.analysis.data
+    driver: local

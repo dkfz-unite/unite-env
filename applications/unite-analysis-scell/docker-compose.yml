@@ -1,8 +1,8 @@
 services:
-  sc.analysis.unite.net:
-    image: ghcr.io/dkfz-unite/unite-analysis-sc:latest
+  scell.analysis.unite.net:
+    image: ghcr.io/dkfz-unite/unite-analysis-scell:latest
     pull_policy: always
-    container_name: unite.analysis.sc
+    container_name: unite.analysis.scell
     restart: unless-stopped
     environment:
       ASPNETCORE_ENVIRONMENT: Release

@@ -7,7 +7,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Release
     ports:
-      - 127.0.0.1:5302:80
+      - 127.0.0.1:5304:80
     volumes:
       - unite.analysis.data:/mnt/data:rw
 

@@ -160,6 +160,8 @@ Application is running in docker and has the following components:
 |Composer Service|unite.composer|composer.unite.net|80|5002|
 |Analysis Service|unite.analysis|analysis.unite.net|80|5004|
 |Analysis DESeq2|unite.analysis.deseq2|deseq2.analysis.unite.net|80|5300|
+|Analysis Single Cell|unite.analysis.scell|scell.analysis.unite.net|80|5302|
+|Analysis Kaplan Meier|unite.analysis.kmeier|kmeier.analysis.unite.net|80|5304|
 |Donors Feed Service|unite.donors.feed|feed.donors.unite.net|80|5100|
 |Images Feed Service|unite.images.feed|feed.images.unite.net|80|5102|
 |Specimens Feed Service|unite.specimens.feed|feed.specimens.unite.net|80|5104|

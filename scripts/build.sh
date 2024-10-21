@@ -102,7 +102,13 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-analysis-sc
+cd ../applications/unite-analysis-scell
+sh build.remote.sh
+cd ../../scripts
+echo ""
+echo ""
+
+cd ../applications/unite-analysis-kmeier
 sh build.remote.sh
 cd ../../scripts
 echo ""

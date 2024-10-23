@@ -103,13 +103,13 @@ echo ""
 echo ""
 
 cd ../applications/unite-analysis-scell
-sh build.remote.sh
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
 cd ../applications/unite-analysis-kmeier
-sh build.remote.sh
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""

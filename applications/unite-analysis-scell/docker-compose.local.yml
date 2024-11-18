@@ -1,0 +1,12 @@
+services:
+  scell.analysis.unite.net:
+    extends:
+      file: docker-compose.yml
+      service: scell.analysis.unite.net
+    volumes:
+      - ~/mnt/analysis:/mnt/data:rw
+
+networks:
+  default:
+    name: unite
+    external: true

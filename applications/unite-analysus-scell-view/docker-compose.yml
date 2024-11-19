@@ -1,0 +1,23 @@
+services:
+  view.scell.analysis.unite.net:
+    image: ghcr.io/dkfz-unite/unite-analysis-scell-view:latest
+    pull_policy: always
+    container_name: unite.analysis.scell.view
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_ENVIRONMENT: Release
+      DATA_PATH: data.h5ad
+    ports:
+      - 127.0.0.1:53022:80
+    volumes:
+      - unite.analysis.data:/data:rw
+
+networks:
+  default:
+    name: unite
+    external: true
+
+volumes:
+  unite.analysis.data:
+    name: unite.analysis.data
+    driver: local

@@ -1,0 +1,16 @@
+services:
+  view.scell.analysis.unite.net:
+    extends:
+      file: docker-compose.yml
+      service: view.scell.analysis.unite.net
+    build:
+      context: ./src
+      dockerfile: ./Dockerfile
+    image: unite.analysis.scell.view
+    volumes:
+      - ~/mnt/analysis:/data:rw
+
+networks:
+  default:
+    name: unite
+    external: true

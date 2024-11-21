@@ -3,6 +3,8 @@ services:
     extends:
       file: docker-compose.yml
       service: analysis.unite.net
+    environment:
+      UNITE_ANALYSIS_SHARE_PATH: ~/mnt/analysis
     volumes:
       - ~/mnt/analysis:/mnt/data:rw
 

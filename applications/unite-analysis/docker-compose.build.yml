@@ -10,8 +10,6 @@ services:
         USER: ${GITHUB_USER}
         TOKEN: ${GITHUB_TOKEN}
     image: unite.analysis
-    environment:
-      UNITE_ANALYSIS_SHARE_PATH: ~/mnt/analysis
     volumes:
       - ~/mnt/analysis:/mnt/data:rw
 

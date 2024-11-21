@@ -21,6 +21,7 @@ services:
     ports: 
       - 127.0.0.1:5004:80
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
       - unite.analysis.data:/mnt/data:rw
 
 networks: 

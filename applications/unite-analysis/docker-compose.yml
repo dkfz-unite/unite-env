@@ -16,6 +16,7 @@ services:
       UNITE_ANALYSIS_DATA_PATH: /mnt/data
       UNITE_ANALYSIS_DESEQ2_HOST: http://deseq2.analysis.unite.net
       UNITE_ANALYSIS_SCELL_HOST: http://scell.analysis.unite.net
+      UNITE_ANALYSIS_SCELL_VIEWER_HOST: http://view{n}.scell.analysis.unite.net
       UNITE_ANALYSIS_KMEIER_HOST: http://kmeier.analysis.unite.net
       ASPNETCORE_ENVIRONMENT: Release
     ports: 

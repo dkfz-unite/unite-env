@@ -22,7 +22,7 @@ services:
       - "traefik.http.routers.identity.rule=PathPrefix(`/api/identity`)"
       - "traefik.http.routers.identity.middlewares=identity-replaceregex"
     ports: 
-      - 127.0.0.1:5000:80
+      - 5000:80
 
 networks: 
   default:

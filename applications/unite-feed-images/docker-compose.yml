@@ -23,7 +23,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.images-feed-replaceregex.replacepathregex.regex=^/api/images-feed/(.*)"
       - "traefik.http.middlewares.images-feed-replaceregex.replacepathregex.replacement=/api/$${1}"
-      - "traefik.http.routers.images-feed.rule=Host(`localhost`) && PathPrefix(`/api/images-feed`)"
+      - "traefik.http.routers.images-feed.rule=PathPrefix(`/api/images-feed`)"
       - "traefik.http.routers.images-feed.middlewares=images-feed-replaceregex"
     ports: 
       - 127.0.0.1:5102:80

@@ -22,7 +22,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.analysis-replaceregex.replacepathregex.regex=^/api/analysis/(.*)"
       - "traefik.http.middlewares.analysis-replaceregex.replacepathregex.replacement=/api/$${1}"
-      - "traefik.http.routers.analysis.rule=Host(`localhost`) && PathPrefix(`/api/analysis`)"
+      - "traefik.http.routers.analysis.rule=PathPrefix(`/api/analysis`)"
       - "traefik.http.routers.analysis.middlewares=analysis-replaceregex"
     ports: 
       - 127.0.0.1:5004:80

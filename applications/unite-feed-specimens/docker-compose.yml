@@ -23,7 +23,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.specimens-feed-replaceregex.replacepathregex.regex=^/api/specimens-feed/(.*)"
       - "traefik.http.middlewares.specimens-feed-replaceregex.replacepathregex.replacement=/api/$${1}"
-      - "traefik.http.routers.specimens-feed.rule=Host(`localhost`) && PathPrefix(`/api/specimens-feed`)"
+      - "traefik.http.routers.specimens-feed.rule=PathPrefix(`/api/specimens-feed`)"
       - "traefik.http.routers.specimens-feed.middlewares=specimens-feed-replaceregex"
     ports: 
       - 127.0.0.1:5104:80

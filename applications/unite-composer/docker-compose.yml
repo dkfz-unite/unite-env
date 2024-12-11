@@ -19,7 +19,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.composer-replaceregex.replacepathregex.regex=^/api/composer/(.*)"
       - "traefik.http.middlewares.composer-replaceregex.replacepathregex.replacement=/api/$${1}"
-      - "traefik.http.routers.composer.rule=Host(`localhost`) && PathPrefix(`/api/composer`)"
+      - "traefik.http.routers.composer.rule=PathPrefix(`/api/composer`)"
       - "traefik.http.routers.composer.middlewares=composer-replaceregex"
     ports: 
       - 127.0.0.1:5002:80

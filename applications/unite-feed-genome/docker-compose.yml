@@ -31,7 +31,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.genome-feed-replaceregex.replacepathregex.regex=^/api/genome-feed/(.*)"
       - "traefik.http.middlewares.genome-feed-replaceregex.replacepathregex.replacement=/api/$${1}"
-      - "traefik.http.routers.genome-feed.rule=Host(`localhost`) && PathPrefix(`/api/genome-feed`)"
+      - "traefik.http.routers.genome-feed.rule=PathPrefix(`/api/genome-feed`)"
       - "traefik.http.routers.genome-feed.middlewares=genome-feed-replaceregex"
     ports: 
       - 127.0.0.1:5106:80

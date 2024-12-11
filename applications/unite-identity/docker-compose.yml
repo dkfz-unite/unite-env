@@ -19,7 +19,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.identity-replaceregex.replacepathregex.regex=^/api/identity/(.*)"
       - "traefik.http.middlewares.identity-replaceregex.replacepathregex.replacement=/api/$${1}"
-      - "traefik.http.routers.identity.rule=Host(`localhost`) && PathPrefix(`/api/identity`)"
+      - "traefik.http.routers.identity.rule=PathPrefix(`/api/identity`)"
       - "traefik.http.routers.identity.middlewares=identity-replaceregex"
     ports: 
       - 127.0.0.1:5000:80

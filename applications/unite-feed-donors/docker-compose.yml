@@ -23,7 +23,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.donors-feed-replaceregex.replacepathregex.regex=^/api/donors-feed/(.*)"
       - "traefik.http.middlewares.donors-feed-replaceregex.replacepathregex.replacement=/api/$${1}"
-      - "traefik.http.routers.donors-feed.rule=Host(`localhost`) && PathPrefix(`/api/donors-feed`)"
+      - "traefik.http.routers.donors-feed.rule=PathPrefix(`/api/donors-feed`)"
       - "traefik.http.routers.donors-feed.middlewares=donors-feed-replaceregex"
     ports: 
       - 127.0.0.1:5100:80

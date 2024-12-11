@@ -1,4 +1,9 @@
 services:
+  traefik:
+    extends:
+      file: docker-compose.yml
+      service: traefik
+  
   portal:
     extends:
       file: docker-compose.yml

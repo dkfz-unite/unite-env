@@ -1,8 +1,8 @@
 services:
-  portal.unite.net:
+  portal:
     extends:
       file: docker-compose.yml
-      service: portal.unite.net
+      service: portal
     build: 
       context: ./src
       dockerfile: ./Dockerfile

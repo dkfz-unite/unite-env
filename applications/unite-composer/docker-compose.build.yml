@@ -1,8 +1,8 @@
 services:
-  composer.unite.net:
+  composer:
     extends:
       file: docker-compose.yml
-      service: composer.unite.net
+      service: composer
     build: 
       context: ./src
       dockerfile: ./Dockerfile

@@ -1,8 +1,8 @@
 services:
-  vep.ensembl.unite.net:
+  ensembl-vep:
     extends:
       file: docker-compose.yml
-      service: vep.ensembl.unite.net
+      service: ensembl-vep
     build: 
       context: ./src
       dockerfile: ./Dockerfile

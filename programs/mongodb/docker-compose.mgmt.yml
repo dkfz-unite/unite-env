@@ -1,10 +1,10 @@
 services:
-  mgmt.mongo.unite.net:
+  mongo-mgmt:
     image: mongo-express:latest
     container_name: mongo.mgmt
     restart: unless-stopped
     environment: 
-      ME_CONFIG_MONGODB_SERVER: mongo.unite.net
+      ME_CONFIG_MONGODB_SERVER: mongo
       ME_CONFIG_MONGODB_ADMINUSERNAME: ${USER}
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${PASSWORD}
     ports: 

@@ -1,8 +1,8 @@
 services:
-  kmeier.analysis.unite.net:
+  analysis-kmeier:
     extends:
       file: docker-compose.yml
-      service: kmeier.analysis.unite.net
+      service: analysis-kmeier
     build:
       context: ./src
       dockerfile: ./Dockerfile

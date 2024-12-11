@@ -1,12 +1,12 @@
 services:
-  identity.unite.net:
+  identity:
     image: ghcr.io/dkfz-unite/unite-identity:latest
     pull_policy: always
     container_name: unite.identity
     restart: unless-stopped
     environment:
       ASPNETCORE_ENVIRONMENT: Release
-      UNITE_SQL_HOST: pgsql.unite.net
+      UNITE_SQL_HOST: pgsql
       UNITE_SQL_PORT: 5432
       UNITE_SQL_USER: ${SQL_USER}
       UNITE_SQL_PASSWORD: ${SQL_PASSWORD}

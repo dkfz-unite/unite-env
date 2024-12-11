@@ -1,8 +1,8 @@
 services:
-  deseq2.analysis.unite.net:
+  analysis-deseq2:
     extends:
       file: docker-compose.yml
-      service: deseq2.analysis.unite.net
+      service: analysis-deseq2
     build:
       context: ./src
       dockerfile: ./Dockerfile

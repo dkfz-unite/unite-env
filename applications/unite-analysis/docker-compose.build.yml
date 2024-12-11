@@ -1,8 +1,8 @@
 services:
-  analysis.unite.net:
+  analysis:
     extends:
       file: docker-compose.yml
-      service: analysis.unite.net
+      service: analysis
     build: 
       context: ./src
       dockerfile: ./Dockerfile

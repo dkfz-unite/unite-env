@@ -1,15 +1,15 @@
 services:
-  feed.donors.unite.net:
+  specimens-feed:
     extends:
       file: docker-compose.yml
-      service: feed.donors.unite.net
+      service: specimens-feed
     build: 
       context: ./src
       dockerfile: ./Dockerfile
       args: 
         USER: ${GITHUB_USER}
         TOKEN: ${GITHUB_TOKEN}
-    image: unite.donors.feed
+    image: unite.specimens.feed
 
 networks: 
   default:

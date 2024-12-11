@@ -1,5 +1,5 @@
 services:
-  kmeier.analysis.unite.net:
+  analysis-kmeier:
     image: ghcr.io/dkfz-unite/unite-analysis-kmeier:latest
     pull_policy: always
     container_name: unite.analysis.kmeier
@@ -7,7 +7,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Release
     ports:
-      - 127.0.0.1:5304:80
+      - 127.0.0.1:5340:80
     volumes:
       - unite.analysis.data:/mnt/data:rw
 

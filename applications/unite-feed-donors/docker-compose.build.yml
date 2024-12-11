@@ -1,15 +1,15 @@
 services:
-  feed.images.unite.net:
+  donors-feed:
     extends:
       file: docker-compose.yml
-      service: feed.images.unite.net
+      service: donors-feed
     build: 
       context: ./src
       dockerfile: ./Dockerfile
       args: 
         USER: ${GITHUB_USER}
         TOKEN: ${GITHUB_TOKEN}
-    image: unite.images.feed
+    image: unite.donors.feed
 
 networks: 
   default:

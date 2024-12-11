@@ -1,5 +1,5 @@
 services:
-  pgsql.unite.net:
+  pgsql:
     image: postgres
     container_name: pgsql
     restart: unless-stopped

@@ -1,5 +1,5 @@
 services:
-  es.unite.net:
+  es:
     image: elasticsearch:7.17.7
     container_name: es
     restart: unless-stopped

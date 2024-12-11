@@ -1,8 +1,8 @@
 services:
-  view.scell.analysis.unite.net:
+  analysis-scell-view:
     extends:
       file: docker-compose.yml
-      service: view.scell.analysis.unite.net
+      service: analysis-scell-view
     build:
       context: ./src
       dockerfile: ./Dockerfile

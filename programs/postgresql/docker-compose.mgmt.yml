@@ -1,5 +1,5 @@
 services:
-  mgmt.pgsql.unite.net:
+  pgsql-mgmt:
     image: adminer
     container_name: pgsql.mgmt
     restart: unless-stopped

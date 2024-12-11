@@ -1,8 +1,8 @@
 services:
-  identity.unite.net:
+  identity:
     extends:
       file: docker-compose.yml
-      service: identity.unite.net
+      service: identity
     build: 
       context: ./src
       dockerfile: ./Dockerfile

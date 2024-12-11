@@ -1,8 +1,8 @@
 services:
-  migrations.identity.unite.net:
+  identity-migrations:
     extends:
       file: docker-compose.yml
-      service: migrations.identity.unite.net
+      service: identity-migrations
     build: 
       context: ./src
       dockerfile: ./Dockerfile

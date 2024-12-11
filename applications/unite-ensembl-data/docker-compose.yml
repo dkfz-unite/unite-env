@@ -1,11 +1,11 @@
 services:
-  data.ensembl.unite.net:
+  ensembl-data:
     image: ghcr.io/dkfz-unite/unite-ensembl-data:latest
     pull_policy: always
     container_name: unite.ensembl.data
     restart: unless-stopped
     environment: 
-      ENSEMBL_SQL_HOST: mysql.unite.net
+      ENSEMBL_SQL_HOST: mysql
       ENSEMBL_SQL_PORT: 3306
       ENSEMBL_SQL_USER: root
       ENSEMBL_SQL_PASSWORD: ${SQL_PASSWORD}

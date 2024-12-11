@@ -1,15 +1,15 @@
 services:
-  feed.genome.unite.net:
+  images-feed:
     extends:
       file: docker-compose.yml
-      service: feed.genome.unite.net
+      service: images-feed
     build: 
       context: ./src
       dockerfile: ./Dockerfile
       args: 
         USER: ${GITHUB_USER}
         TOKEN: ${GITHUB_TOKEN}
-    image: unite.genome.feed
+    image: unite.images.feed
 
 networks: 
   default:

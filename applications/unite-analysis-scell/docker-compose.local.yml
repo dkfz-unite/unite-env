@@ -1,8 +1,8 @@
 services:
-  scell.analysis.unite.net:
+  analysis-scell:
     extends:
       file: docker-compose.yml
-      service: scell.analysis.unite.net
+      service: analysis-scell
     volumes:
       - ~/mnt/analysis:/mnt/data:rw
 

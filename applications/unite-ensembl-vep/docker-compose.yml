@@ -1,5 +1,5 @@
 services:
-  vep.ensembl.unite.net:
+  ensembl-vep:
     image: ghcr.io/dkfz-unite/unite-ensembl-vep:latest
     pull_policy: always
     container_name: unite.ensembl.vep

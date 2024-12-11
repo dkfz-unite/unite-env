@@ -1,8 +1,8 @@
 services:
-  migrations.data.unite.net:
+  data-migrations:
     extends:
       file: docker-compose.yml
-      service: migrations.data.unite.net
+      service: data-migrations
     build: 
       context: ./src
       dockerfile: ./Dockerfile

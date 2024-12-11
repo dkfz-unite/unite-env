@@ -1,24 +1,28 @@
 services:
-  analysis.unite.net:
+  analysis:
     image: ghcr.io/dkfz-unite/unite-analysis:latest
     pull_policy: always
     container_name: unite.analysis
     restart: unless-stopped
     environment:
       UNITE_API_KEY: ${API_KEY}
-      UNITE_ELASTIC_HOST: http://es.unite.net:9200
+      UNITE_ELASTIC_HOST: http://es:9200
       UNITE_ELASTIC_USER: ${ELASTIC_USER}
       UNITE_ELASTIC_PASSWORD: ${ELASTIC_PASSWORD}
-      UNITE_SQL_HOST: pgsql.unite.net
+      UNITE_SQL_HOST: pgsql
       UNITE_SQL_PORT: 5432
       UNITE_SQL_USER: ${SQL_USER}
       UNITE_SQL_PASSWORD: ${SQL_PASSWORD}
       UNITE_ANALYSIS_DATA_PATH: /mnt/data
-      UNITE_ANALYSIS_DESEQ2_HOST: http://deseq2.analysis.unite.net
-      UNITE_ANALYSIS_SCELL_HOST: http://scell.analysis.unite.net
-      UNITE_ANALYSIS_SCELL_VIEWER_HOST: http://view{n}.scell.analysis.unite.net
-      UNITE_ANALYSIS_KMEIER_HOST: http://kmeier.analysis.unite.net
+      UNITE_ANALYSIS_DESEQ2_HOST: http://analysis-deseq2
+      UNITE_ANALYSIS_SCELL_HOST: http://analysis-scell
+      UNITE_ANALYSIS_KMEIER_HOST: http://analysis-kmeier
       ASPNETCORE_ENVIRONMENT: Release
+    labels:
+      - "traefik.http.middlewares.analysis-replaceregex.replacepathregex.regex=^/api/analysis/(.*)"
+      - "traefik.http.middlewares.analysis-replaceregex.replacepathregex.replacement=/api/$${1}"
+      - "traefik.http.routers.analysis.rule=Host(`localhost`) && PathPrefix(`/api/analysis`)"
+      - "traefik.http.routers.analysis.middlewares=analysis-replaceregex"
     ports: 
       - 127.0.0.1:5004:80
     volumes:

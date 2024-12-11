@@ -20,6 +20,7 @@ services:
       UNITE_INDEXING_BUCKET_SIZE: 10
       ASPNETCORE_ENVIRONMENT: Release
     labels:
+      - "traefik.enable=true"
       - "traefik.http.middlewares.images-feed-replaceregex.replacepathregex.regex=^/api/images-feed/(.*)"
       - "traefik.http.middlewares.images-feed-replaceregex.replacepathregex.replacement=/api/$${1}"
       - "traefik.http.routers.images-feed.rule=Host(`localhost`) && PathPrefix(`/api/images-feed`)"

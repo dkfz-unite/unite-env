@@ -19,6 +19,7 @@ services:
       UNITE_ANALYSIS_KMEIER_HOST: http://analysis-kmeier
       ASPNETCORE_ENVIRONMENT: Release
     labels:
+      - "traefik.enable=true"
       - "traefik.http.middlewares.analysis-replaceregex.replacepathregex.regex=^/api/analysis/(.*)"
       - "traefik.http.middlewares.analysis-replaceregex.replacepathregex.replacement=/api/$${1}"
       - "traefik.http.routers.analysis.rule=Host(`localhost`) && PathPrefix(`/api/analysis`)"

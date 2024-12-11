@@ -16,6 +16,7 @@ services:
       UNITE_DEFAULT_LABEL: "UNITE"
       UNITE_DEFAULT_PRIORITY: 1
     labels:
+      - "traefik.enable=true"
       - "traefik.http.middlewares.identity-replaceregex.replacepathregex.regex=^/api/identity/(.*)"
       - "traefik.http.middlewares.identity-replaceregex.replacepathregex.replacement=/api/$${1}"
       - "traefik.http.routers.identity.rule=Host(`localhost`) && PathPrefix(`/api/identity`)"

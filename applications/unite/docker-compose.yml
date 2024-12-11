@@ -5,6 +5,7 @@ services:
     command:
       - "--api.insecure=true"
       - "--providers.docker"
+      - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
     ports:
       - "80:80"
@@ -18,7 +19,8 @@ services:
     container_name: unite.portal
     restart: unless-stopped
     labels:
-      - "traefik.http.routers.portal.rule=Host(`localhost`)"
+      - "traefik.enable=true"
+      - "traefik.http.routers.portal.rule=PathPrefix(`/`)"
     
 networks: 
   default:

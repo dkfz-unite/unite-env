@@ -28,6 +28,7 @@ services:
       UNITE_SV_INDEXING_BUCKET_SIZE: 100
       ASPNETCORE_ENVIRONMENT: Release
     labels:
+      - "traefik.enable=true"
       - "traefik.http.middlewares.genome-feed-replaceregex.replacepathregex.regex=^/api/genome-feed/(.*)"
       - "traefik.http.middlewares.genome-feed-replaceregex.replacepathregex.replacement=/api/$${1}"
       - "traefik.http.routers.genome-feed.rule=Host(`localhost`) && PathPrefix(`/api/genome-feed`)"

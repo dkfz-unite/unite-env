@@ -11,7 +11,7 @@ rm -r -f src
 echo ""
 
 tput setaf 4; echo "# Cloning fresh code to source code directory"; tput sgr0
-git clone https://$ghb_tkn@github.com/dkfz-unite/unite-analysis-scell-view.git src
+git clone https://$ghb_tkn@github.com/dkfz-unite/unite-cellxgene.git src
 echo ""
 
 tput setaf 4; echo "# Building docker image"; tput sgr0

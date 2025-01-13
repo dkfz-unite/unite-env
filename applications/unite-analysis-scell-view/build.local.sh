@@ -11,7 +11,7 @@ echo ""
 
 tput setaf 4; echo "# Cloning fresh code to source code directory"; tput sgr0
 mkdir src
-cp -r $src_pth/unite-analysis-scell-view/. src/
+cp -r $src_pth/unite-cellxgene/. src/
 echo ""
 
 tput setaf 4; echo "# Building docker image"; tput sgr0

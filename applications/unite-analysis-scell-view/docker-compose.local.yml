@@ -1,10 +1,10 @@
 services:
-  view.scell.analysis.unite.net:
+  view01.scell.analysis.unite.net:
     extends:
       file: docker-compose.yml
-      service: view.scell.analysis.unite.net
+      service: view01.scell.analysis.unite.net
     volumes:
-      - ~/mnt/analysis:/data:rw
+      - ~/mnt/analysis:/app/data:rw
 
 networks:
   default:

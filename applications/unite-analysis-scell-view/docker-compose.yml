@@ -1,16 +1,16 @@
 services:
-  view.scell.analysis.unite.net:
-    image: ghcr.io/dkfz-unite/unite-analysis-scell-view:latest
+  view01.scell.analysis.unite.net:
+    image: ghcr.io/dkfz-unite/unite-cellxgene:latest
     pull_policy: always
-    container_name: unite.analysis.scell.view
+    container_name: unite.analysis.scell.view01
     restart: unless-stopped
     environment:
-      ASPNETCORE_ENVIRONMENT: Release
+      URL_PREFIX: /viewer/cxg01
       DATA_PATH: data.h5ad
     ports:
-      - 127.0.0.1:53022:80
+      - 127.0.0.1:54301:80
     volumes:
-      - unite.analysis.data:/data:rw
+      - unite.analysis.data:/app/data:rw
 
 networks:
   default:

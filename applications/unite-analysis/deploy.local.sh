@@ -4,6 +4,8 @@ sql_usr=$(jq -r .sql.user ../../secrets.json)
 sql_pwd=$(jq -r .sql.password ../../secrets.json)
 els_usr=$(jq -r .elasticsearch.user ../../secrets.json)
 els_pwd=$(jq -r .elasticsearch.password ../../secrets.json)
+mon_usr=$(jq -r .mongodb.user ../../secrets.json)
+mon_pwd=$(jq -r .mongodb.password ../../secrets.json)
 api_key=$(jq -r .api.key ../../secrets.json)
 
 tput setaf 6; echo "# Installing UNITE Analysis service"; tput sgr0

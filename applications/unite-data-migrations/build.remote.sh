@@ -21,4 +21,4 @@ GITHUB_USER=$ghb_usr \
 GITHUB_TOKEN=$ghb_tkn \
 SQL_USER=$sql_usr \
 SQL_PASSWORD=$sql_pwd \
-docker compose -p '' -f docker-compose.build.yml up -d --build
+docker compose -p 'unite' -f docker-compose.build.yml up -d --build

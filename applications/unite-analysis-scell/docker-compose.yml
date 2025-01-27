@@ -11,6 +11,16 @@ services:
     volumes:
       - unite.analysis.data:/mnt/data:rw
 
+  cxg.viewer.unite.net:
+    image: ghcr.io/dkfz-unite/unite-cellxgene:latest
+    pull_policy: always
+    container_name: unite.analysis.cxg
+    restart: no
+    ports:
+      - 127.0.0.1:54300:80
+    volumes:
+      - unite.analysis.data:/mnt/data:rw
+
 networks:
   default:
     name: unite

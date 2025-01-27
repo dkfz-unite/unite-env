@@ -6,4 +6,4 @@ pwd=$(jq -r .sql.password ../../secrets.json)
 tput setaf 6; echo "# Installing Postgresql"; tput sgr0
 USER=$usr \
 PASSWORD=$pwd \
-docker compose -p '' -f docker-compose.yml up -d
+docker compose -p 'unite-env' -f docker-compose.yml up -d

@@ -6,6 +6,13 @@ services:
     volumes:
       - ~/mnt/analysis:/mnt/data:rw
 
+  cxg.viewer.unite.net:
+    extends:
+      file: docker-compose.yml
+      service: cxg.viewer.unite.net
+    volumes:
+      - ~/mnt/analysis:/mnt/data:rw
+
 networks:
   default:
     name: unite

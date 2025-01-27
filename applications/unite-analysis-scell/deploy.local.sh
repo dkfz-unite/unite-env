@@ -4,4 +4,4 @@ tput setaf 6; echo "# Installing UNITE analysis service (Single Cell)"; tput sgr
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
-docker compose -p '' -f docker-compose.local.yml up -d --build
+docker compose -p 'unite' -f docker-compose.local.yml up -d --build

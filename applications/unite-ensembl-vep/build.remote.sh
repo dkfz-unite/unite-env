@@ -14,4 +14,4 @@ git clone https://$ghb_tkn@github.com/dkfz-unite/unite-ensembl-vep.git src
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
-docker compose -p '' -f docker-compose.build.yml up -d --build
+docker compose -p 'unite' -f docker-compose.build.yml up -d --build

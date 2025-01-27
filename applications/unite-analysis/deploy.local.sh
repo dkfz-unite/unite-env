@@ -19,4 +19,4 @@ SQL_PASSWORD=$sql_pwd \
 MONGO_USER=$mon_usr \
 MONGO_PASSWORD=$mon_pwd \
 API_KEY=$api_key \
-docker compose -p '' -f docker-compose.local.yml up -d --build
+docker compose -p 'unite' -f docker-compose.local.yml up -d --build

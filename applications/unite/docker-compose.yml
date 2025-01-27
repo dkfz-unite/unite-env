@@ -17,6 +17,7 @@ services:
       UNITE_IMAGES_FEED_HOST: http://feed.images.unite.net
       UNITE_SPECIMENS_FEED_HOST: http://feed.specimens.unite.net
       UNITE_GENOME_FEED_HOST: http://feed.genome.unite.net
+      UNITE_VIEWER_CXG_HOST: http://cxg{n}.viewer.unite.net
     volumes: 
       - "../../ssl:/https:ro"
     ports: 

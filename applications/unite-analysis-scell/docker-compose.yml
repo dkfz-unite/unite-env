@@ -10,6 +10,7 @@ services:
       - 127.0.0.1:5302:80
     volumes:
       - unite.analysis.data:/mnt/data:rw
+      - ./cache:/root/.celltypist/data/models:rw
 
   cxg.viewer.unite.net:
     image: ghcr.io/dkfz-unite/unite-cellxgene:latest

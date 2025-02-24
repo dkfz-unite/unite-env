@@ -9,6 +9,7 @@ services:
     image: unite.analysis.scell
     volumes:
       - ~/mnt/analysis:/mnt/data:rw
+      - ./cache:/root/.celltypist/data/models:rw
     
   cxg.viewer.unite.net:
     extends:

@@ -22,6 +22,7 @@ services:
       UNITE_ANALYSIS_DESEQ2_HOST: http://deseq2.analysis.unite.net
       UNITE_ANALYSIS_SCELL_HOST: http://scell.analysis.unite.net
       UNITE_ANALYSIS_KMEIER_HOST: http://kmeier.analysis.unite.net
+      UNITE_ANALYSIS_METH_HOST: http://meth.analysis.unite.net
       UNITE_VIEWER_CXG_IMAGE: ghcr.io/dkfz-unite/unite-cellxgene:latest
       UNITE_VIEWER_CXG_NAME: unite.viewer.cxg{n}
       UNITE_VIEWER_CXG_ALIAS: cxg{n}.viewer.unite.net

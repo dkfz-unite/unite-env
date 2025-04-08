@@ -1,0 +1,13 @@
+services:
+  meth.analysis.unite.net:
+    extends:
+      file: docker-compose.yml
+      service: meth.analysis.unite.net
+    volumes:
+      - ~/mnt/analysis:/mnt/data:rw
+
+  
+networks:
+  default:
+    name: unite
+    external: true

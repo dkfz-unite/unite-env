@@ -1,14 +1,13 @@
 services:
-  meth-dm.analysis.unite.net:
-    image: ghcr.io/dkfz-unite/unite-analysis-meth-dm:latest
-    platform: linux/amd64
+  rna-de.analysis.unite.net:
+    image: ghcr.io/dkfz-unite/unite-analysis-rna-de:latest
     pull_policy: always
-    container_name: unite.analysis.meth-dm
+    container_name: unite.analysis.rna-de
     restart: unless-stopped
     environment:
       ASPNETCORE_ENVIRONMENT: Release
     ports:
-      - 127.0.0.1:5306:80
+      - 127.0.0.1:5300:80
     volumes:
       - unite.analysis.data:/mnt/data:rw
 

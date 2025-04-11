@@ -1,12 +1,12 @@
 services:
-  meth-dm.analysis.unite.net:
+  don-sce.analysis.unite.net:
     extends:
       file: docker-compose.yml
-      service: meth-dm.analysis.unite.net
+      service: don-sce.analysis.unite.net
     build:
       context: ./src
       dockerfile: ./Dockerfile
-    image: unite.analysis.meth-dm
+    image: unite.analysis.don-sce
     volumes:
       - ~/mnt/analysis:/mnt/data:rw
 

@@ -23,11 +23,14 @@ UNITE platform installation scripts and configuration files
   - `unite-identity` - identity web API
   - `unite-composer` - composer web API
   - `unite-analysis` - analysis web API
-  - `unite-analysis-deseq2` - analysis DESeq2 web API
-  - `unite-donors-feed` - donors data feed web API
-  - `unite-images-feed` - imaging data feed web API
-  - `unite-specimens-feed` - specimens data feed web API
-  - `unite-genome-feed` - genome data feed web API
+  - `unite-analysis-don-sce` - survival curve estimation analysis web API
+  - `unite-analysis-meth-dm` - differential methylation analysis web API
+  - `unite-analysis-rna-de` - RNA differential expression analysis web API
+  - `unite-analysis-rnasc-dc` - scRNA dataset creation analysis web API
+  - `unite-feed-donors` - donors data feed web API
+  - `unite-feed-images` - imaging data feed web API
+  - `unite-feed-specimens` - specimens data feed web API
+  - `unite-feed-genome` - genome data feed web API
   - `unite-data-migrations` - domain data migrations service
   - `unite-identity-data-migrations` - identity data migration service
   - `unite-ensembl-data` - ensembl data Web API
@@ -159,13 +162,14 @@ Application is running in docker and has the following components:
 |Identity Service|unite.identity|identity.unite.net|80|5000|
 |Composer Service|unite.composer|composer.unite.net|80|5002|
 |Analysis Service|unite.analysis|analysis.unite.net|80|5004|
-|Analysis DESeq2|unite.analysis.deseq2|deseq2.analysis.unite.net|80|5300|
-|Analysis Single Cell|unite.analysis.scell|scell.analysis.unite.net|80|5302|
-|Analysis Kaplan Meier|unite.analysis.kmeier|kmeier.analysis.unite.net|80|5304|
-|Donors Feed Service|unite.donors.feed|feed.donors.unite.net|80|5100|
-|Images Feed Service|unite.images.feed|feed.images.unite.net|80|5102|
-|Specimens Feed Service|unite.specimens.feed|feed.specimens.unite.net|80|5104|
-|Genome Feed Service|unite.genome.feed|feed.genome.unite.net|80|5106|
+|Analysis Service (RNA-DE)|unite.analysis.rna-de|rna-de.analysis.unite.net|80|5300|
+|Analysis Service (RNASC-DC)|unite.analysis.rnasc-dc|rnasc-dc.analysis.unite.net|80|5302|
+|Analysis Service (DON-SCE)|unite.analysis.don-sce|don-sce.analysis.unite.net|80|5304|
+|Analysis Service (METH-DM)|unite.analysis.meth-dm|meth-dm.analysis.unite.net|80|5306|
+|Donors Feed Service|unite.feed.donors|donors.feed.unite.net|80|5100|
+|Images Feed Service|unite.feed.images|images.feed.unite.net|80|5102|
+|Specimens Feed Service|unite.feed.specimens|specimens.feed.unite.net|80|5104|
+|Genome Feed Service|unite.feed.genome|genome.feed.unite.net|80|5106|
 |Ensembl Data Service|unite.ensembl.data|data.ensembl.unite.net|80|5200|
 |Ensembl VEP Service|unite.ensembl.vep|vep.ensembl.unite.net|80|5202|
 

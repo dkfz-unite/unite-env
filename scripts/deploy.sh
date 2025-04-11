@@ -60,25 +60,25 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-donors-feed
+cd ../applications/unite-feed-donors
 sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-images-feed
+cd ../applications/unite-feed-images
 sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-specimens-feed
+cd ../applications/unite-feed-specimens
 sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-genome-feed
+cd ../applications/unite-feed-genome
 sh deploy.sh
 cd ../../scripts
 echo ""
@@ -96,19 +96,25 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-analysis-deseq2
+cd ../applications/unite-analysis-don-sce
 sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-analysis-scell
+cd ../applications/unite-analysis-meth-dm
 sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-analysis-kmeier
+cd ../applications/unite-analysis-rna-de
+sh deploy.sh
+cd ../../scripts
+echo ""
+echo ""
+
+cd ../applications/unite-analysis-rnasc-dc
 sh deploy.sh
 cd ../../scripts
 echo ""

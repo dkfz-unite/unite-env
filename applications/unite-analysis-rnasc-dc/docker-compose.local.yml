@@ -1,0 +1,20 @@
+services:
+  rnasc-cd.analysis.unite.net:
+    extends:
+      file: docker-compose.yml
+      service: rnasc-dc.analysis.unite.net
+    volumes:
+      - ~/mnt/analysis:/mnt/data:rw
+      - ./cache:/root/.celltypist/data/models:rw
+
+  cxg.viewer.unite.net:
+    extends:
+      file: docker-compose.yml
+      service: cxg.viewer.unite.net
+    volumes:
+      - ~/mnt/analysis:/mnt/data:rw
+
+networks:
+  default:
+    name: unite
+    external: true

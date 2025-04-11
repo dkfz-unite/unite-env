@@ -2,7 +2,7 @@
 
 src_pth=$(jq -r .SourceCodeDirectoryPath ../../config.json)
 
-tput setaf 6; echo "# Installing UNITE analysis service (Meth)"; tput sgr0
+tput setaf 6; echo "# Installing UNITE analysis service (METH-DM)"; tput sgr0
 echo ""
 
 tput setaf 4; echo "# Cleaning up source code directory"; tput sgr0

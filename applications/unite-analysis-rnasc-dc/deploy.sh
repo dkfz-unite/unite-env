@@ -1,6 +1,6 @@
 #!/bin/bash
 
-tput setaf 6; echo "# Installing UNITE analysis service (METH-DM)"; tput sgr0
+tput setaf 6; echo "# Installing UNITE analysis service (RNASC-DC)"; tput sgr0
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0

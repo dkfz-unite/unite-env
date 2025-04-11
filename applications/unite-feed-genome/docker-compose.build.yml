@@ -1,0 +1,17 @@
+services:
+  genome.feed.unite.net:
+    extends:
+      file: docker-compose.yml
+      service: genome.feed.unite.net
+    build: 
+      context: ./src
+      dockerfile: ./Dockerfile
+      args: 
+        USER: ${GITHUB_USER}
+        TOKEN: ${GITHUB_TOKEN}
+    image: unite.feed.genome
+
+networks: 
+  default:
+    name: unite
+    external: true

@@ -36,25 +36,25 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-donors-feed
+cd ../applications/unite-feed-donors
 sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-images-feed
+cd ../applications/unite-feed-images
 sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-specimens-feed
+cd ../applications/unite-feed-specimens
 sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-genome-feed
+cd ../applications/unite-feed-genome
 sh deploy.sh
 cd ../../scripts
 echo ""

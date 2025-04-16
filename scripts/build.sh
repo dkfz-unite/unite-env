@@ -60,25 +60,25 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-donors-feed
+cd ../applications/unite-feed-donors
 sh build.remote.sh
 cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-images-feed
+cd ../applications/unite-feed-images
 sh build.remote.sh
 cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-specimens-feed
+cd ../applications/unite-feed-specimens
 sh build.remote.sh
 cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-genome-feed
+cd ../applications/unite-feed-genome
 sh build.remote.sh
 cd ../../scripts
 echo ""
@@ -96,7 +96,7 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-analysis-deseq2
+cd ../applications/unite-analysis-de
 sh build.remote.sh
 cd ../../scripts
 echo ""
@@ -108,7 +108,13 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-analysis-kmeier
+cd ../applications/unite-analysis-surv
+sh build.remote.sh
+cd ../../scripts
+echo ""
+echo ""
+
+cd ../applications/unite-analysis-dm
 sh build.remote.sh
 cd ../../scripts
 echo ""

@@ -1,0 +1,12 @@
+services:
+  de.analysis.unite.net:
+    extends:
+      file: docker-compose.yml
+      service: de.analysis.unite.net
+    volumes:
+      - ~/mnt/analysis:/mnt/data:rw
+
+networks:
+  default:
+    name: unite
+    external: true

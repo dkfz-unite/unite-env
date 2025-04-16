@@ -23,10 +23,10 @@ UNITE platform installation scripts and configuration files
   - `unite-identity` - identity web API
   - `unite-composer` - composer web API
   - `unite-analysis` - analysis web API
-  - `unite-analysis-don-sce` - survival curve estimation analysis web API
-  - `unite-analysis-meth-dm` - differential methylation analysis web API
-  - `unite-analysis-rna-de` - RNA differential expression analysis web API
-  - `unite-analysis-rnasc-dc` - scRNA dataset creation analysis web API
+  - `unite-analysis-de` - RNA differential expression (DE) analysis web API
+  - `unite-analysis-scell` - scRNA dataset creation (SCell) analysis web API
+  - `unite-analysis-surv` - survival curve estimation (Surv) analysis web API
+  - `unite-analysis-dm` - differential methylation (DM) analysis web API
   - `unite-feed-donors` - donors data feed web API
   - `unite-feed-images` - imaging data feed web API
   - `unite-feed-specimens` - specimens data feed web API
@@ -162,10 +162,10 @@ Application is running in docker and has the following components:
 |Identity Service|unite.identity|identity.unite.net|80|5000|
 |Composer Service|unite.composer|composer.unite.net|80|5002|
 |Analysis Service|unite.analysis|analysis.unite.net|80|5004|
-|Analysis Service (RNA-DE)|unite.analysis.rna-de|rna-de.analysis.unite.net|80|5300|
-|Analysis Service (RNASC-DC)|unite.analysis.rnasc-dc|rnasc-dc.analysis.unite.net|80|5302|
-|Analysis Service (DON-SCE)|unite.analysis.don-sce|don-sce.analysis.unite.net|80|5304|
-|Analysis Service (METH-DM)|unite.analysis.meth-dm|meth-dm.analysis.unite.net|80|5306|
+|Analysis Service (DE)|unite.analysis.de|de.analysis.unite.net|80|5300|
+|Analysis Service (SCell)|unite.analysis.scell|scell.analysis.unite.net|80|5302|
+|Analysis Service (Surv)|unite.analysis.surv|surv.analysis.unite.net|80|5304|
+|Analysis Service (DM)|unite.analysis.dm|dm.analysis.unite.net|80|5306|
 |Donors Feed Service|unite.feed.donors|donors.feed.unite.net|80|5100|
 |Images Feed Service|unite.feed.images|images.feed.unite.net|80|5102|
 |Specimens Feed Service|unite.feed.specimens|specimens.feed.unite.net|80|5104|

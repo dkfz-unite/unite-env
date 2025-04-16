@@ -1,0 +1,16 @@
+services:
+  dm.analysis.unite.net:
+    extends:
+      file: docker-compose.yml
+      service: dm.analysis.unite.net
+    build:
+      context: ./src
+      dockerfile: ./Dockerfile
+    image: unite.analysis.dm
+    volumes:
+      - ~/mnt/analysis:/mnt/data:rw
+
+networks:
+  default:
+    name: unite
+    external: true

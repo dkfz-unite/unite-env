@@ -96,25 +96,25 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-analysis-don-sce
+cd ../applications/unite-analysis-de
 sh build.remote.sh
 cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-analysis-meth-dm
+cd ../applications/unite-analysis-scell
 sh build.remote.sh
 cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-analysis-rna-de
+cd ../applications/unite-analysis-surv
 sh build.remote.sh
 cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-analysis-rnasc-dc
+cd ../applications/unite-analysis-dm
 sh build.remote.sh
 cd ../../scripts
 echo ""

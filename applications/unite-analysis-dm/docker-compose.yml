@@ -1,0 +1,23 @@
+services:
+  dm.analysis.unite.net:
+    image: ghcr.io/dkfz-unite/unite-analysis-dm:latest
+    platform: linux/amd64
+    pull_policy: always
+    container_name: unite.analysis.dm
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_ENVIRONMENT: Release
+    ports:
+      - 127.0.0.1:5306:80
+    volumes:
+      - unite.analysis.data:/mnt/data:rw
+
+networks:
+  default:
+    name: unite
+    external: true
+
+volumes:
+  unite.analysis.data:
+    name: unite.analysis.data
+    driver: local

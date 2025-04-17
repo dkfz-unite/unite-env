@@ -13,10 +13,10 @@ services:
       UNITE_IDENTITY_HOST: http://identity.unite.net
       UNITE_COMPOSER_HOST: http://composer.unite.net
       UNITE_ANALYSIS_HOST: http://analysis.unite.net
-      UNITE_DONORS_FEED_HOST: http://feed.donors.unite.net
-      UNITE_IMAGES_FEED_HOST: http://feed.images.unite.net
-      UNITE_SPECIMENS_FEED_HOST: http://feed.specimens.unite.net
-      UNITE_GENOME_FEED_HOST: http://feed.genome.unite.net
+      UNITE_FEED_DONORS_HOST: http://donors.feed.unite.net
+      UNITE_FEED_IMAGES_HOST: http://images.feed.unite.net
+      UNITE_FEED_SPECIMENS_HOST: http://specimens.feed.unite.net
+      UNITE_FEED_GENOME_HOST: http://genome.feed.unite.net
       UNITE_VIEWER_CXG_HOST: http://cxg{n}.viewer.unite.net
     volumes: 
       - "../../ssl:/https:ro"

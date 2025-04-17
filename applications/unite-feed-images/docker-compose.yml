@@ -1,6 +1,6 @@
 services:
   images.feed.unite.net:
-    image: ghcr.io/dkfz-unite/unite-images-feed:latest
+    image: ghcr.io/dkfz-unite/unite-feed-images:latest
     pull_policy: always
     container_name: unite.feed.images
     restart: unless-stopped

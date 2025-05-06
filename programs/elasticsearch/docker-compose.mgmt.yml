@@ -1,9 +1,10 @@
 services:
   mgmt.es.unite.net:
-    image: kibana:7.17.7
+    image: docker.elastic.co/kibana/kibana:9.0.0
     container_name: es.mgmt
     restart: unless-stopped
     environment:
+      SERVER_HOST: 0.0.0.0
       ELASTICSEARCH_HOSTS: http://es.unite.net:9200
       ELASTICSEARCH_USERNAME: ${USER}
       ELASTICSEARCH_PASSWORD: ${PASSWORD}

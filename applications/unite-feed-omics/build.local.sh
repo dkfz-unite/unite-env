@@ -11,7 +11,7 @@ mon_usr=$(jq -r .mongodb.user ../../secrets.json)
 mon_pwd=$(jq -r .mongodb.password ../../secrets.json)
 api_key=$(jq -r .api.key ../../secrets.json)
 
-tput setaf 6; echo "# Installing UNITE Genome Datafeed service"; tput sgr0
+tput setaf 6; echo "# Installing UNITE Omics Datafeed service"; tput sgr0
 echo ""
 
 tput setaf 4; echo "# Cleaning up source code directory"; tput sgr0
@@ -20,7 +20,7 @@ echo ""
 
 tput setaf 4; echo "# Cloning fresh code to source code directory"; tput sgr0
 mkdir src
-cp -r $src_pth/unite-feed-genome/. src
+cp -r $src_pth/unite-feed-omics/. src
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0

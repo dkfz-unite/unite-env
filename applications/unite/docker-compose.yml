@@ -16,7 +16,7 @@ services:
       UNITE_FEED_DONORS_HOST: http://donors.feed.unite.net
       UNITE_FEED_IMAGES_HOST: http://images.feed.unite.net
       UNITE_FEED_SPECIMENS_HOST: http://specimens.feed.unite.net
-      UNITE_FEED_GENOME_HOST: http://genome.feed.unite.net
+      UNITE_FEED_OMICS_HOST: http://omics.feed.unite.net
       UNITE_VIEWER_CXG_HOST: http://cxg{n}.viewer.unite.net
     volumes: 
       - "../../ssl:/https:ro"

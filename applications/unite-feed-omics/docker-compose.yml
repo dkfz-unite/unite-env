@@ -1,8 +1,8 @@
 services:
-  genome.feed.unite.net:
-    image: ghcr.io/dkfz-unite/unite-feed-genome:latest
+  omics.feed.unite.net:
+    image: ghcr.io/dkfz-unite/unite-feed-omics:latest
     pull_policy: always
-    container_name: unite.feed.genome
+    container_name: unite.feed.omics
     restart: always
     environment:
       UNITE_API_KEY: ${API_KEY}

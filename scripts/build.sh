@@ -78,7 +78,7 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-feed-genome
+cd ../applications/unite-feed-omics
 sh build.remote.sh
 cd ../../scripts
 echo ""

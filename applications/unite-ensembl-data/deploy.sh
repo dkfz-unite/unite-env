@@ -3,7 +3,7 @@
 sql_usr=$(jq -r .sql.user ../../secrets.json)
 sql_pwd=$(jq -r .sql.password ../../secrets.json)
 
-tput setaf 6; echo "# Installing Ensembl Genome Data service"; tput sgr0
+tput setaf 6; echo "# Installing Ensembl Omics Data service"; tput sgr0
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0

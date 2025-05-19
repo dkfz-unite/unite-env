@@ -78,7 +78,7 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-feed-genome
+cd ../applications/unite-feed-omics
 sh deploy.sh
 cd ../../scripts
 echo ""

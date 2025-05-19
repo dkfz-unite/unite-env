@@ -30,7 +30,7 @@ UNITE platform installation scripts and configuration files
   - `unite-feed-donors` - donors data feed web API
   - `unite-feed-images` - imaging data feed web API
   - `unite-feed-specimens` - specimens data feed web API
-  - `unite-feed-genome` - genome data feed web API
+  - `unite-feed-omics` - omics data feed web API
   - `unite-data-migrations` - domain data migrations service
   - `unite-identity-data-migrations` - identity data migration service
   - `unite-ensembl-data` - ensembl data Web API
@@ -169,7 +169,7 @@ Application is running in docker and has the following components:
 |Donors Feed Service|unite.feed.donors|donors.feed.unite.net|80|5100|
 |Images Feed Service|unite.feed.images|images.feed.unite.net|80|5102|
 |Specimens Feed Service|unite.feed.specimens|specimens.feed.unite.net|80|5104|
-|Genome Feed Service|unite.feed.genome|genome.feed.unite.net|80|5106|
+|Omics Feed Service|unite.feed.omics|omics.feed.unite.net|80|5106|
 |Ensembl Data Service|unite.ensembl.data|data.ensembl.unite.net|80|5200|
 |Ensembl VEP Service|unite.ensembl.vep|vep.ensembl.unite.net|80|5202|
 

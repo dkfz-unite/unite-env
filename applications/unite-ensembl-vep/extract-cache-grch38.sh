@@ -1,8 +1,8 @@
 #!/bin/bash
-dbr=109_GRCh37
+dbr=113_GRCh38
 
 chmod 700 ./data
 
-tput setaf 4; echo "# Extracting database cache"; tput sgr0
+tput setaf 4; echo "# Extracting VEP cache"; tput sgr0
 tar -xvf ./data/homo_sapiens_vep_$dbr.tar.gz -C ./data
 echo ""

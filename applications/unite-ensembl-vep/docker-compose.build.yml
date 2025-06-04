@@ -6,6 +6,8 @@ services:
     build: 
       context: ./src
       dockerfile: ./Dockerfile
+      args:
+        RID: ${RID}
     image: unite.ensembl.vep
 
 networks: 

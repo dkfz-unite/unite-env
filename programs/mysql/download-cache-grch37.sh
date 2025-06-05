@@ -4,11 +4,13 @@ dbr="$dbn"_"37"
 cor_url=https://ftp.ensembl.org/pub/grch37/release-$dbn/mysql/homo_sapiens_core_$dbr
 # fun_url=https://ftp.ensembl.org/pub/grch37/release-$dbn/mysql/homo_sapiens_funcgen_$dbr
 
-if [ ! -d "./cache/core37" ] then
+if [ ! -d "./cache/core37" ]
+then
   mkdir -p cache/core37
 fi
 
-# if [ ! -d "./cache/func37" ] then
+# if [ ! -d "./cache/func37" ]
+# then
 #   mkdir -p cache/func37
 # fi
 

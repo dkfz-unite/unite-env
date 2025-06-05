@@ -2,11 +2,11 @@
 
 usr=root
 pwd=$(jq -r .sql.password ../../secrets.json)
-dbr=109_37
+dbr=113_37
 cor_dbn=homo_sapiens_core_$dbr
-cor_dir=/home/mysql/cache/core
+cor_dir=/home/mysql/cache/core37
 # fun_dbn=homo_sapiens_funcgen_$dbr
-# fun_dir=/home/mysql/cache/func
+# fun_dir=/home/mysql/cache/func37
 
 tput setaf 4; echo "# Creating Ensembl core database"; tput sgr0
 docker exec -i mysql mysql -u$usr -p$pwd -e "create database $cor_dbn;"

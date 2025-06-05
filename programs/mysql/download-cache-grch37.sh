@@ -1,20 +1,18 @@
 #!/bin/bash
-dbn=109
+dbn=113
 dbr="$dbn"_"37"
 cor_url=https://ftp.ensembl.org/pub/grch37/release-$dbn/mysql/homo_sapiens_core_$dbr
 # fun_url=https://ftp.ensembl.org/pub/grch37/release-$dbn/mysql/homo_sapiens_funcgen_$dbr
 
-if [ ! -d "./cache/core" ] 
-then
-  mkdir -p cache/core
+if [ ! -d "./cache/core37" ] then
+  mkdir -p cache/core37
 fi
 
-# if [ ! -d "./cache/func" ] 
-# then
-#   mkdir -p cache/func
+# if [ ! -d "./cache/func37" ] then
+#   mkdir -p cache/func37
 # fi
 
-cd ./cache/core
+cd ./cache/core37
 tput setaf 4; echo "# Downloading Ensembl core database cache"; tput sgr0
 # wget -c $cor_url/alt_allele.txt.gz
 # wget -c $cor_url/alt_allele_attrib.txt.gz
@@ -98,7 +96,7 @@ wget -c $cor_url/xref.txt.gz
 echo ""
 cd ../../
 
-# cd ./cache/func
+# cd ./cache/func37
 # tput setaf 4; echo "# Downloading Ensembl functional genome database cache"; tput sgr0
 # wget -c $fun_url/feature_type.txt.gz
 # wget -c $fun_url/homo_sapiens_funcgen_$dbr.sql.gz

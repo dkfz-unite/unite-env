@@ -9,7 +9,7 @@ services:
       ENSEMBL_SQL_PORT: 3306
       ENSEMBL_SQL_USER: root
       ENSEMBL_SQL_PASSWORD: ${SQL_PASSWORD}
-      ENSEMBL_RELEASE: "109_37"
+      ENSEMBL_RELEASE: "113"
       ASPNETCORE_ENVIRONMENT: Release
     ports: 
       - 127.0.0.1:5200:80

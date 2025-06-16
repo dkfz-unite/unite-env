@@ -2,7 +2,8 @@
 dbn=113
 dbr="$dbn"_"GRCh38"
 
-if [ ! -d "./data" ] then
+if [ ! -d "./data" ]
+then
   mkdir data
   chmod 666 data
 fi

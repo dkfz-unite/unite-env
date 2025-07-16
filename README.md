@@ -108,9 +108,18 @@ To generate passwords one of command line tools can be used:
 > For development it is best to keep most of the default credentials.
 
 ### Installation
+Choose, which Genome reference to use for the portal DNA and Bulk RNA annotation pipelines `GRCh37` or `GRCH38`.  
+Genome reference version is choosen once per installation and can not be changed later. If you need to support both, consider having two separate servers.  
+Using of both genome references on one server is not possible.
+
+Note, that genome reference version defines only which databases and pipelines will be used for DNA and Bulk RNA sequencing data annotation.  
+If your DNA and Bulk RNA data is in GRCh37, then choose it for the installation, this version is also default and requires no additional configuration.  
+If your DNA and Bulk RNA data is in GRCh38, then choose it for the installation, needs to be additionally configured as it's not default.  
+For other data types (e.g. single cell RNA or methylation array data) any reference genome can be used, no matter which version is configured for DNA and bulk RNA pipelines.
+
 1. Download **unite-environment** source files from git this repository
 1. **Change credentials** in secrets_template.json and **rename** the file to **secrets.json**
-1. Open `unite-environment/scripts` folder in terminal
+1. Open `unite-env/scripts` folder in terminal
 1. Configure environment
    - For **Linux** environment: `sh configure.linux.sh`
    - For **MacOS** environments: `sh configure.macos.sh`
@@ -122,22 +131,22 @@ To generate passwords one of command line tools can be used:
    - If valid certificate is not available, generate self signed development certificate
      - For **localhost**: `sh generate-ssl.sh`
      - For **network**: `sh generate-ssl.sh <IP address or domain name>`
-2. Install programs and applications
+1. Change reference genome version (**only if you've choosen to use GRCh38**, skip this step if your choice is GRCh37)
+   - Open `unite-env/applications/unite-feed-omics/docker-compose.yml` file
+   - Change line `UNITE_GENOME_BUILD: GRCh37` to `UNITE_GENOME_BUILD: GRCh38`
+1. Install programs and applications
    - `sh deploy.sh`
-3. Install management tools (optional)
+1. Install management tools (optional)
    - `sh deploy.mgmt.sh`
-4. Install Ensembl Data service
-   - Open `unite-environment/programs/mysql` folder in terminal
-   - Download cache `sh download-ensembl-cache.sh` (This may take some time, if download process breaks, run the script again to continue)
-   - Extract cache `sh extract-ensembl-cache.sh`
-   - Restore database from cache `sh install-ensembl-cache.sh` (This may take several minutes)
-   <!-- - Open `unite-environment/applications/unite-ensembl-data` folder in terminal -->
-   <!-- - Run installation script `sh deploy.sh` -->
-5. Install Ensembl VEP service
-   - Open `unite-environment/applications/unite-ensembl-vep` folder in terminal
-   - Download cache `sh download-cache.sh` (This may take several hours, if download process breaks, run the script again to continue)
-   - Extract cache `sh extract-cache.sh`
-   <!-- - Run installation script `sh deploy.sh` -->
+1. Install Ensembl Data service
+   - Open `unite-env/programs/mysql` folder in terminal
+   - Download cache `sh download-cache-grch[37|38].sh` (This may take some time, if download process breaks, run the script again to continue)
+   - Extract cache `sh extract-cache-grch[37|38].sh`
+   - Restore database from cache `sh install-cache-grch[37|38].sh` (This may take several minutes)
+1. Install Ensembl VEP service
+   - Open `unite-env/applications/unite-ensembl-vep` folder in terminal
+   - Download cache `sh download-cache-grch[37|38].sh` (This may take several hours, if download process breaks, run the script again to continue)
+   - Extract cache `sh extract-cache-grch[37|38].sh`
 
 For custom installation run installation scripts for dedicated programs or applications.  
 Cache downloaded and extracted for **Ensembl Data** and **Ensembl VEP** services **will persist** on the disk unless you remove it manually, so no need to run download and extraction scripts again for recurrent installation of the platform.

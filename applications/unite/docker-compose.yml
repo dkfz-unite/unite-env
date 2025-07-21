@@ -4,7 +4,8 @@ services:
     pull_policy: always
     container_name: unite.portal
     restart: unless-stopped
-    environment: 
+    environment:
+      UNITE_API_KEY: ${API_KEY}
       ASPNETCORE_ENVIRONMENT: Release
       ASPNETCORE_HTTPS_PORT: 443
       ASPNETCORE_URLS: https://+:443;http://+:80

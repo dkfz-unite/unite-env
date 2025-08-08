@@ -119,3 +119,9 @@ sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
+
+cd ../applications/unite-analysis-pcam
+sh deploy.sh
+cd ../../scripts
+echo ""
+echo ""

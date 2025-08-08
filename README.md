@@ -23,10 +23,11 @@ UNITE platform installation scripts and configuration files
   - `unite-identity` - identity web API
   - `unite-composer` - composer web API
   - `unite-analysis` - analysis web API
-  - `unite-analysis-de` - RNA differential expression (DE) analysis web API
-  - `unite-analysis-scell` - scRNA dataset creation (SCell) analysis web API
-  - `unite-analysis-surv` - survival curve estimation (Surv) analysis web API
-  - `unite-analysis-dm` - differential methylation (DM) analysis web API
+  - `unite-analysis-de` - RNA differential expression analysis (DE) web API
+  - `unite-analysis-scell` - scRNA dataset creation analysis (SCell) web API
+  - `unite-analysis-surv` - survival curve estimation analysis (Surv) web API
+  - `unite-analysis-dm` - differential methylation analysis (DM) web API
+  - `unite-analysis-pcam` - methylation principal component analysis (PCA) web API
   - `unite-feed-donors` - donors data feed web API
   - `unite-feed-images` - imaging data feed web API
   - `unite-feed-specimens` - specimens data feed web API
@@ -175,6 +176,7 @@ Application is running in docker and has the following components:
 |Analysis Service (SCell)|unite.analysis.scell|scell.analysis.unite.net|80|5302|
 |Analysis Service (Surv)|unite.analysis.surv|surv.analysis.unite.net|80|5304|
 |Analysis Service (DM)|unite.analysis.dm|dm.analysis.unite.net|80|5306|
+|Analysis Service (PCA)|unite.analysis.pcam|pcam.analysis.unite.net|80|5308|
 |Donors Feed Service|unite.feed.donors|donors.feed.unite.net|80|5100|
 |Images Feed Service|unite.feed.images|images.feed.unite.net|80|5102|
 |Specimens Feed Service|unite.feed.specimens|specimens.feed.unite.net|80|5104|

@@ -119,3 +119,9 @@ sh build.remote.sh
 cd ../../scripts
 echo ""
 echo ""
+
+cd ../applications/unite-analysis-pcam
+sh build.remote.sh
+cd ../../scripts
+echo ""
+echo ""

@@ -5,8 +5,8 @@ services:
     restart: unless-stopped
     environment:
       ELASTICSEARCH_HOSTS: http://es.unite.net:9200
-      ELASTICSEARCH_USERNAME: ${USER}
-      ELASTICSEARCH_PASSWORD: ${PASSWORD}
+      ELASTICSEARCH_USERNAME: ${ELASTIC_USER}
+      ELASTICSEARCH_PASSWORD: ${ELASTIC_PASSWORD}
     ports:
       - 8083:5601
 

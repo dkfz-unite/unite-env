@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. ../../scripts/export-secrets.sh ../../secrets.json
+
 branch=${1:-main}
 ghb_usr=$(jq -r .github.user ../../secrets.json)
 ghb_tkn=$(jq -r .github.token ../../secrets.json)

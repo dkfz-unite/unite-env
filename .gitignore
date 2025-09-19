@@ -4,6 +4,8 @@
 **/mnt
 ssl
 plugins
+.secrets
+.config
 secrets.json
 config.json
 # **/.project

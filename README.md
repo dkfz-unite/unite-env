@@ -8,7 +8,6 @@ UNITE platform installation scripts and configuration files
   - Docker compose
 - Command line tools
   - git
-  - jq (https://stedolan.github.io/jq)
   - openssl
   - wget
   
@@ -57,47 +56,37 @@ UNITE platform installation scripts and configuration files
   - _deploy.mgmt.sh_ - install management tools
   - _deploy.apps.sh_ - install applications script (for easy updates)
   - _build.apps.sh_ - build and install applications script (for easy updates)
-- _secrets_template.json_ - JSON configuration template file with all required credentials
+- _secrets_template_ - Environment configuration template file with all required credentials
+- _config_template_ - Environment configuration template file with all local settings
 
 ### Secrets
-All sensitive information is stored in **secrets.json** file. Template of this file is stored in unite-environment repository on github. File has the following structure:
-```json
-{
-    "api": {
-        "key": "Defautl32BitApiKeyHasToBeChanged"
-    },
-    "admin": {
-        "user": "admin@unite.net",
-        "password": "Long-pa55w0rd"
-    },
-    "github":{
-        "user": "root",
-        "token": "Long-t0ken"
-    },
-    "sql": {
-        "user": "root",
-        "password": "Long-pa55w0rd"
-    },
-    "mongodb": {
-        "user": "root",
-        "password": "Long-pa55w0rd"
-    },
-    "elasticsearch": {
-        "user": "elastic",
-        "password": "Long-pa55w0rd"
-    }
-}
+All sensitive information is stored in **.secrets** file. Template of this file is stored in unite-environment repository on github. File has the following structure:
+```
+GITHUB_USER=root
+GITHUB_TOKEN=Long-t0ken
+API_KEY=Defautl32BitApiKeyHasToBeChanged
+ADMIN_USER=admin@unite.net
+ADMIN_PASSWORD=Long-pa55w0rd
+PGSQL_USER=root
+PGSQL_PASSWORD=Long-pa55w0rd
+MYSQL_USER=root
+MYSQL_PASSWORD=Long-pa55w0rd
+MONGO_USER=root
+MONGO_PASSWORD=Long-pa55w0rd
+ES_USER=elastic
+ES_PASSWORD=Long-pa55w0rd
 ```
 Each section represents credentials for specific part of the platform services:
-- _api_ - **API** key, used for user and service authentication
-- _admin_ - root **user** and **password** for portal administration
-- _github_ - **user** name and personal access **token** with full **repository** and **packages** permissions for accessing source code and packages from **Github** (follow github [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to generate it)
-- _sql_ - **user** name and **password** for **SQL** server
-- _mongodb_ - **user** name and **password** for **MongoDb** server
-- _elasticsearch_ - **user** name and **password** for **Elasticsearch** server
+- _GITHUB_ - **user** name and personal access **token** with full **repository** and **packages** permissions for accessing source code and packages from **Github** (follow github [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to generate it)
+- _API_ - **API** key, used for user and service authentication
+- _ADMIN_ - root **user** and **password** for portal administration
+- _PGSQL_ - **user** name and **password** for **PostreSQL** server
+- _MYSQL_ - **user** name and **password** for **MySQL** server
+- _MONGO_ - **user** name and **password** for **MongoDb** server
+- _ES_ - **user** name and **password** for **Elasticsearch** server
 
 To generate passwords one of command line tools can be used:
-- `openssl rand -base64 22` - to generate 32 bit Base64 string
+- `openssl rand -base64 32` - to generate 32 bytes Base64 string
 
 > [!WARNING]
 > ALWAYS CHANGE ALL CREDENTIALS FOR PRODUCTION USE!
@@ -118,8 +107,9 @@ If your DNA and Bulk RNA data is in GRCh37, then choose it for the installation,
 If your DNA and Bulk RNA data is in GRCh38, then choose it for the installation, needs to be additionally configured as it's not default.  
 For other data types (e.g. single cell RNA or methylation array data) any reference genome can be used, no matter which version is configured for DNA and bulk RNA pipelines.
 
-1. Download **unite-environment** source files from git this repository
-1. **Change credentials** in secrets_template.json and **rename** the file to **secrets.json**
+1. Download **unite-env** source files from git this repository
+1. **Change credentials** in secrets_template and **rename** the file to **.secrets**
+1. Change local settings in config_template and rename the file to .config (optional, for development purposes)
 1. Open `unite-env/scripts` folder in terminal
 1. Configure environment
    - For **Linux** environment: `sh configure.linux.sh`

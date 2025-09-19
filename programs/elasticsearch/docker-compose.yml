@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     environment:
       - discovery.type=single-node
-      - ELASTIC_PASSWORD=${PASSWORD}
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - xpack.security.enabled=true
     volumes:
       - es.data:/usr/share/elasticsearch/data:rw

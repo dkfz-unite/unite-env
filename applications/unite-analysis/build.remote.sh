@@ -1,4 +1,8 @@
 #!/bin/bash
+set -euo pipefail
+set -a
+. ../../.secrets
+set +a
 
 branch=${1:-main}
 ghb_usr=$(jq -r .github.user ../../secrets.json)

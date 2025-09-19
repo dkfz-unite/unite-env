@@ -4,8 +4,8 @@ services:
     container_name: pgsql
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${USER}
-      POSTGRES_PASSWORD: ${PASSWORD}
+      POSTGRES_USER: ${SQL_USER}
+      POSTGRES_PASSWORD: ${SQL_PASSWORD}
     volumes:
       # - ./data:/var/lib/postgresql/data
       - pgsql.data:/var/lib/postgresql/data:rw

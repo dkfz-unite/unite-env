@@ -8,7 +8,8 @@ services:
       POSTGRES_PASSWORD: ${PASSWORD}
     volumes:
       # - ./data:/var/lib/postgresql/data
-      - pgsql.data:/var/lib/postgresql/data:rw
+      # - pgsql.data:/var/lib/postgresql/data:rw
+      - pgsql.data:/var/lib/postgresql:rw
     ports:
       - 127.0.0.1:5432:5432
 

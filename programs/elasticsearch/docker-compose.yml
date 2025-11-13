@@ -7,7 +7,7 @@ services:
       - discovery.type=single-node
       - ELASTIC_PASSWORD=${PASSWORD}
       - xpack.security.enabled=true
-      - "ES_JAVA_OPTS=-Xms8g -Xmx8g"
+      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
     volumes:
       - es.data:/usr/share/elasticsearch/data:rw
     ports:

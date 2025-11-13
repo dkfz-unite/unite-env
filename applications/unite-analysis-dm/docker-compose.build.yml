@@ -7,8 +7,6 @@ services:
       context: ./src
       dockerfile: ./Dockerfile
     image: unite.analysis.dm
-    volumes:
-      - ~/mnt/analysis:/mnt/data:rw
 
 networks:
   default:

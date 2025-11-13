@@ -7,8 +7,6 @@ services:
       context: ./src
       dockerfile: ./Dockerfile
     image: unite.analysis.pcam
-    volumes:
-      - ~/mnt/analysis:/mnt/data:rw
 
 networks:
   default:

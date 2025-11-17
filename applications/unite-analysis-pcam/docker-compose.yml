@@ -1,7 +1,6 @@
 services:
   pcam.analysis.unite.net:
     image: ghcr.io/dkfz-unite/unite-analysis-pcam:latest
-    platform: linux/amd64
     pull_policy: always
     container_name: unite.analysis.pcam
     restart: unless-stopped

@@ -1,7 +1,6 @@
 services:
   dm.analysis.unite.net:
     image: ghcr.io/dkfz-unite/unite-analysis-dm:latest
-    platform: linux/amd64
     pull_policy: always
     container_name: unite.analysis.dm
     restart: unless-stopped

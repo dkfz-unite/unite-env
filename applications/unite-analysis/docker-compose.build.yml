@@ -10,8 +10,15 @@ services:
         USER: ${GITHUB_USER}
         TOKEN: ${GITHUB_TOKEN}
     image: unite.analysis
+    volumes:
+      - unite.analysis.data:/mnt/data:rw
 
 networks: 
   default:
     name: unite
     external: true
+
+volumes:
+  unite.analysis.data:
+    name: unite.analysis.data
+    driver: local

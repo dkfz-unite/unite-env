@@ -1,6 +1,7 @@
 services:
   pgsql.unite.net:
     image: postgres
+    shm_size: 256m
     container_name: pgsql
     restart: unless-stopped
     environment:

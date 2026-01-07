@@ -35,7 +35,7 @@ UNITE platform installation scripts and configuration files
   - `unite-data-migrations` - domain data migrations service
   - `unite-identity-data-migrations` - identity data migration service
   - `unite-ensembl-data` - ensembl data Web API
-  - `unite-ensembl-vep` - ensembl Varian Effect Predictor (VEP) web API
+  - `unite-ensembl-vep` - ensembl Variant Effect Predictor (VEP) web API
 - `programs`
   - `postgresql` - data storage
     - _docker-compose.yml_ - installation configuration

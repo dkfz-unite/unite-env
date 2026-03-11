@@ -1,8 +1,8 @@
 services:
-  de.analysis.unite.net:
-    image: ghcr.io/dkfz-unite/unite-analysis-de:latest
+  deg.analysis.unite.net:
+    image: ghcr.io/dkfz-unite/unite-analysis-deg:latest
     pull_policy: always
-    container_name: unite.analysis.de
+    container_name: unite.analysis.deg
     restart: unless-stopped
     environment:
       ASPNETCORE_ENVIRONMENT: Release

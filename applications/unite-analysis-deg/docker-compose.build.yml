@@ -1,12 +1,12 @@
 services:
-  de.analysis.unite.net:
+  deg.analysis.unite.net:
     extends:
       file: docker-compose.yml
-      service: de.analysis.unite.net
+      service: deg.analysis.unite.net
     build:
       context: ./src
       dockerfile: ./Dockerfile
-    image: unite.analysis.de
+    image: unite.analysis.deg
     volumes:
       - unite.analysis.data:/mnt/data:rw
 

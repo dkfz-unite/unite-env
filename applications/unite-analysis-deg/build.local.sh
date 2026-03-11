@@ -2,7 +2,7 @@
 
 src_pth=$(jq -r .SourceCodeDirectoryPath ../../config.json)
 
-tput setaf 6; echo "# Installing UNITE analysis service (Differential Expression)"; tput sgr0
+tput setaf 6; echo "# Installing UNITE analysis service (Differential Gene Expression)"; tput sgr0
 echo ""
 
 tput setaf 4; echo "# Cleaning up source code directory"; tput sgr0
@@ -11,7 +11,7 @@ echo ""
 
 tput setaf 4; echo "# Cloning fresh code to source code directory"; tput sgr0
 mkdir src
-cp -r $src_pth/unite-analysis-de/. src/
+cp -r $src_pth/unite-analysis-deg/. src/
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0

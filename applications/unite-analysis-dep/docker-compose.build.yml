@@ -1,0 +1,21 @@
+services:
+  dep.analysis.unite.net:
+    extends:
+      file: docker-compose.yml
+      service: dep.analysis.unite.net
+    build:
+      context: ./src
+      dockerfile: ./Dockerfile
+    image: unite.analysis.dep
+    volumes:
+      - unite.analysis.data:/mnt/data:rw
+
+networks:
+  default:
+    name: unite
+    external: true
+
+volumes:
+  unite.analysis.data:
+    name: unite.analysis.data
+    driver: local

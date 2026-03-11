@@ -20,6 +20,10 @@ tput setaf 4; echo "# Restoring Ensembl core database data"; tput sgr0
 docker exec -i mysql /bin/bash -c "mysqlimport -u$usr -p$pwd --fields-terminated-by='\t' --fields-escaped-by='\\' $cor_dbn -L $cor_dir/*.txt"
 echo ""
 
+tput setaf 4; echo "# Applying Ensembl core database migrations"; tput sgr0
+docker exec -i mysql mysql -u$usr -p$pwd $cor_dbn < migrations/00001.sql
+echo ""
+
 # tput setaf 4; echo "# Creating Ensembl functional genome database"; tput sgr0
 # docker exec -i mysql mysql -u$usr -p$pwd -e "create database $fun_dbn;"
 # echo ""

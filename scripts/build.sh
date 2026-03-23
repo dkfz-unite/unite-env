@@ -96,7 +96,7 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-analysis-de
+cd ../applications/unite-analysis-deg
 sh build.remote.sh
 cd ../../scripts
 echo ""

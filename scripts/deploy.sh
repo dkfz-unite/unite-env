@@ -96,7 +96,7 @@ cd ../../scripts
 echo ""
 echo ""
 
-cd ../applications/unite-analysis-de
+cd ../applications/unite-analysis-deg
 sh deploy.sh
 cd ../../scripts
 echo ""

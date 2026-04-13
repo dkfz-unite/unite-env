@@ -125,3 +125,15 @@ sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""
+
+cd ../applications/unite-analysis-dep
+sh deploy.sh
+cd ../../scripts
+echo ""
+echo ""
+
+cd ../applications/unite-analysis-umapp
+sh deploy.sh
+cd ../../scripts
+echo ""
+echo ""

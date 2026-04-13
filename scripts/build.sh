@@ -125,3 +125,15 @@ sh build.remote.sh
 cd ../../scripts
 echo ""
 echo ""
+
+cd ../applications/unite-analysis-dep
+sh build.remote.sh
+cd ../../scripts
+echo ""
+echo ""
+
+cd ../applications/unite-analysis-umapp
+sh build.remote.sh
+cd ../../scripts
+echo ""
+echo ""

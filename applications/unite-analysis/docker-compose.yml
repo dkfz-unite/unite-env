@@ -25,6 +25,7 @@ services:
       UNITE_ANALYSIS_DM_HOST: http://dm.analysis.unite.net
       UNITE_ANALYSIS_PCAM_HOST: http://pcam.analysis.unite.net
       UNITE_ANALYSIS_DEP_HOST: http://dep.analysis.unite.net
+      UNITE_ANALYSIS_UMAPP_HOST: http://umapp.analysis.unite.net
       UNITE_VIEWER_CXG_IMAGE: ghcr.io/dkfz-unite/unite-cellxgene:latest
       UNITE_VIEWER_CXG_NAME: unite.viewer.cxg{n}
       UNITE_VIEWER_CXG_ALIAS: cxg{n}.viewer.unite.net

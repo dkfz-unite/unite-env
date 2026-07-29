@@ -137,3 +137,9 @@ sh build.remote.sh
 cd ../../scripts
 echo ""
 echo ""
+
+cd ../applications/unite-analysis-cedp
+sh build.remote.sh
+cd ../../scripts
+echo ""
+echo ""

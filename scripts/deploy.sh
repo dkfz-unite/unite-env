@@ -139,7 +139,7 @@ echo ""
 echo ""
 
 cd ../applications/unite-analysis-cedp
-sh build.remote.sh
+sh deploy.sh
 cd ../../scripts
 echo ""
 echo ""

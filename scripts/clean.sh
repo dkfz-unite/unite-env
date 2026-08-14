@@ -25,4 +25,5 @@ docker volume rm mongo.config
 docker volume rm unite.analysis.data
 
 # Remove postgres database unite_domain
+docker restart pgsql
 docker exec -it pgsql psql -c "DROP DATABASE IF EXISTS unite_data;"

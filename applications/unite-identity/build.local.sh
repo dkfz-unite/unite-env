@@ -3,6 +3,8 @@
 src_pth=$(jq -r .SourceCodeDirectoryPath ../../config.json)
 ghb_usr=$(jq -r .github.user ../../secrets.json)
 ghb_tkn=$(jq -r .github.token ../../secrets.json)
+mon_usr=$(jq -r .mongo.user ../../secrets.json)
+mon_pwd=$(jq -r .mongo.password ../../secrets.json)
 sql_usr=$(jq -r .sql.user ../../secrets.json)
 sql_pwd=$(jq -r .sql.password ../../secrets.json)
 api_key=$(jq -r .api.key ../../secrets.json)
@@ -24,6 +26,8 @@ echo ""
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
 GITHUB_USER=$ghb_usr \
 GITHUB_TOKEN=$ghb_tkn \
+MONGO_USER=$mon_usr \
+MONGO_PASSWORD=$mon_pwd \
 SQL_USER=$sql_usr \
 SQL_PASSWORD=$sql_pwd \
 API_KEY=$api_key \

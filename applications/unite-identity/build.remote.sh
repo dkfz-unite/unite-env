@@ -32,4 +32,4 @@ SQL_PASSWORD=$sql_pwd \
 API_KEY=$api_key \
 ADMIN_USER=$adm_usr \
 ADMIN_PASSWORD=$adm_pwd \
-docker compose -p 'unite' -f docker-compose.build.yml up -d --env-file ../../.env --build
+docker compose -p 'unite' -f docker-compose.build.yml --env-file ../../.env up -d --build

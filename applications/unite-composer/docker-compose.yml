@@ -18,6 +18,8 @@ services:
       UNITE_MONGO_USER: ${MONGO_USER}
       UNITE_MONGO_PASSWORD: ${MONGO_PASSWORD}
       UNITE_ENSEMBL_HOST: http://data.ensembl.unite.net
+      UNITE_IDENTITY_HOST: http://identity.unite.net
+      UNITE_FEED_DONORS_HOST: http://donors.feed.unite.net
       ASPNETCORE_ENVIRONMENT: Release
     ports: 
       - 127.0.0.1:5002:80

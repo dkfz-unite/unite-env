@@ -1,15 +1,7 @@
 #!/bin/bash
 
+set -a; . ../../.env.secrets; set +a
 branch=${1:-main}
-ghb_usr=$(jq -r .github.user ../../secrets.json)
-ghb_tkn=$(jq -r .github.token ../../secrets.json)
-sql_usr=$(jq -r .sql.user ../../secrets.json)
-sql_pwd=$(jq -r .sql.password ../../secrets.json)
-mon_usr=$(jq -r .mongodb.user ../../secrets.json)
-mon_pwd=$(jq -r .mongodb.password ../../secrets.json)
-api_key=$(jq -r .api.key ../../secrets.json)
-adm_usr=$(jq -r .admin.user ../../secrets.json)
-adm_pwd=$(jq -r .admin.password ../../secrets.json)
 
 tput setaf 6; echo "# Installing UNITE Identity service"; tput sgr0
 echo ""
@@ -19,17 +11,8 @@ rm -r -f src
 echo ""
 
 tput setaf 4; echo "# Cloning fresh code to source code directory (branch: $branch)"; tput sgr0
-git clone --single-branch --depth 1 --branch "$branch" https://$ghb_tkn@github.com/dkfz-unite/unite-identity.git src
+git clone --single-branch --depth 1 --branch "$branch" https://$UNITE_GITHUB_TOKEN@github.com/dkfz-unite/unite-identity.git src
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
-GITHUB_USER=$ghb_usr \
-GITHUB_TOKEN=$ghb_tkn \
-SQL_USER=$sql_usr \
-SQL_PASSWORD=$sql_pwd \
-MONGO_USER=$mon_usr \
-MONGO_PASSWORD=$mon_pwd \
-API_KEY=$api_key \
-ADMIN_USER=$adm_usr \
-ADMIN_PASSWORD=$adm_pwd \
-docker compose -p 'unite' -f docker-compose.yml -f docker-compose.build.yml --env-file ../../.env up -d --build
+docker compose -p 'unite' --env-file ../../.env --env-file ../../.env.secrets -f docker-compose.yml -f docker-compose.build.yml up -d --build

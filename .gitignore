@@ -5,6 +5,7 @@
 ssl
 plugins
 secrets.json
+.env.secrets
 config.json
 # **/.project
 # **/.pydevproject

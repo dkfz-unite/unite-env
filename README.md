@@ -15,7 +15,7 @@ from its containing directory because paths inside it are relative.
   - Docker compose
 - Command line tools
   - git
-  - jq (https://stedolan.github.io/jq)
+  - jq (https://stedolan.github.io/jq) - local source builds read `config.json`
   - openssl
   - wget
   
@@ -67,47 +67,29 @@ from its containing directory because paths inside it are relative.
   - _deploy.mgmt.sh_ - install management tools
   - _deploy.apps.sh_ - install applications script (for easy updates)
   - _build.apps.sh_ - build and install applications script (for easy updates)
-- _secrets_template.json_ - JSON configuration template file with all required credentials
+- _.env_ - shared runtime configuration (instance settings, service hosts and ports)
+- _.env.secrets.template_ - template of _.env.secrets_ with all required credentials
 - _config_template.json_ - local source-workspace path template for local builds
-- _.env_ - initial shared runtime configuration currently used by Identity
 
-### Secrets
-Deployment scripts read shared credentials from **secrets.json**. Its template
-is stored in the `unite-env` repository. The file has the following structure:
-```json
-{
-    "api": {
-        "key": "Defautl32BitApiKeyHasToBeChanged"
-    },
-    "admin": {
-        "user": "admin@unite.net",
-        "password": "Long-pa55w0rd"
-    },
-    "github":{
-        "user": "root",
-        "token": "Long-t0ken"
-    },
-    "sql": {
-        "user": "root",
-        "password": "Long-pa55w0rd"
-    },
-    "mongodb": {
-        "user": "root",
-        "password": "Long-pa55w0rd"
-    },
-    "elasticsearch": {
-        "user": "elastic",
-        "password": "Long-pa55w0rd"
-    }
-}
-```
-Each section represents credentials for specific part of the platform services:
-- _api_ - shared 32-character key used to sign and validate user/service JWTs
-- _admin_ - root **user** and **password** for portal administration
-- _github_ - **user** name and personal access **token** with full **repository** and **packages** permissions for accessing source code and packages from **Github** (follow github [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to generate it)
-- _sql_ - **user** name and **password** for **SQL** server
-- _mongodb_ - **user** name and **password** for **MongoDb** server
-- _elasticsearch_ - **user** name and **password** for **Elasticsearch** server
+### Configuration and secrets
+All deployment scripts pass two environment files to Docker Compose:
+`--env-file ../../.env --env-file ../../.env.secrets`. Each `docker-compose.yml`
+maps the variables it needs explicitly, e.g. `UNITE_SQL_HOST: ${UNITE_PGSQL_HOST}`.
+Scripts that need a value themselves (e.g. the GitHub token for `git clone`)
+load the file with `set -a; . ../../.env.secrets; set +a`.
+
+- **.env** (in the repository): instance settings and the hosts and ports of
+  the environment services (`UNITE_PGSQL_*`, `UNITE_MYSQL_*`, `UNITE_MONGO_*`,
+  `UNITE_ELASTIC_HOST`).
+- **.env.secrets** (never committed, listed in `.gitignore`): created from
+  `.env.secrets.template`:
+  - `UNITE_API_KEY` - shared 32-character key used to sign and validate user/service JWTs
+  - `UNITE_ADMIN_USER`, `UNITE_ADMIN_PASSWORD` - root user for portal administration
+  - `UNITE_GITHUB_USER`, `UNITE_GITHUB_TOKEN` - user name and personal access token with **repository** and **packages** permissions for source code and packages on **GitHub** (see GitHub [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token))
+  - `UNITE_PGSQL_USER`, `UNITE_PGSQL_PASSWORD` - PostgreSQL credentials
+  - `UNITE_MYSQL_USER`, `UNITE_MYSQL_PASSWORD` - MySQL credentials (Ensembl data); the user is always `root`, the MySQL image only sets the root password
+  - `UNITE_MONGO_USER`, `UNITE_MONGO_PASSWORD` - MongoDB credentials
+  - `UNITE_ELASTIC_USER`, `UNITE_ELASTIC_PASSWORD` - Elasticsearch credentials; the user is always `elastic` (built-in superuser). Kibana connects as the built-in `kibana_system` user with the same password, which `programs/elasticsearch/deploy.mgmt.sh` sets.
 
 To generate passwords one of command line tools can be used:
 - `openssl rand -base64 22` - to generate a 32-character Base64 string
@@ -116,7 +98,7 @@ To generate passwords one of command line tools can be used:
 > ALWAYS CHANGE ALL CREDENTIALS FOR PRODUCTION USE!
 
 > [!WARNING]
-> NEVER COMMIT THIS FILE TO THE REPOSITORY!
+> NEVER COMMIT `.env.secrets` TO THE REPOSITORY!
 
 > [!NOTE]
 > For development it is best to keep most of the default credentials.
@@ -132,9 +114,8 @@ If your DNA and Bulk RNA data is in GRCh38, then choose it for the installation,
 For other data types (e.g. single cell RNA or methylation array data) any reference genome can be used, no matter which version is configured for DNA and bulk RNA pipelines.
 
 1. Clone this **unite-env** repository
-1. **Change credentials** in secrets_template.json and **rename** the file to **secrets.json**
-1. Review the root `.env` settings used by Identity. This is an initial migration;
-   credentials still come from `secrets.json` through the deployment scripts.
+1. Copy `.env.secrets.template` to `.env.secrets` and **change all credentials**
+1. Review the instance settings in `.env`
 1. For local source builds, copy `config_template.json` to `config.json` and set
    `SourceCodeDirectoryPath` to the parent directory containing the source repos
 1. Open `unite-env/scripts` folder in terminal
@@ -208,14 +189,13 @@ the selected branch-build workflow is separate from published-image deployment.
 ### Configuration status
 
 Most runtime configuration is in each component's `docker-compose.yml`.
-Scripts pass credentials as environment variables for Compose interpolation.
+Scripts pass `.env` and `.env.secrets` to Compose (`--env-file`), and each
+compose file maps the variables it uses.
 Build Compose files contain only the build settings (`build`, local `image`
 name) and are merged with the base file on the command line:
 `docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build`.
 
-Identity already uses `--env-file ../../.env`; consolidation of common variables
-for the remaining services and simplification of Compose file composition are
-planned. This documentation does not change those scripts or configuration.
+Moving secrets to Docker secrets is planned.
 
 ### Uninstallation
 To uninstall UNITE platform, run corresponding command from unite-env/scripts folder:

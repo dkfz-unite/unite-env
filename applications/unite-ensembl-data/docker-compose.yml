@@ -5,10 +5,10 @@ services:
     container_name: unite.ensembl.data
     restart: unless-stopped
     environment: 
-      ENSEMBL_SQL_HOST: mysql.unite.net
-      ENSEMBL_SQL_PORT: 3306
-      ENSEMBL_SQL_USER: root
-      ENSEMBL_SQL_PASSWORD: ${SQL_PASSWORD}
+      ENSEMBL_SQL_HOST: ${UNITE_MYSQL_HOST}
+      ENSEMBL_SQL_PORT: ${UNITE_MYSQL_PORT}
+      ENSEMBL_SQL_USER: ${UNITE_MYSQL_USER}
+      ENSEMBL_SQL_PASSWORD: ${UNITE_MYSQL_PASSWORD}
       ENSEMBL_RELEASE: "113"
       ASPNETCORE_ENVIRONMENT: Release
     ports: 

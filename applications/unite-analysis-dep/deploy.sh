@@ -4,4 +4,4 @@ tput setaf 6; echo "# Installing UNITE analysis service (Differential Proterin E
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
-docker compose -p 'unite' -f docker-compose.yml up -d --build
+docker compose -p 'unite' --env-file ../../.env --env-file ../../.env.secrets -f docker-compose.yml up -d --build

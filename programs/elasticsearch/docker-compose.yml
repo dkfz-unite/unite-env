@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     environment:
       - discovery.type=single-node
-      - ELASTIC_PASSWORD=${PASSWORD}
+      - ELASTIC_PASSWORD=${UNITE_ELASTIC_PASSWORD}
       - xpack.security.enabled=true
       - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
       - ingest.geoip.downloader.enabled=false

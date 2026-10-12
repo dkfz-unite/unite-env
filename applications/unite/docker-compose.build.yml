@@ -4,5 +4,5 @@ services:
       context: ./src
       dockerfile: ./Dockerfile
       args:
-        GITHUB_TOKEN: ${GITHUB_TOKEN}
+        GITHUB_TOKEN: ${UNITE_GITHUB_TOKEN}
     image: unite.portal

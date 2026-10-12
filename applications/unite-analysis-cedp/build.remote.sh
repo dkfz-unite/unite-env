@@ -1,8 +1,7 @@
 #!/bin/bash
 
+set -a; . ../../.env.secrets; set +a
 branch=${1:-main}
-ghb_usr=$(jq -r .github.user ../../secrets.json)
-ghb_tkn=$(jq -r .github.token ../../secrets.json)
 
 tput setaf 6; echo "# Installing UNITE analysis service (Proterin Expression Distribution)"; tput sgr0
 echo ""
@@ -12,10 +11,8 @@ rm -r -f src
 echo ""
 
 tput setaf 4; echo "# Cloning fresh code to source code directory (branch: $branch)"; tput sgr0
-git clone --single-branch --depth 1 --branch "$branch" https://$ghb_tkn@github.com/dkfz-unite/unite-analysis-cedp.git src
+git clone --single-branch --depth 1 --branch "$branch" https://$UNITE_GITHUB_TOKEN@github.com/dkfz-unite/unite-analysis-cedp.git src
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
-GITHUB_USER=$ghb_usr \
-GITHUB_TOKEN=$ghb_tkn \
-docker compose -p 'unite' -f docker-compose.yml -f docker-compose.build.yml up -d --build
+docker compose -p 'unite' --env-file ../../.env --env-file ../../.env.secrets -f docker-compose.yml -f docker-compose.build.yml up -d --build

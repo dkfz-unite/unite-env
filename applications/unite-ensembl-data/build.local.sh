@@ -1,8 +1,6 @@
 #!/bin/bash
 
 src_pth=$(jq -r .SourceCodeDirectoryPath ../../config.json)
-sql_usr=$(jq -r .sql.user ../../secrets.json)
-sql_pwd=$(jq -r .sql.password ../../secrets.json)
 
 tput setaf 6; echo "# Installing Ensembl Omics Data service"; tput sgr0
 echo ""
@@ -17,6 +15,4 @@ cp -r $src_pth/unite-ensembl-data/. src
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
-SQL_USER=$sql_usr \
-SQL_PASSWORD=$sql_pwd \
-docker compose -p 'unite' -f docker-compose.yml -f docker-compose.build.yml up -d --build
+docker compose -p 'unite' --env-file ../../.env --env-file ../../.env.secrets -f docker-compose.yml -f docker-compose.build.yml up -d --build

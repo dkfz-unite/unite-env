@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -a; . ../../.env.secrets; set +a
+. ../../.env.secrets
 
 tput setaf 6; echo "# Installing UNITE Identity Migrations service"; tput sgr0
 echo ""

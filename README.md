@@ -76,7 +76,7 @@ All deployment scripts pass two environment files to Docker Compose:
 `--env-file ../../.env --env-file ../../.env.secrets`. Each `docker-compose.yml`
 maps the variables it needs explicitly, e.g. `UNITE_SQL_HOST: ${UNITE_PGSQL_HOST}`.
 Scripts that need a value themselves (e.g. the GitHub token for `git clone`)
-load the file with `set -a; . ../../.env.secrets; set +a`.
+load it into the script's own shell with `. ../../.env.secrets` (not exported).
 
 - **.env** (in the repository): instance settings and the hosts and ports of
   the environment services (`UNITE_PGSQL_*`, `UNITE_MYSQL_*`, `UNITE_MONGO_*`,

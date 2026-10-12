@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -a; . ../../.env.secrets; set +a
+. ../../.env.secrets
 branch=${1:-main}
 
 tput setaf 6; echo "# Installing UNITE Data Migrations service"; tput sgr0

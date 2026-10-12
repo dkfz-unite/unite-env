@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -a; . ../../.env.secrets; set +a
+. ../../.env.secrets
 
 tput setaf 6; echo "# Installing Elasticsearch management tools"; tput sgr0
 

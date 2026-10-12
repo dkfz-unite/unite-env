@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -a; . ../../.env.secrets; set +a
 src_pth=$(jq -r .SourceCodeDirectoryPath ../../config.json)
 
 tput setaf 6; echo "# Installing UNITE Identity service"; tput sgr0

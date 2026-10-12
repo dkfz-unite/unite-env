@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -a; . ../../.env.secrets; set +a
+. ../../.env.secrets
 usr=$UNITE_MYSQL_USER
 pwd=$UNITE_MYSQL_PASSWORD
 dbr=113_37

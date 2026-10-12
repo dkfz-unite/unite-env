@@ -15,7 +15,7 @@ from its containing directory because paths inside it are relative.
   - Docker compose
 - Command line tools
   - git
-  - jq (https://stedolan.github.io/jq) - local source builds read `config.json`
+  - jq (https://stedolan.github.io/jq) - only for `programs/elasticsearch/check.mem.sh`
   - openssl
   - wget
   
@@ -69,7 +69,6 @@ from its containing directory because paths inside it are relative.
   - _build.apps.sh_ - build and install applications script (for easy updates)
 - _.env_ - shared runtime configuration (instance settings, service hosts and ports)
 - _.env.secrets.template_ - template of _.env.secrets_ with all required credentials
-- _config_template.json_ - local source-workspace path template for local builds
 
 ### Configuration and secrets
 All deployment scripts pass two environment files to Docker Compose:
@@ -116,8 +115,9 @@ For other data types (e.g. single cell RNA or methylation array data) any refere
 1. Clone this **unite-env** repository
 1. Copy `.env.secrets.template` to `.env.secrets` and **change all credentials**
 1. Review the instance settings in `.env`
-1. For local source builds, copy `config_template.json` to `config.json` and set
-   `SourceCodeDirectoryPath` to the parent directory containing the source repos
+1. For local source builds, set `UNITE_SOURCE_PATH` once in your shell profile
+   (`~/.zshrc` or `~/.bashrc`) to the folder that contains the source
+   repositories: `export UNITE_SOURCE_PATH=~/Work/unite/projects`
 1. Open `unite-env/scripts` folder in terminal
 1. Configure environment
    - For **Linux** environment: `sh configure.linux.sh`
@@ -165,7 +165,7 @@ For one application, open `applications/<service>/` and choose:
 | `sh deploy.sh` | Pull the published GHCR image and start/update the service |
 | `sh build.remote.sh` | Clone remote source, normally `main`, then build and run locally |
 | `sh build.remote.sh dev` | Build and run the selected branch where the script accepts a branch argument |
-| `sh build.local.sh` | Copy local source from `SourceCodeDirectoryPath`, then build and run it |
+| `sh build.local.sh` | Copy local source from `$UNITE_SOURCE_PATH`, then build and run it |
 
 The script is named **build.remote.sh**. Most application remote-build scripts
 accept a branch argument; identity-data-migrations currently clones without

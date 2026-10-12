@@ -1,6 +1,6 @@
 #!/bin/bash
 
-src_pth=$(jq -r .SourceCodeDirectoryPath ../../config.json)
+src_pth=${UNITE_SOURCE_PATH:?"is not set. Set it to the folder with your UNITE repositories, e.g. export UNITE_SOURCE_PATH=~/Work/unite/projects"}
 
 tput setaf 6; echo "# Installing UNITE analysis service (Methylation Arrays Principal Components Analysis)"; tput sgr0
 echo ""

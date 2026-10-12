@@ -1,17 +1,9 @@
 services:
   omics.feed.unite.net:
-    extends:
-      file: docker-compose.yml
-      service: omics.feed.unite.net
-    build: 
+    build:
       context: ./src
       dockerfile: ./Dockerfile
-      args: 
+      args:
         USER: ${GITHUB_USER}
         TOKEN: ${GITHUB_TOKEN}
     image: unite.feed.omics
-
-networks: 
-  default:
-    name: unite
-    external: true

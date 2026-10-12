@@ -1,16 +1,8 @@
 services:
   portal.unite.net:
-    extends:
-      file: docker-compose.yml
-      service: portal.unite.net
-    build: 
+    build:
       context: ./src
       dockerfile: ./Dockerfile
-      args: 
+      args:
         GITHUB_TOKEN: ${GITHUB_TOKEN}
     image: unite.portal
-    
-networks: 
-  default:
-    name: unite
-    external: true

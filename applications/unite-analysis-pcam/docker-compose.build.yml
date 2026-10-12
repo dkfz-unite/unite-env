@@ -1,21 +1,6 @@
 services:
   pcam.analysis.unite.net:
-    extends:
-      file: docker-compose.yml
-      service: pcam.analysis.unite.net
     build:
       context: ./src
       dockerfile: ./Dockerfile
     image: unite.analysis.pcam
-    volumes:
-      - unite.analysis.data:/mnt/data:rw
-
-networks:
-  default:
-    name: unite
-    external: true
-
-volumes:
-  unite.analysis.data:
-    name: unite.analysis.data
-    driver: local

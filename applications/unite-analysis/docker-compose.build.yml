@@ -1,24 +1,9 @@
 services:
   analysis.unite.net:
-    extends:
-      file: docker-compose.yml
-      service: analysis.unite.net
-    build: 
+    build:
       context: ./src
       dockerfile: ./Dockerfile
-      args: 
+      args:
         USER: ${GITHUB_USER}
         TOKEN: ${GITHUB_TOKEN}
     image: unite.analysis
-    volumes:
-      - unite.analysis.data:/mnt/data:rw
-
-networks: 
-  default:
-    name: unite
-    external: true
-
-volumes:
-  unite.analysis.data:
-    name: unite.analysis.data
-    driver: local

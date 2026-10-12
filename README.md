@@ -23,7 +23,7 @@ from its containing directory because paths inside it are relative.
 - `applications`
   - `unite` - web portal
     - _docker-compose.yml_ - installation configuration
-    - _docker-compose.build.yml_ - build and installation configuration (from repository source code)
+    - _docker-compose.build.yml_ - build override (from repository source code), merged with _docker-compose.yml_
     - _deploy.sh_ - installation script
     - _build.local.sh_ - local installation script (from repository source code - configurable local source)
     - _build.remote.sh_ - remote installation script (from repository source code - remote source)
@@ -209,7 +209,9 @@ the selected branch-build workflow is separate from published-image deployment.
 
 Most runtime configuration is in each component's `docker-compose.yml`.
 Scripts pass credentials as environment variables for Compose interpolation.
-Build Compose files currently inherit services using `extends`.
+Build Compose files contain only the build settings (`build`, local `image`
+name) and are merged with the base file on the command line:
+`docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build`.
 
 Identity already uses `--env-file ../../.env`; consolidation of common variables
 for the remaining services and simplification of Compose file composition are

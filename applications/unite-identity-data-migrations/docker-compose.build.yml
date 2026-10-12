@@ -1,17 +1,9 @@
 services:
   migrations.identity.unite.net:
-    extends:
-      file: docker-compose.yml
-      service: migrations.identity.unite.net
-    build: 
+    build:
       context: ./src
       dockerfile: ./Dockerfile
-      args: 
+      args:
         USER: ${GITHUB_USER}
         TOKEN: ${GITHUB_TOKEN}
     image: unite.identity.migrations
-    
-networks: 
-  default:
-    name: unite
-    external: true

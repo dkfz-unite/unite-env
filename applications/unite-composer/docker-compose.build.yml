@@ -1,17 +1,9 @@
 services:
   composer.unite.net:
-    extends:
-      file: docker-compose.yml
-      service: composer.unite.net
-    build: 
+    build:
       context: ./src
       dockerfile: ./Dockerfile
-      args: 
+      args:
         USER: ${GITHUB_USER}
         TOKEN: ${GITHUB_TOKEN}
     image: unite.composer
-
-networks: 
-  default:
-    name: unite
-    external: true

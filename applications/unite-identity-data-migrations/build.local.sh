@@ -1,18 +1,3 @@
-#!/bin/bash
+#!/bin/sh
 
-src_pth=${UNITE_SOURCE_PATH:?"is not set. Set it to the folder with your UNITE repositories, e.g. export UNITE_SOURCE_PATH=~/Work/unite/projects"}
-
-tput setaf 6; echo "# Installing UNITE Identity Migrations service"; tput sgr0
-echo ""
-
-tput setaf 4; echo "# Cleaning up source code directory"; tput sgr0
-rm -r -f src
-echo ""
-
-tput setaf 4; echo "# Cloning fresh code to source code directory"; tput sgr0
-mkdir src
-cp -r $src_pth/unite-identity-data-migrations/. src/
-echo ""
-
-tput setaf 4; echo "# Building and running docker image"; tput sgr0
-docker compose -p 'unite' --env-file ../../.env --env-file ../../.env.secrets -f docker-compose.yml -f docker-compose.build.yml up -d --build
+sh ../../scripts/app/build.local.sh identity-data-migrations

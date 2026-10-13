@@ -1,17 +1,3 @@
-#!/bin/bash
+#!/bin/sh
 
-. ../../.env.secrets
-
-tput setaf 6; echo "# Installing UNITE Identity Migrations service"; tput sgr0
-echo ""
-
-tput setaf 4; echo "# Cleaning up source code directory"; tput sgr0
-rm -r -f src
-echo ""
-
-tput setaf 4; echo "# Cloning fresh code to source code directory"; tput sgr0
-git clone https://$UNITE_GITHUB_TOKEN@github.com/dkfz-unite/unite-identity-data-migrations.git src
-echo ""
-
-tput setaf 4; echo "# Building and running docker image"; tput sgr0
-docker compose -p 'unite' --env-file ../../.env --env-file ../../.env.secrets -f docker-compose.yml -f docker-compose.build.yml up -d --build
+sh ../../scripts/app/build.remote.sh identity-data-migrations "$1"

@@ -6,10 +6,10 @@ ssl
 plugins
 secrets.json
 .env.secrets
-config.json
 # **/.project
 # **/.pydevproject
 # **/install.log
 # **/.docker-compose.tmp.yml
 # applications/unite-vep/databases
 **/.DS_Store
+.env.services.local

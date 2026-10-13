@@ -67,6 +67,8 @@ from its containing directory because paths inside it are relative.
   - _deploy.mgmt.sh_ - install management tools
   - _deploy.apps.sh_ - install applications script (for easy updates)
   - _build.apps.sh_ - build and install applications script (for easy updates)
+  - `app` - shared _deploy.sh_, _build.remote.sh_ and _build.local.sh_ called by every application
+- _.env.services_ - source locations of the services (local path, repository URL, default branch)
 - _.env_ - shared runtime configuration (instance settings, service hosts and ports)
 - _.env.secrets.template_ - template of _.env.secrets_ with all required credentials
 
@@ -115,9 +117,9 @@ For other data types (e.g. single cell RNA or methylation array data) any refere
 1. Clone this **unite-env** repository
 1. Copy `.env.secrets.template` to `.env.secrets` and **change all credentials**
 1. Review the instance settings in `.env`
-1. For local source builds, set `UNITE_SOURCE_PATH` once in your shell profile
-   (`~/.zshrc` or `~/.bashrc`) to the folder that contains the source
-   repositories: `export UNITE_SOURCE_PATH=~/Work/unite/projects`
+1. For local source builds, set `UNITE_SOURCE_PATH_PREFIX` once in your shell
+   profile (`~/.zshrc` or `~/.bashrc`) to the folder that contains the source
+   repositories: `export UNITE_SOURCE_PATH_PREFIX=~/Work/unite/projects`
 1. Open `unite-env/scripts` folder in terminal
 1. Configure environment
    - For **Linux** environment: `sh configure.linux.sh`
@@ -163,14 +165,28 @@ For one application, open `applications/<service>/` and choose:
 | Command | Behavior |
 | --- | --- |
 | `sh deploy.sh` | Pull the published GHCR image and start/update the service |
-| `sh build.remote.sh` | Clone remote source, normally `main`, then build and run locally |
-| `sh build.remote.sh dev` | Build and run the selected branch where the script accepts a branch argument |
-| `sh build.local.sh` | Copy local source from `$UNITE_SOURCE_PATH`, then build and run it |
+| `sh build.remote.sh` | Clone the repository (default branch from `.env.services`, else the repository default), then build and run it |
+| `sh build.remote.sh dev` | Clone and build the given branch |
+| `sh build.local.sh` | Copy the local source folder, then build and run it |
 
-The script is named **build.remote.sh**. Most application remote-build scripts
-accept a branch argument; identity-data-migrations currently clones without
-processing one. Top-level `build.sh` and `build.apps.sh` do not currently forward
-a branch argument. Local/remote build scripts replace their installation-side
+Each of these is a one-line call of the shared script in `scripts/app/` with the
+service key, e.g. `sh ../../scripts/app/build.remote.sh composer "$1"`. The
+shared scripts read the service's settings from `.env.services`:
+
+```sh
+UNITE_COMPOSER_NAME="UNITE Composer service"                        # display name
+UNITE_COMPOSER_PATH=${UNITE_SOURCE_PATH_PREFIX}/unite-composer       # local source
+UNITE_COMPOSER_URL=${UNITE_SOURCE_URL_PREFIX}/unite-composer.git     # repository
+UNITE_COMPOSER_BRANCH=                                              # empty = repository default
+```
+
+To build a single service from another folder, a fork or a branch on your
+machine, override its values in `.env.services.local` (gitignored, read after
+`.env.services`). The GitHub token from `.env.secrets` is sent only to
+`github.com`, as an HTTP header, and is not stored in the cloned repository.
+`UNITE_PROJECT` sets the Compose project (default `unite`; plugins use
+`unite-plugins`). Top-level `build.sh` and `build.apps.sh` do not forward a
+branch argument. Local/remote build scripts replace their installation-side
 `src/` directory; local builds copy working-tree contents, including uncommitted
 changes. Edited sibling libraries are not automatically substituted for NuGet
 package dependencies.
@@ -179,8 +195,8 @@ For local library development, the owner temporarily enables sibling
 `ProjectReference` entries in service project files, often already commented
 out there. For Docker verification, the owner publishes new NuGet packages by
 pushing the library to `main`, then selects the new version in consuming
-services. The stated version workflow is a minor increase for testing, then
-a major increase after successful verification.
+services. Versions: patch for each package published during development, minor
+when the change is released, major for breaking changes.
 
 Published application images use `ghcr.io/dkfz-unite/<repository>:latest` with
 `pull_policy: always`. The owner confirmed publication after pushes to `main`;

@@ -189,7 +189,23 @@ machine, override its values in `.env.services.local` (gitignored, read after
 `unite-env`, each with its own compose file, so the scripts set
 `COMPOSE_IGNORE_ORPHANS=true`: Compose would otherwise report the other
 services of the project as orphans. Never run `--remove-orphans`; it would remove
-them. Top-level `build.sh` and `build.apps.sh` do not forward a
+them.
+
+For local changes to a service's Compose configuration without editing
+committed files, create `docker-compose.override.yml` in its folder (gitignored).
+The shared scripts add it as the last `-f` when it exists, after
+`docker-compose.build.yml` for builds. It only needs the service name and what
+changes, e.g.:
+
+```yaml
+services:
+  composer.unite.net:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+```
+
+Single values and `environment` entries are replaced, `ports` are added,
+`volumes` are merged by their target path; `!override` replaces a whole list. Top-level `build.sh` and `build.apps.sh` do not forward a
 branch argument. Local/remote build scripts replace their installation-side
 `src/` directory; local builds copy working-tree contents, including uncommitted
 changes. Edited sibling libraries are not automatically substituted for NuGet

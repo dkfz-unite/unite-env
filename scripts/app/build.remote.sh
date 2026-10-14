@@ -9,6 +9,10 @@ key=${1:?"Usage: build.remote.sh <key> [branch], e.g. composer"}
 var=$(echo "$key" | tr 'a-z-' 'A-Z_')
 project=${UNITE_PROJECT:-unite}
 
+# Local, uncommitted changes to the compose configuration (gitignored), applied last.
+override=""
+[ -f docker-compose.override.yml ] && override="-f docker-compose.override.yml"
+
 . ../../.env.services
 [ -f ../../.env.services.local ] && . ../../.env.services.local
 . ../../.env.secrets
@@ -38,4 +42,4 @@ echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
 COMPOSE_IGNORE_ORPHANS=true RID=$rid docker compose -p "$project" --env-file ../../.env --env-file ../../.env.secrets \
-  -f docker-compose.yml -f docker-compose.build.yml up -d --build
+  -f docker-compose.yml -f docker-compose.build.yml $override up -d --build

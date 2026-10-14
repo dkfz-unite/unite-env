@@ -13,3 +13,4 @@ secrets.json
 # applications/unite-vep/databases
 **/.DS_Store
 .env.services.local
+**/docker-compose.override.yml

@@ -37,5 +37,5 @@ fi
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
-RID=$rid docker compose -p "$project" --env-file ../../.env --env-file ../../.env.secrets \
+COMPOSE_IGNORE_ORPHANS=true RID=$rid docker compose -p "$project" --env-file ../../.env --env-file ../../.env.secrets \
   -f docker-compose.yml -f docker-compose.build.yml up -d --build

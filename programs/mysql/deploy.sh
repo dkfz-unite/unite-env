@@ -1,4 +1,4 @@
 #!/bin/bash
 
 tput setaf 6; echo "# Installing Mysql"; tput sgr0
-docker compose -p 'unite-env' --env-file ../../.env --env-file ../../.env.secrets -f docker-compose.yml up -d
+COMPOSE_IGNORE_ORPHANS=true docker compose -p 'unite-env' --env-file ../../.env --env-file ../../.env.secrets -f docker-compose.yml up -d

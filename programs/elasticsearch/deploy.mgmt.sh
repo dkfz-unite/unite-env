@@ -14,4 +14,4 @@ docker exec es curl -s -f -u "$UNITE_ELASTIC_USER:$UNITE_ELASTIC_PASSWORD" \
 echo ""
 
 tput setaf 4; echo "# Starting Kibana"; tput sgr0
-docker compose -p 'unite-env' --env-file ../../.env --env-file ../../.env.secrets -f docker-compose.mgmt.yml up -d
+COMPOSE_IGNORE_ORPHANS=true docker compose -p 'unite-env' --env-file ../../.env --env-file ../../.env.secrets -f docker-compose.mgmt.yml up -d

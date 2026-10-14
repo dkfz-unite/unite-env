@@ -16,5 +16,5 @@ tput setaf 6; echo "# Installing $name"; tput sgr0
 echo ""
 
 tput setaf 4; echo "# Pulling and running docker image"; tput sgr0
-docker compose -p "$project" --env-file ../../.env --env-file ../../.env.secrets \
+COMPOSE_IGNORE_ORPHANS=true docker compose -p "$project" --env-file ../../.env --env-file ../../.env.secrets \
   -f docker-compose.yml up -d

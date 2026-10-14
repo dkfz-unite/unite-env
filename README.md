@@ -185,7 +185,11 @@ machine, override its values in `.env.services.local` (gitignored, read after
 `.env.services`). The GitHub token from `.env.secrets` is sent only to
 `github.com`, as an HTTP header, and is not stored in the cloned repository.
 `UNITE_PROJECT` sets the Compose project (default `unite`; plugins use
-`unite-plugins`). Top-level `build.sh` and `build.apps.sh` do not forward a
+`unite-plugins`). Applications share the project `unite`, the programs
+`unite-env`, each with its own compose file, so the scripts set
+`COMPOSE_IGNORE_ORPHANS=true`: Compose would otherwise report the other
+services of the project as orphans. Never run `--remove-orphans`; it would remove
+them. Top-level `build.sh` and `build.apps.sh` do not forward a
 branch argument. Local/remote build scripts replace their installation-side
 `src/` directory; local builds copy working-tree contents, including uncommitted
 changes. Edited sibling libraries are not automatically substituted for NuGet

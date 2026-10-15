@@ -1,12 +1,3 @@
-#!/bin/bash
+#!/bin/sh
 
-sql_usr=$(jq -r .sql.user ../../secrets.json)
-sql_pwd=$(jq -r .sql.password ../../secrets.json)
-
-tput setaf 6; echo "# Installing Ensembl Omics Data service"; tput sgr0
-echo ""
-
-tput setaf 4; echo "# Building and running docker image"; tput sgr0
-SQL_USER=$sql_usr \
-SQL_PASSWORD=$sql_pwd \
-docker compose -p 'unite' -f docker-compose.yml up -d --build
+sh ../../scripts/app/deploy.sh ensembl-data

@@ -1,16 +1,8 @@
 services:
   vep.ensembl.unite.net:
-    extends:
-      file: docker-compose.yml
-      service: vep.ensembl.unite.net
-    build: 
+    build:
       context: ./src
       dockerfile: ./Dockerfile
       args:
         RID: ${RID}
     image: unite.ensembl.vep
-
-networks: 
-  default:
-    name: unite
-    external: true

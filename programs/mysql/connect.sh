@@ -1,6 +1,5 @@
 #!/bin/bash
 
-usr=$(jq -r .sql.user ../../secrets.json)
-pwd=$(jq -r .sql.password ../../secrets.json)
+. ../../.env.secrets
 
-docker exec -it mysql mysql -u $usr -p$pwd
+docker exec -it mysql mysql -u $UNITE_MYSQL_USER -p$UNITE_MYSQL_PASSWORD

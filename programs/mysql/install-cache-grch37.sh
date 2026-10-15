@@ -1,7 +1,8 @@
 #!/bin/bash
 
-usr=root
-pwd=$(jq -r .sql.password ../../secrets.json)
+. ../../.env.secrets
+usr=$UNITE_MYSQL_USER
+pwd=$UNITE_MYSQL_PASSWORD
 dbr=113_37
 cor_dbn=homo_sapiens_core_$dbr
 cor_dir=/home/mysql/cache/core37

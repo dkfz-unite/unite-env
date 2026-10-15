@@ -1,17 +1,9 @@
 services:
   migrations.data.unite.net:
-    extends:
-      file: docker-compose.yml
-      service: migrations.data.unite.net
-    build: 
+    build:
       context: ./src
       dockerfile: ./Dockerfile
-      args: 
-        USER: ${GITHUB_USER}
-        TOKEN: ${GITHUB_TOKEN}
+      args:
+        USER: ${UNITE_GITHUB_USER}
+        TOKEN: ${UNITE_GITHUB_TOKEN}
     image: unite.data.migrations
-
-networks: 
-  default:
-    name: unite
-    external: true

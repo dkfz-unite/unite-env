@@ -1,14 +1,6 @@
 services:
   data.ensembl.unite.net:
-    extends: 
-      file: docker-compose.yml
-      service: data.ensembl.unite.net
-    build: 
+    build:
       context: ./src
       dockerfile: ./Dockerfile
     image: unite.ensembl.data
-
-networks: 
-  default:
-    name: unite
-    external: true

@@ -1,17 +1,9 @@
 services:
   identity.unite.net:
-    extends:
-      file: docker-compose.yml
-      service: identity.unite.net
-    build: 
+    build:
       context: ./src
       dockerfile: ./Dockerfile
-      args: 
-        USER: ${GITHUB_USER}
-        TOKEN: ${GITHUB_TOKEN}
+      args:
+        USER: ${UNITE_GITHUB_USER}
+        TOKEN: ${UNITE_GITHUB_TOKEN}
     image: unite.identity
-
-networks: 
-  default:
-    name: unite
-    external: true

@@ -1,17 +1,9 @@
 services:
   donors.feed.unite.net:
-    extends:
-      file: docker-compose.yml
-      service: donors.feed.unite.net
-    build: 
+    build:
       context: ./src
       dockerfile: ./Dockerfile
-      args: 
-        USER: ${GITHUB_USER}
-        TOKEN: ${GITHUB_TOKEN}
+      args:
+        USER: ${UNITE_GITHUB_USER}
+        TOKEN: ${UNITE_GITHUB_TOKEN}
     image: unite.feed.donors
-
-networks: 
-  default:
-    name: unite
-    external: true

@@ -8,14 +8,21 @@ key=${1:?"Usage: build.local.sh <key>, e.g. composer"}
 var=$(echo "$key" | tr 'a-z-' 'A-Z_')
 project=${UNITE_PROJECT:-unite}
 
+# Local, uncommitted changes to .env (gitignored), applied after it.
+envlocal=""
+[ -f ../../.env.local ] && envlocal="--env-file ../../.env.local"
+
 # Local, uncommitted changes to the compose configuration (gitignored), applied last.
 override=""
 [ -f docker-compose.override.yml ] && override="-f docker-compose.override.yml"
 
-. ../../.env.services
-[ -f ../../.env.services.local ] && . ../../.env.services.local
+# .env with the local changes from .env.local; .env.local is also read first,
+# so that UNITE_SOURCE_PATH_PREFIX set there is used for the source paths in .env.
+[ -f ../../.env.local ] && . ../../.env.local
+. ../../.env
+[ -f ../../.env.local ] && . ../../.env.local
 eval "name=\${UNITE_${var}_NAME:-$key}; path=\${UNITE_${var}_PATH}"
-[ -d "$path" ] || { echo "Source folder '$path' of '$key' not found: set UNITE_SOURCE_PATH_PREFIX or UNITE_${var}_PATH"; exit 1; }
+[ -d "$path" ] || { echo "Source folder '$path' of '$key' not found: set UNITE_SOURCE_PATH_PREFIX or UNITE_${var}_PATH in .env.local"; exit 1; }
 
 case $(docker version --format '{{.Server.Arch}}') in
   arm64) rid=linux-arm64;;
@@ -31,5 +38,5 @@ cp -r "$path" src || exit 1
 echo ""
 
 tput setaf 4; echo "# Building and running docker image"; tput sgr0
-COMPOSE_IGNORE_ORPHANS=true RID=$rid docker compose -p "$project" --env-file ../../.env --env-file ../../.env.secrets \
+COMPOSE_IGNORE_ORPHANS=true RID=$rid docker compose -p "$project" --env-file ../../.env $envlocal --env-file ../../.env.secrets \
   -f docker-compose.yml -f docker-compose.build.yml $override up -d --build

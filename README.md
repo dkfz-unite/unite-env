@@ -69,20 +69,33 @@ from its containing directory because paths inside it are relative.
   - _build.apps.sh_ - build and install applications script (for easy updates)
   - _ensembl.sh_ - Ensembl release and genome build used by the Ensembl data and VEP cache scripts
   - `app` - shared _deploy.sh_, _build.remote.sh_ and _build.local.sh_ called by every application
-- _.env.services_ - source locations of the services (local path, repository URL, default branch)
-- _.env_ - shared runtime configuration (instance settings, service hosts and ports)
+- _.env_ - shared configuration (instance settings, service hosts and ports, source locations of the services)
+- _.env.local_ - local overrides of _.env_ (not committed, optional)
 - _.env.secrets.template_ - template of _.env.secrets_ with all required credentials
 
 ### Configuration and secrets
-All deployment scripts pass two environment files to Docker Compose:
-`--env-file ../../.env --env-file ../../.env.secrets`. Each `docker-compose.yml`
+All deployment scripts pass the environment files to Docker Compose:
+`--env-file ../../.env --env-file ../../.env.local --env-file ../../.env.secrets`
+(`.env.local` only if it exists). Each `docker-compose.yml`
 maps the variables it needs explicitly, e.g. `UNITE_SQL_HOST: ${UNITE_PGSQL_HOST}`.
 Scripts that need a value themselves (e.g. the GitHub token for `git clone`)
 load it into the script's own shell with `. ../../.env.secrets` (not exported).
 
 - **.env** (in the repository): instance settings, including the genome build
-  `UNITE_GENOME_BUILD`, and the hosts and ports of the environment services
-  (`UNITE_PGSQL_*`, `UNITE_MYSQL_*`, `UNITE_MONGO_*`, `UNITE_ELASTIC_HOST`).
+  `UNITE_GENOME_BUILD`, the hosts and ports of the environment services
+  (`UNITE_PGSQL_*`, `UNITE_MYSQL_*`, `UNITE_MONGO_*`, `UNITE_ELASTIC_HOST`), and
+  the source locations of the services used by the build scripts (see
+  [Updating and building individual services](#updating-and-building-individual-services)).
+  Keep it unchanged, so that the checkout stays clean and updates with `git pull`.
+- **.env.local** (optional, never committed, listed in `.gitignore`): values of
+  `.env` that differ for this installation or machine, e.g. `UNITE_INSTANCE_HOST`,
+  `UNITE_INSTANCE_PUBLIC`, `UNITE_GENOME_BUILD` or `UNITE_SOURCE_PATH_PREFIX`.
+  It is read after `.env` and overrides its values; list only the changed variables:
+  ```sh
+  UNITE_INSTANCE_HOST=https://unite.example.org
+  UNITE_GENOME_BUILD=GRCh38
+  UNITE_SOURCE_PATH_PREFIX=~/Work/unite/projects
+  ```
 - **.env.secrets** (never committed, listed in `.gitignore`): created from
   `.env.secrets.template`:
   - `UNITE_API_KEY` - shared 32-character key used to sign and validate user/service JWTs
@@ -111,15 +124,15 @@ Genome reference version is choosen once per installation and can not be changed
 Using of both genome references on one server is not possible.
 
 Note, that genome reference version defines only which databases and pipelines will be used for DNA and Bulk RNA sequencing data annotation.  
-Set the chosen version in `UNITE_GENOME_BUILD` in `.env` (`GRCh37` by default). The services and the Ensembl data and VEP cache scripts read it from there.  
+Set the chosen version in `UNITE_GENOME_BUILD` in `.env.local` (`GRCh37` by default, from `.env`). The services and the Ensembl data and VEP cache scripts read it from there.  
 For other data types (e.g. single cell RNA or methylation array data) any reference genome can be used, no matter which version is configured for DNA and bulk RNA pipelines.
 
 1. Clone this **unite-env** repository
 1. Copy `.env.secrets.template` to `.env.secrets` and **change all credentials**
-1. Review the instance settings in `.env`, including the genome build `UNITE_GENOME_BUILD` (`GRCh37` or `GRCh38`)
-1. For local source builds, set `UNITE_SOURCE_PATH_PREFIX` once in your shell
-   profile (`~/.zshrc` or `~/.bashrc`) to the folder that contains the source
-   repositories: `export UNITE_SOURCE_PATH_PREFIX=~/Work/unite/projects`
+1. Review the instance settings in `.env` and set the ones that differ for this installation in `.env.local`, including the genome build `UNITE_GENOME_BUILD` (`GRCh37` or `GRCh38`)
+1. For local source builds, set `UNITE_SOURCE_PATH_PREFIX` in `.env.local` to the
+   folder that contains the source repositories: `UNITE_SOURCE_PATH_PREFIX=~/Work/unite/projects`
+   (an exported variable from your shell profile is used if `.env.local` does not set it)
 1. Open `unite-env/scripts` folder in terminal
 1. Configure environment
    - For **Linux** environment: `sh configure.linux.sh`
@@ -164,13 +177,13 @@ For one application, open `applications/<service>/` and choose:
 | Command | Behavior |
 | --- | --- |
 | `sh deploy.sh` | Pull the published GHCR image and start/update the service |
-| `sh build.remote.sh` | Clone the repository (default branch from `.env.services`, else the repository default), then build and run it |
+| `sh build.remote.sh` | Clone the repository (default branch from `.env`, else the repository default), then build and run it |
 | `sh build.remote.sh dev` | Clone and build the given branch |
 | `sh build.local.sh` | Copy the local source folder, then build and run it |
 
 Each of these is a one-line call of the shared script in `scripts/app/` with the
 service key, e.g. `sh ../../scripts/app/build.remote.sh composer "$1"`. The
-shared scripts read the service's settings from `.env.services`:
+shared scripts read the service's settings from `.env` (section "Service sources"):
 
 ```sh
 UNITE_COMPOSER_NAME="UNITE Composer service"                        # display name
@@ -180,8 +193,9 @@ UNITE_COMPOSER_BRANCH=                                              # empty = re
 ```
 
 To build a single service from another folder, a fork or a branch on your
-machine, override its values in `.env.services.local` (gitignored, read after
-`.env.services`). The GitHub token from `.env.secrets` is sent only to
+machine, override its values in `.env.local`. The build scripts read `.env.local`
+both before and after `.env`, so `UNITE_SOURCE_PATH_PREFIX` set there is used for
+the source paths in `.env`, and the other values there override `.env`. The GitHub token from `.env.secrets` is sent only to
 `github.com`, as an HTTP header, and is not stored in the cloned repository.
 `UNITE_PROJECT` sets the Compose project (default `unite`; plugins use
 `unite-plugins`). Applications share the project `unite`, the programs
@@ -224,7 +238,7 @@ the selected branch-build workflow is separate from published-image deployment.
 ### Configuration status
 
 Most runtime configuration is in each component's `docker-compose.yml`.
-Scripts pass `.env` and `.env.secrets` to Compose (`--env-file`), and each
+Scripts pass `.env`, `.env.local` (if it exists) and `.env.secrets` to Compose (`--env-file`), and each
 compose file maps the variables it uses.
 Build Compose files contain only the build settings (`build`, local `image`
 name) and are merged with the base file on the command line:

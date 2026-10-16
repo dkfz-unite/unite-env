@@ -12,7 +12,7 @@ Folder contains the following files:
 - `extract-cache.sh` - extract downloaded files
 - `install-cache.sh` - import schema and data
 
-The cache scripts use Ensembl release 116 and the genome build set in `UNITE_GENOME_BUILD` in [.env](../../.env) (`GRCh37` or `GRCh38`), see [ensembl.sh](../../scripts/ensembl.sh).
+The cache scripts use Ensembl release 116 and the genome build set in `UNITE_GENOME_BUILD` in [.env](../../.env) or `.env.local` (`GRCh37` or `GRCh38`), see [ensembl.sh](../../scripts/ensembl.sh).
 Both builds have the same database schema and tables, files are downloaded to `cache/core37` or `cache/core38` and imported into `homo_sapiens_core_116_37` or `homo_sapiens_core_116_38`.
 
 ## Before Installation

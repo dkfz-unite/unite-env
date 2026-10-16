@@ -1,13 +1,14 @@
 #!/bin/bash
 
+. ../../scripts/ensembl.sh
 . ../../.env.secrets
 usr=$UNITE_MYSQL_USER
 pwd=$UNITE_MYSQL_PASSWORD
-dbr=113_38
+dbr="$release"_"$grch"
 cor_dbn=homo_sapiens_core_$dbr
-cor_dir=/home/mysql/cache/core38
+cor_dir=/home/mysql/cache/core$grch
 # fun_dbn=homo_sapiens_funcgen_$dbr
-# fun_dir=/home/mysql/cache/func38
+# fun_dir=/home/mysql/cache/func$grch
 
 tput setaf 4; echo "# Creating Ensembl core database"; tput sgr0
 docker exec -i mysql mysql -u$usr -p$pwd -e "create database $cor_dbn;"

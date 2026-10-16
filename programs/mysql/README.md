@@ -8,9 +8,12 @@ MySQL 5.6 serves the following purpose:
 Folder contains the following files:
 - `docker-compose.yml` - Mysql server configuration file
 - `deploy.sh` - Mysql server installation script
-- `download-cache-grch37.sh` / `download-cache-grch38.sh` - download the matching Ensembl schema and selected table data
-- `extract-cache-grch37.sh` / `extract-cache-grch38.sh` - extract downloaded files
-- `install-cache-grch37.sh` / `install-cache-grch38.sh` - import schema and data
+- `download-cache.sh` - download the Ensembl core database schema and selected table data
+- `extract-cache.sh` - extract downloaded files
+- `install-cache.sh` - import schema and data
+
+The cache scripts use Ensembl release 116 and the genome build set in `UNITE_GENOME_BUILD` in [.env](../../.env) (`GRCh37` or `GRCh38`), see [ensembl.sh](../../scripts/ensembl.sh).
+Both builds have the same database schema and tables, files are downloaded to `cache/core37` or `cache/core38` and imported into `homo_sapiens_core_116_37` or `homo_sapiens_core_116_38`.
 
 ## Before Installation
 
@@ -20,22 +23,21 @@ Folder contains the following files:
 ## Installation
 
 Open this folder in terminal and run the required commands through `sh`.
-The examples below use GRCh37; use the `grch38` counterparts for GRCh38.
 - To install Mysql server
   ```bash
   sh deploy.sh
   ```
 - Download Ensembl database schema and cache files
   ```bash
-  sh download-cache-grch37.sh
+  sh download-cache.sh
   ```
 - Extract Ensembl database schema and cache files
   ```bash
-  sh extract-cache-grch37.sh
+  sh extract-cache.sh
   ```
 - Install Ensembl database schema and cache files (might take several minutes)
   ```bash
-  sh install-cache-grch37.sh
+  sh install-cache.sh
   ```
 
 ## Services

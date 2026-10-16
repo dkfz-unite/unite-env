@@ -1,20 +1,20 @@
 #!/bin/bash
-dbn=113
-dbr="$dbn"_"37"
-cor_url=https://ftp.ensembl.org/pub/grch37/release-$dbn/mysql/homo_sapiens_core_$dbr
-# fun_url=https://ftp.ensembl.org/pub/grch37/release-$dbn/mysql/homo_sapiens_funcgen_$dbr
+. ../../scripts/ensembl.sh
+dbr="$release"_"$grch"
+cor_url=$ftp/mysql/homo_sapiens_core_$dbr
+# fun_url=$ftp/mysql/homo_sapiens_funcgen_$dbr
 
-if [ ! -d "./cache/core37" ]
+if [ ! -d "./cache/core$grch" ]
 then
-  mkdir -p cache/core37
+  mkdir -p cache/core$grch
 fi
 
-# if [ ! -d "./cache/func37" ]
+# if [ ! -d "./cache/func$grch" ]
 # then
-#   mkdir -p cache/func37
+#   mkdir -p cache/func$grch
 # fi
 
-cd ./cache/core37
+cd ./cache/core$grch
 tput setaf 4; echo "# Downloading Ensembl core database cache"; tput sgr0
 # wget -c $cor_url/alt_allele.txt.gz
 # wget -c $cor_url/alt_allele_attrib.txt.gz
@@ -45,7 +45,6 @@ wget -c $cor_url/gene.txt.gz
 wget -c $cor_url/gene_archive.txt.gz
 wget -c $cor_url/gene_attrib.txt.gz
 # wget -c $cor_url/genome_statistics.txt.gz
-# wget -c $cor_url/homo_sapiens_core_109_37.sql
 wget -c $cor_url/homo_sapiens_core_$dbr.sql.gz
 # wget -c $cor_url/identity_xref.txt.gz
 wget -c $cor_url/interpro.txt.gz
@@ -98,7 +97,7 @@ wget -c $cor_url/xref.txt.gz
 echo ""
 cd ../../
 
-# cd ./cache/func37
+# cd ./cache/func$grch
 # tput setaf 4; echo "# Downloading Ensembl functional genome database cache"; tput sgr0
 # wget -c $fun_url/feature_type.txt.gz
 # wget -c $fun_url/homo_sapiens_funcgen_$dbr.sql.gz

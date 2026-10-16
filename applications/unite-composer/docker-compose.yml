@@ -18,6 +18,7 @@ services:
       UNITE_MONGO_USER: ${UNITE_MONGO_USER}
       UNITE_MONGO_PASSWORD: ${UNITE_MONGO_PASSWORD}
       UNITE_ENSEMBL_HOST: http://data.ensembl.unite.net
+      UNITE_GENOME_BUILD: ${UNITE_GENOME_BUILD}
       UNITE_IDENTITY_HOST: http://identity.unite.net
       UNITE_FEED_DONORS_HOST: http://donors.feed.unite.net
       ASPNETCORE_ENVIRONMENT: Release

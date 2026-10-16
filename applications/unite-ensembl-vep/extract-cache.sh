@@ -1,5 +1,6 @@
 #!/bin/bash
-dbr=113_GRCh38
+. ../../scripts/ensembl.sh
+dbr="$release"_GRCh"$grch"
 
 chmod 700 ./data
 

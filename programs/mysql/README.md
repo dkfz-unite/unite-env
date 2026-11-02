@@ -1,50 +1,40 @@
-# Mysql Service
+# MySQL service
 
-MySQL 5.6 serves the following purpose:
-- Ensembl data storage - stores required Ensembl data
+MySQL 5.6 stores the Ensembl reference databases used by Ensembl Data.
+This folder manages the database server. Reference database downloads,
+extraction, import and SQL adjustments are maintained with the
+[Ensembl Data service](../../applications/unite-ensembl-data/README.md).
 
 ## Files
 
-Folder contains the following files:
-- `docker-compose.yml` - Mysql server configuration file
-- `deploy.sh` - Mysql server installation script
-- `download-cache.sh` - download the Ensembl core database schema and selected table data
-- `extract-cache.sh` - extract downloaded files
-- `install-cache.sh` - import schema and data
-
-The cache scripts use Ensembl release 116 and the genome build set in `UNITE_GENOME_BUILD` in [.env](../../.env) or `.env.local` (`GRCh37` or `GRCh38`), see [ensembl.sh](../../scripts/ensembl.sh).
-Both builds have the same database schema and tables, files are downloaded to `cache/core37` or `cache/core38` and imported into `homo_sapiens_core_116_37` or `homo_sapiens_core_116_38`.
-
-## Before Installation
-
-- Ensure **`secrets.json`** is configured as described [here](../../README.md#secrets)
-- Ensure docker network '**unite**' is created
+- `docker-compose.yml` - MySQL server and persistent data volume.
+- `deploy.sh` - install or update the MySQL container.
+- `connect.sh` - open a MySQL command-line session.
 
 ## Installation
 
-Open this folder in terminal and run the required commands through `sh`.
-- To install Mysql server
-  ```bash
-  sh deploy.sh
-  ```
-- Download Ensembl database schema and cache files
-  ```bash
-  sh download-cache.sh
-  ```
-- Extract Ensembl database schema and cache files
-  ```bash
-  sh extract-cache.sh
-  ```
-- Install Ensembl database schema and cache files (might take several minutes)
-  ```bash
-  sh install-cache.sh
-  ```
+Configure `.env.secrets` and create the `unite` Docker network as described in
+the [installation instructions](../../README.md#installation).
 
-## Services
+From this folder, run:
 
-|Service|Container|Alias|Container Port|Host Port|
-|:------|:--------|:----|:---|:---------|
-|Mysql|mysql|mysql.unite.net|3306|3306|
+```sh
+sh deploy.sh
+```
 
-All components are running in docker network '**unite**'.
-The database port is published on the Docker host's `127.0.0.1`.
+Database files persist in the named `mysql.data` volume. Ensembl Data imports
+reference data through a temporary client container on the `unite` network.
+The client mounts the application's cache read-only; MySQL needs no cache mount.
+
+For installations with an old `programs/mysql/cache` directory, follow the
+[cache relocation instructions](../../applications/unite-ensembl-data/README.md#existing-installations)
+when reusing downloaded reference files. Existing databases need no reimport.
+
+## Access
+
+| Service | Container | Alias | Container port | Host port |
+| --- | --- | --- | --- | --- |
+| MySQL | mysql | mysql.unite.net | 3306 | 3306 |
+
+The container uses the `unite` Docker network. Its database port is published
+on the Docker host's `127.0.0.1`.

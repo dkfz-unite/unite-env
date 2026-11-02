@@ -44,7 +44,7 @@ from its containing directory because paths inside it are relative.
   - `unite-feed-omics` - omics data feed web API
   - `unite-data-migrations` - domain data migrations service
   - `unite-identity-data-migrations` - identity data migration service
-  - `unite-ensembl-data` - ensembl data Web API
+  - `unite-ensembl-data` - Ensembl data Web API and reference database setup
   - `unite-ensembl-vep` - ensembl Variant Effect Predictor (VEP) web API
 - `programs`
   - `postgresql` - data storage
@@ -149,8 +149,8 @@ For other data types (e.g. single cell RNA or methylation array data) any refere
    - `sh deploy.sh`
 1. Install management tools (optional)
    - `sh deploy.mgmt.sh`
-1. Install Ensembl Data service
-   - Open `unite-env/programs/mysql` folder in terminal
+1. Prepare the Ensembl Data reference database
+   - Open `unite-env/applications/unite-ensembl-data` folder in terminal
    - Download cache `sh download-cache.sh` (This may take some time, if download process breaks, run the script again to continue)
    - Extract cache `sh extract-cache.sh`
    - Restore database from cache `sh install-cache.sh` (This may take several minutes)
@@ -161,6 +161,15 @@ For other data types (e.g. single cell RNA or methylation array data) any refere
 
 For custom installation run installation scripts for dedicated programs or applications.  
 Cache downloaded and extracted for **Ensembl Data** and **Ensembl VEP** services **will persist** on the disk unless you remove it manually, so no need to run download and extraction scripts again for recurrent installation of the platform.
+
+Ensembl Data setup scripts, SQL adjustments and downloaded files live in
+`applications/unite-ensembl-data`; `programs/mysql` manages the database server.
+For an existing installation with files in `programs/mysql/cache`, follow the
+[cache relocation instructions](applications/unite-ensembl-data/README.md#existing-installations)
+when reusing downloaded reference files. Import runs in a temporary client
+container with read-only cache mounts and connects to the running MySQL server.
+Installed databases stay in the existing `mysql.data` volume and do not need
+to be imported again.
 
 The scripts download Ensembl release 116 for the configured genome build: the Ensembl core database from `ftp.ensembl.org/pub/[grch37/]release-116/mysql` and the indexed VEP cache from `.../release-116/variation/indexed_vep_cache`. Release 116 is the last release published on `ftp.ensembl.org`; newer Ensembl data is published on the new Ensembl platform in another format. The VEP cache release has to match the release of the VEP image used by **unite-ensembl-vep**.
 

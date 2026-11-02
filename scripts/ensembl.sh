@@ -1,6 +1,6 @@
 #!/bin/sh
 # Ensembl release and genome build of the installation, used by the Ensembl data and VEP cache scripts.
-# Usage (from programs/mysql or applications/unite-ensembl-vep):
+# Usage (from applications/unite-ensembl-data or applications/unite-ensembl-vep):
 #   . ../../scripts/ensembl.sh
 # Sets: release, grch (37 or 38) and ftp (Ensembl FTP folder of the release for the genome build).
 

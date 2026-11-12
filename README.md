@@ -122,11 +122,14 @@ To generate passwords one of command line tools can be used:
 Choose, which Genome reference to use for the portal DNA and Bulk RNA annotation pipelines `GRCh37` or `GRCh38`.  
 Genome reference version is choosen once per installation and can not be changed later. If you need to support both, consider having two separate servers.  
 Each installation uses one genome build for integrated data and annotation.
-Ensembl Data also installs reference-sequence tables for the other build to
-support sequence comparison; this does not change the installation's annotation build.
+Ensembl Data installs the same selected annotation and reference-sequence
+tables for both builds; the instance's integration and VEP annotation build
+remains selected by `UNITE_GENOME_BUILD`.
 
 Note, that genome reference version defines only which databases and pipelines will be used for DNA and Bulk RNA sequencing data annotation.  
-Set the chosen version in `UNITE_GENOME_BUILD` in `.env.local` (`GRCh37` by default, from `.env`). The services and the Ensembl data and VEP cache scripts read it from there.  
+Set the chosen version in `UNITE_GENOME_BUILD` in `.env.local` (`GRCh37` by default,
+from `.env`). The services and VEP cache scripts read it from there. Ensembl Data
+setup prepares both builds.
 For other data types (e.g. single cell RNA or methylation array data) any reference genome can be used, no matter which version is configured for DNA and bulk RNA pipelines.
 
 1. Clone this **unite-env** repository
@@ -156,8 +159,8 @@ For other data types (e.g. single cell RNA or methylation array data) any refere
    - Download cache `sh download-cache.sh` (This may take some time, if download process breaks, run the script again to continue)
    - Extract cache `sh extract-cache.sh`
    - Restore databases from cache `sh install-cache.sh` (This may take several minutes)
-   - For an existing installation, use `sequence` with all three commands to add
-     sequence tables without reimporting annotation data; see the
+   - Existing installations use the same commands without arguments; populated
+     tables are reused and missing table data is added. See the
      [Ensembl Data setup instructions](applications/unite-ensembl-data/README.md#existing-installations)
 1. Install Ensembl VEP service
    - Open `unite-env/applications/unite-ensembl-vep` folder in terminal
@@ -174,12 +177,12 @@ For an existing installation with files in `programs/mysql/cache`, follow the
 when reusing downloaded reference files. Import runs in a temporary client
 container with read-only cache mounts and connects to the running MySQL server.
 Installed databases stay in the existing `mysql.data` volume. Relocating cache
-files does not require another import; adding sequence data uses the incremental
-`sequence` commands described above.
+files does not require another import; rerun the commands above to add missing
+annotation or sequence tables.
 
 The scripts download Ensembl release 116 from `ftp.ensembl.org/pub/[grch37/]release-116`.
-Ensembl Data prepares annotation and sequence tables for the configured build,
-and only sequence tables for the other build, from `mysql`. Ensembl VEP downloads
+Ensembl Data prepares the same selected annotation and sequence tables for both
+builds from `mysql`, using its editable `tables.txt` list. Ensembl VEP downloads
 only the configured build's indexed cache from `variation/indexed_vep_cache`.
 Release 116 is the last release published on `ftp.ensembl.org`; newer Ensembl data
 is published on the new Ensembl platform in another format. The VEP cache release

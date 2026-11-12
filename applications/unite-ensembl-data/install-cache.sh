@@ -30,6 +30,5 @@ docker run --rm \
   --env MYSQL_PORT="$UNITE_MYSQL_PORT" \
   --env MYSQL_USER="$UNITE_MYSQL_USER" \
   --env ENSEMBL_RELEASE="$release" \
-  --env ENSEMBL_GENOME="$grch" \
   --entrypoint /bin/sh \
-  mysql:5.6 /setup/import-cache.sh "$mode"
+  mysql:5.6 /setup/import-cache.sh

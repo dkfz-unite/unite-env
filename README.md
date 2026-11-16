@@ -64,6 +64,7 @@ from its containing directory because paths inside it are relative.
   - _build.sh_ - build and install script
   - _uninstall.**hard**.sh_ - **hard** uninstallation script (**removes** data and volumes)
   - _uninstall.**soft**.sh_ - **soft** uninstallation script (**keeps** data and volumes)
+  - _clean.sh_ - removes UNITE containers and data. Run `sh clean.sh -i` to also remove UNITE Docker images.
   - _deploy.mgmt.sh_ - install management tools
   - _deploy.apps.sh_ - install applications script (for easy updates)
   - _build.apps.sh_ - build and install applications script (for easy updates)

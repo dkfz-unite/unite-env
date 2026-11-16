@@ -1,5 +1,16 @@
 #!/bin/bash
 
+delete_images=false
+if [ "${1-}" = "-i" ]; then
+    delete_images=true
+    shift
+fi
+
+if [ "$#" -ne 0 ]; then
+    echo "Usage: sh clean.sh [-i] (-i also removes UNITE Docker images)" >&2
+    exit 2
+fi
+
 # Stop all running unite* containers
 docker ps -a | grep unite | awk '{print $1}' | xargs -r docker stop
 
@@ -7,8 +18,9 @@ docker ps -a | grep unite | awk '{print $1}' | xargs -r docker stop
 docker ps -a | grep unite | awk '{print $1}' | xargs -r docker rm
 
 # Remove all unite* images
-# Awoid this: WARNING: This output is designed for human readability. For machine-readable output, please use --format.
-docker images --format '{{.Repository}}:{{.Tag}}' | grep 'unite' | xargs -r docker rmi
+if [ "$delete_images" = true ]; then
+    docker images --format '{{.Repository}}:{{.Tag}}' | grep 'unite' | xargs -r docker rmi
+fi
 
 # Clean Elasticsearch
 docker stop es

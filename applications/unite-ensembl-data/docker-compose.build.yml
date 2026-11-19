@@ -3,4 +3,7 @@ services:
     build:
       context: ./src
       dockerfile: ./Dockerfile
+      args:
+        USER: ${UNITE_GITHUB_USER}
+        TOKEN: ${UNITE_GITHUB_TOKEN}
     image: unite.ensembl.data

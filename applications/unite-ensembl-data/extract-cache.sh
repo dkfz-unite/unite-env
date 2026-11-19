@@ -1,16 +1,33 @@
-#!/bin/bash
+#!/bin/sh
+set -e
+
 . ../../scripts/ensembl.sh
+. ./cache.sh
+
+for genome in 37 38
+do
+  configure_cache "$genome"
+  for file in $cache_files
+  do
+    if [ ! -f "$cache_directory/$file" ] && [ ! -f "$cache_directory/$file.gz" ]
+    then
+      echo "Missing cache file: $cache_directory/$file.gz. Run download-cache.sh first." >&2
+      exit 1
+    fi
+  done
+done
 
 chmod 700 ./cache
 
-cd ./cache/core$grch
-tput setaf 4; echo "# Extracting Ensembl core database cache"; tput sgr0
-for file in *.gz; do gunzip "$file"; done
-echo ""
-cd ../../
-
-# cd ./cache/func$grch
-# tput setaf 4; echo "# Extracting Ensembl functional genome database cache"; tput sgr0
-# for file in *.gz; do gunzip "$file"; done
-# echo ""
-# cd ../../
+for genome in 37 38
+do
+  configure_cache "$genome"
+  echo "# Extracting Ensembl GRCh$genome cache"
+  for file in $cache_files
+  do
+    if [ ! -f "$cache_directory/$file" ]
+    then
+      gunzip "$cache_directory/$file.gz"
+    fi
+  done
+done

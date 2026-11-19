@@ -1,5 +1,6 @@
 #!/bin/bash
 . ../../scripts/ensembl.sh
+configure_ensembl_genome
 dbr="$release"_GRCh"$grch"
 
 if [ ! -d "./data" ]
